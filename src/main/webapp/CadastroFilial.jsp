@@ -22,7 +22,7 @@
             <h4>${mensagemFalha}</h4>
         </div>
 
-            <form action="${pageContext.request.contextPath}/SalvarFilial" method="post" style="border: 1px solid black; padding: 12px; float: left; position: 
+            <form action="${pageContext.request.contextPath}/FilialController" method="post" style="border: 1px solid black; padding: 12px; float: left; position: 
               absolute; left: 50%; top: 30%; margin-right: -50%;transform: translate(-50%,-30%);" >
                 
                 <input type="hidden" name="acao" value="salvar">

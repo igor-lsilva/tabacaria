@@ -1,6 +1,100 @@
 @charset "utf-8";
 body {
-    background-color: #ffeaa7;
+/*    background-color: deepskyblue;*/
+}
+a{
+    font-family: monospace;
+    text-decoration: none;
+    font-size: 20px;
 }
 
+.tituloTopo{
+    font-family: monospace;
+    color: black;
+    text-align: center;
+    font-size: 25px;
+    display: block;
+}
+.subTitulo{
+    font-family: monospace;
+    color: black;
+    font-size: 20px;
+    display: block;
+}
+.campoID{
+    width: 80px;
+}
+.campoNome{
+    width: 250px;
+}
+.campoCNPJ{
+    width: 200px;
+}
+.campoEndereco{
+    width: 250px;
+}
+.campoEditar{
+    width: 80px;
+}
+.campExcluir{
+    width: 80px;
+}
+.tabelaListagem{
+    border: 3px solid black;
+    border-color: black;
+    border-radius: 4px;
+    padding: 12px;
+    float: left; 
+    position: absolute; 
+    left: 50%; 
+    top: 50%; 
+    margin-right: -50%;
+    transform: translate(-50%,-50%);
+}
+.campoBuscas{
+    font-family: monospace;
+    color: black;
+    font-size: 25px;
+    display: block;
+}
+.campoCadastro{
+    
+    text-align: left;
+}
 
+th{
+    font-family: monospace;
+    color: black; 
+    font-size: 20px;
+    background-color: orange;
+}
+td{
+    font-family: monospace;
+    color: black;
+    font-size: 15px;
+    text-align: center;
+    
+}
+input{
+    width: 200px;
+    height: 20px;
+    border-color: black;
+}
+button{
+    width: 100px;
+    height: 25px;
+    font-family: monospace;
+    font-size: 15px;
+}
+table{
+    border: 3px solid black;
+    border-color: black;
+    border-radius: 4px;
+}
+.linksPagina{
+    display: inline-block;
+    background: royalblue;
+    color: red;
+    padding: 2px 8px;
+    border-radius: 5px;
+}

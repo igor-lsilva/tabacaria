@@ -5,7 +5,7 @@
  */
 package Servlet;
 
-import Controller.FilialController;
+import DAO.FilialDAO;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,7 +25,7 @@ public class ExcluirFilial extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (FilialController.excluir(Integer.parseInt(request.getParameter("id")))) {
+        if (FilialDAO.excluir(Integer.parseInt(request.getParameter("id")))) {
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("/RedirecionarFilial.jsp");
             dispatcher.forward(request, response);

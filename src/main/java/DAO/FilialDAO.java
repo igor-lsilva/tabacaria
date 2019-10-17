@@ -26,8 +26,9 @@ public class FilialDAO {
     private static Connection conexao;
 
    
-    public static boolean salvar(Filial f) {
+    public static boolean salvar(String nomeFilial,String CNPJ, String endereco) {
         boolean retorno = false;
+        Filial f = new Filial(nomeFilial, CNPJ, endereco);
 
         try {
 
@@ -104,10 +105,11 @@ public class FilialDAO {
 
     }
     
-    public static boolean atualizar(Filial f) {
+    public static boolean atualizar(int id,String nomeFilial,String CNPJ, String endereco) {
 
         boolean retorno = false;
-
+        Filial f = new Filial(id, nomeFilial, CNPJ, endereco);
+        
         try {
 
             Class.forName(DRIVER);

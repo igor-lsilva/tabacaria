@@ -16,7 +16,7 @@
         
         <input type="hidden" name="login" value="${loginAttr}">
         <input type="hidden" name="senha" value="${senhaAttr}">
+        
         <a href="/Tabacaria/RedirecionarFilial.jsp">Filiais</a>
-        <a href="/Tabacaria/CadastroUsuario.jsp">Usuario</a>
     </body>
 </html>

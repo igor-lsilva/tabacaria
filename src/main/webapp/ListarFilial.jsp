@@ -6,56 +6,68 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Filial"%>
-<%@page import="Controller.FilialController"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html" charset=UTF-8">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssFilial.css" />
         <title>Lista Filiais</title>
     </head>
     <body>
-        <h1 style="text-align: center">NOME DA EMPRESA</h1>
-        <br>
-        <h1 style="text-align: center">Filias</h1>
         
-        <div style="border: 1px solid black; padding: 12px; float: left; position: 
-             absolute; left: 50%; top: 50%; margin-right: -50%;transform: translate(-50%,-50%);">
-            <form action="${pageContext.request.contextPath}/ListarFilial" method="post">
-                <label>Nome:</label><br>
-                <input type="text" name="busca">
-                <button type="submit">OK</button>
-                <br>
-            </form>
-                <table border="1" celpadding="10">
+            <div class="tituloTopo">
+                <h1 style="text-align: center">NOME DA EMPRESA</h1>
+            </div>
+        
+        <div class="subTitulo">
+            <h1 style="text-align: center">Filias</h1>
+        </div>
 
+        <div class="tabelaListagem">
+            <form action="${pageContext.request.contextPath}/ListarFilial" method="post">
+                <div class="campoBuscas">
+                    <label for="txtBuscar">Nome:</label>
+                    <div>
+                        <input type="text" name="busca" id="txtBuscar" placeholder=" Nome da Filial">
+                        <button type="submit">Buscar</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <table> 
                 <tr>
                     <th class="campoID">Cod. </th>
                     <th class="campoNome">Nome </th>
                     <th class="campoCNPJ">CNPJ </th>
                     <th class="campoEndereco">Endereço </th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
-                </tr>
+                    <th class="campoEditar">Editar</th>
+                    <th class="campExcluir">Excluir</th>
+                </tr>                
                 <c:forEach items="${TodasFiliais}" var="f">
                     <tr>                       
                         <td>${f.id}</td>              
                         <td>${f.nomeFilial}</td>               
                         <td>${f.CNPJ}</td>
-                        <td>${f.endereco}</td>                                               
+                        <td>${f.endereco}</td>                        
                         <td> 
-                            <a href="${pageContext.request.contextPath}/EditarFilial?id=${f.id}&nomeFilial=${f.nomeFilial}&CNPJ=${f.CNPJ}&endereco=${f.endereco}"><img src="${pageContext.request.contextPath}/Icones/alterar.png"></a>
+                            <form>
+                                <a href="${pageContext.request.contextPath}/EditarFilial?id=${f.id}&nomeFilial=${f.nomeFilial}&CNPJ=${f.CNPJ}&endereco=${f.endereco}">Editar</a>
+                            </form>                            
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/ExcluirFilial?id=${f.id}" ><img src="${pageContext.request.contextPath}/Icones/excluir.png"></a>
-                        </td>               
+                            <form>
+                                <a href="${pageContext.request.contextPath}/ExcluirFilial?id=${f.id}" >Excluir</a>
+                            </form>
+                        </td>                            
                     </tr>
-                </c:forEach>
-            </table>
+                </c:forEach> 
 
-            <a href="/Tabacaria/CadastroFilial.jsp">Novo</a>
+            </table>
+            <div class="campoCadastro">
+                <a href="/Tabacaria/CadastroFilial.jsp">Cadastrar</a>
+            </div>
         </div>
 
     </body>

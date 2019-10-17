@@ -5,7 +5,7 @@
  */
 package Servlet;
 
-import Controller.FilialController;
+import DAO.FilialDAO;
 import Model.Filial;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,7 +30,7 @@ public class ListarFilial extends HttpServlet {
 
         try {
 
-            ArrayList<Filial> f = FilialController.getFilial();
+            ArrayList<Filial> f = FilialDAO.getFilial();
             request.setAttribute("TodasFiliais", f);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarFilial.jsp");
             dispatcher.forward(request, response);
@@ -47,14 +47,14 @@ public class ListarFilial extends HttpServlet {
 
             if ("".equals(nome) || nome == null) {
 
-                ArrayList<Filial> f = FilialController.getFilial();
+                ArrayList<Filial> f = FilialDAO.getFilial();
                 request.setAttribute("TodasFiliais", f);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarFilial.jsp");
                 dispatcher.forward(request, response);
 
             } else {
 
-                ArrayList<Filial> f = FilialController.getFilial(nome);
+                ArrayList<Filial> f = FilialDAO.getFilial(nome);
                 request.setAttribute("TodasFiliais", f);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarFilial.jsp");
                 dispatcher.forward(request, response);
