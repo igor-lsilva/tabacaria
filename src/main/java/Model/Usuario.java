@@ -11,17 +11,25 @@ package Model;
  */
 public class Usuario {
 
+    private int id;
     private String login;
     private String senha;
+    private int filial;
+    private String cargo;
 
-    private int id;
-
-    public Usuario() {
-    }
-
-    public Usuario(String login, String senha) {
+    public Usuario(int id, String login, String senha, int filial, String cargo) {
+        this.id = id;
         this.login = login;
         this.senha = senha;
+        this.filial = filial;
+        this.cargo = cargo;
+    }
+
+     public Usuario(String login, String senha, int filial, String cargo) {
+        this.login = login;
+        this.senha = senha;
+        this.filial = filial;
+        this.cargo = cargo;
     }
 
     public int getId() {
@@ -48,9 +56,24 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Usuario(int id, String login, String senha) {
-        this.id = id;
-        this.login = login;
-        this.senha = senha;
+    public int getFilial() {
+        return filial;
     }
+
+    public void setFilial(int filial) {
+        this.filial = filial;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+    public Usuario(){
+    }
+    
+    
+
 }
