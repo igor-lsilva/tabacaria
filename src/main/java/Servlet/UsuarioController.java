@@ -55,30 +55,24 @@ public class UsuarioController extends HttpServlet {
     protected void salvar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        String nome = request.getParameter("nome");
-//        String login = request.getParameter("login");
-//        String senha = request.getParameter("senha");
-//        String cpf = request.getParameter("cpf");
-//        int idEmp = Integer.getInteger(request.getParameter("idEmp"));
-//        String contato = request.getParameter("contato");
-//        String cargo = request.getParameter("cargo");
-        String nome = "admin";
-        String login = "admin";
-        String senha = "admin";
-        String cpf = "123";
-        int idEmp = 1;
-        String contato = "123";
-        String cargo = "administrador";
+        String nome = request.getParameter("nome");
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
+        String cpf = request.getParameter("cpf");
+        int idEmp = Integer.parseInt(request.getParameter("codEmp"));
+        String contato = request.getParameter("contato");
+        String cargo = request.getParameter("cargo");
+
         Funcionario user = new Funcionario(cargo, idEmp, contato, login, senha, nome, cpf);
 
         if (UsuarioDAO.salvar(user)) {
 
             request.setAttribute("mensagemSucesso", "Cadastro realizado com sucesso!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroFilial.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroUsuario.jsp");
             dispatcher.forward(request, response);
         } else {
             request.setAttribute("mensagemFalha", "Falha ao cadastrar!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroFilial.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroUsuario.jsp");
             dispatcher.forward(request, response);
 
         }
