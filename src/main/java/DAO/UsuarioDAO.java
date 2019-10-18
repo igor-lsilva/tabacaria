@@ -19,16 +19,54 @@ import java.util.ArrayList;
  * @author lucas.asilva89
  */
 public class UsuarioDAO {
-    
+
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";    //Driver do MySQL 8.0 em diante - Se mudar o SGBD mude o Driver
     private static final String LOGIN = "root";                         //nome de um usuário do banco de dados
     private static final String SENHA = "";                             //sua senha de acesso
     private static final String URL = "jdbc:mysql://localhost:3306/tabacaria?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC";  //URL do banco de dados
     private static Connection conexao;
-    
-    public static boolean salvar(Funcionario user) {
-        boolean retorno = false;
 
+    public static ArrayList<Funcionario> getUsuarios() {
+        boolean retorno = false;
+        
+        ArrayList<Funcionario> listaUsuarios = new ArrayList<>();
+        
+        try {
+
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+
+            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM usuario");
+            
+            ResultSet rs = comando.executeQuery();
+            
+            while (rs.next()) {
+                
+                Funcionario c = new Funcionario(rs.getInt(1), rs.getString(2),  rs.getString(3),  rs.getString(4),  rs.getString(5),  rs.getInt(6),  rs.getString(7),  rs.getString(8));
+
+                listaUsuarios.add(c);
+            }
+
+            int linhasAfetadas = comando.executeUpdate();
+
+        } catch (ClassNotFoundException ex) {
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                retorno = false;
+            }
+
+        }
+        return listaUsuarios;
+    }
+
+
+public static boolean salvar(Funcionario user) {
+        boolean retorno = false;
         try {
 
             Class.forName(DRIVER);
@@ -64,8 +102,6 @@ public class UsuarioDAO {
             }
 
         }
-
         return retorno;
-
     }
 }

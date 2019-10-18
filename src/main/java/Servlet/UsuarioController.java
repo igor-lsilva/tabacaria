@@ -46,8 +46,8 @@ public class UsuarioController extends HttpServlet {
 //                break;
 //            case "excluir":
 //                excluir(request, response);
-//            case "listar":
-//                listar(request, response);
+            case "listar":
+                listar(request, response);
         }
 
     }
@@ -63,7 +63,7 @@ public class UsuarioController extends HttpServlet {
         String contato = request.getParameter("contato");
         String cargo = request.getParameter("cargo");
 
-        Funcionario user = new Funcionario(cargo, idEmp, contato, login, senha, nome, cpf);
+        Funcionario user = new Funcionario(nome, cpf, login, senha, idEmp, cargo, contato);
 
         if (UsuarioDAO.salvar(user)) {
 
@@ -78,26 +78,15 @@ public class UsuarioController extends HttpServlet {
         }
     }
 
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        String login = request.getParameter("login");
-//        String senha = request.getParameter("senha");
-//        int codEmp = Integer.parseInt(request.getParameter("codEmp"));
-//        String cargo = "Vendas";
-//        Usuario user = new Usuario(login, senha, codEmp, cargo);
-//        
-//        if (DAO.UsuarioDAO.salvar(user)) {
-//            request.setAttribute("mensagemSucesso", "Cadastro realizado com sucesso!");
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroUsuario.jsp");
-//            dispatcher.forward(request, response);
-//
-//        } else {
-//
-//            request.setAttribute("mensagemFalha", "Falha ao cadastrar!");
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroUsuario.jsp");
-//            dispatcher.forward(request, response);
-//
-//        }
-//
-//    }
+    protected void listar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+
+            ArrayList<Funcionario> usuarios = UsuarioDAO.getUsuarios();
+            request.setAttribute("TodosUsuarios", usuarios);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
+            dispatcher.forward(request, response);
+
+
+    }
 }

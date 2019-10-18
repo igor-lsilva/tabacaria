@@ -15,8 +15,8 @@ public class Funcionario extends Usuario {
     private int idEmpresa;
     private String contato;
 
-    public Funcionario(String cargo, int idEmpresa, String contato, String login, String senha, String nomeCompleto, String cpf) {
-        super(login, senha, nomeCompleto, cpf);
+    public Funcionario(String nome, String cpf,String login, String senha, int idEmpresa, String cargo, String contato) {
+        super(login, senha, nome, cpf);
         this.cargo = cargo;
         this.idEmpresa = idEmpresa;
         this.contato = contato;
@@ -26,8 +26,8 @@ public class Funcionario extends Usuario {
 
     }
 
-    public Funcionario(String cargo, int idEmpresa, String contato, int id, String login, String senha, String nomeCompleto, String cpf) {
-        super(id, login, senha, nomeCompleto, cpf);
+    public Funcionario(int id, String nome, String cpf,String login, String senha, int idEmpresa, String cargo, String contato) {
+        super(id, login, senha, nome, cpf);
         this.cargo = cargo;
         this.idEmpresa = idEmpresa;
         this.contato = contato;

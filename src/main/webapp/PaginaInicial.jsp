@@ -20,6 +20,11 @@
         <input type="hidden" name="login" value="${loginAttr}">
         <input type="hidden" name="senha" value="${senhaAttr}">
         
-        <a href="${pageContext.request.contextPath}/ListarFilial">Filiais</a>
+        <a href="${pageContext.request.contextPath}/RedirecionarFilial.jsp">Filiais</a>
+        
+        <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+            <input type="hidden" name="acao" value="listar">
+            <button type="submit"> USUARIOS </button>
+        </form>
     </body>
 </html>

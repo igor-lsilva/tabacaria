@@ -39,23 +39,9 @@ public class AutenticarLogin extends HttpServlet {
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
 
-        try {
+       
             
-            Usuario x = UsuarioDAO.getUsuario(login, senha);
-            
-            if(x.getLogin().equals(request.getParameter("login")) && x.getSenha().equals(request.getParameter("senha"))){
-                
-                request.setAttribute("loginAttr", x.getLogin());
-                request.setAttribute("senhaAttr", x.getSenha());
-                
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/PaginaInicial.jsp");
-                dispatcher.forward(request, response);
-            }
-            
-        } catch (SQLException ex) {
-            
-            Logger.getLogger(AutenticarLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
 }

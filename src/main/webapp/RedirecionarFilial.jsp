@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="refresh" content=1;url="${pageContext.request.contextPath}/ListarFilial">
+        <meta http-equiv="refresh" content=1;url="${pageContext.request.contextPath}/ListarFilial.jsp">
     </head>
     <body>
     </body>
