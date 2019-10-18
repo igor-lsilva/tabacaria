@@ -58,8 +58,12 @@ a{
     display: block;
 }
 .campoCadastro{
-    
+    display: block;
     text-align: left;
+}
+.campoVoltar{
+    display: block;
+    text-align: center;
 }
 
 th{

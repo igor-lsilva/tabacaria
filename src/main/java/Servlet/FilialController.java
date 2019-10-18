@@ -51,13 +51,18 @@ public class FilialController extends HttpServlet {
             case "salvar":
                 salvar(request, response);
                 break;
-            case "atualizar":
-                atualizar(request, response);
+            case "alterar":
+                alterar(request, response);
+                break;
+            case "salvarAlterar":
+                salvarAlterar(request, response);
                 break;
             case "excluir":
                 excluir(request, response);
+                break;
             case "listar":
                 listar(request, response);
+                break;
         }
 
     }
@@ -83,7 +88,7 @@ public class FilialController extends HttpServlet {
                 dispatcher.forward(request, response);
 
             }
-            
+
             ArrayList<Filial> f = FilialDAO.getFilial();
             request.setAttribute("TodasFiliais", f);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarFilial.jsp");
@@ -140,7 +145,25 @@ public class FilialController extends HttpServlet {
         }
     }
 
-    protected void atualizar(HttpServletRequest request, HttpServletResponse response)
+    protected void alterar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String id = request.getParameter("id");
+        String nomeFilial = request.getParameter("nomeFilial");
+        String CNPJ = request.getParameter("CNPJ");
+        String endereco = request.getParameter("endereco");
+
+        request.setAttribute("idAttr", id);
+        request.setAttribute("nomeFilialAttr", nomeFilial);
+        request.setAttribute("CNPJAttr", CNPJ);
+        request.setAttribute("enderecoAttr", endereco);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarFilial.jsp");
+        dispatcher.forward(request, response);
+
+    }
+
+    protected void salvarAlterar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
@@ -169,15 +192,23 @@ public class FilialController extends HttpServlet {
         if (verifica) {
 
             request.setAttribute("mensagemFalha", "Falha ao editar!");
+            request.setAttribute("idAttr", id);
+            request.setAttribute("nomeFilialAttr", nomeFilial);
+            request.setAttribute("CNPJAttr", CNPJ);
+            request.setAttribute("enderecoAttr", endereco);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarFilial.jsp");
             dispatcher.forward(request, response);
+
         } else if (FilialDAO.atualizar(id, nomeFilial, CNPJ, endereco)) {
 
             request.setAttribute("mensagemSucesso", "Atualização realizada com sucesso!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarFilial.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/RedirecionarFilial.jsp");
             dispatcher.forward(request, response);
         } else {
-
+            request.setAttribute("idAttr", id);
+            request.setAttribute("nomeFilialAttr", nomeFilial);
+            request.setAttribute("CNPJAttr", CNPJ);
+            request.setAttribute("enderecoAttr", endereco);
             request.setAttribute("mensagemFalha", "Falha ao editar!");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarFilial.jsp");
             dispatcher.forward(request, response);

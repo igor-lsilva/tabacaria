@@ -9,14 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
         <title>..:: Tabacaria ::..</title>
     </head>
     <body>
-        <h1 style="text-align: center;">HOOKAH BUZZ</h1>
+        <div class="tituloTopo">
+            <h1>NOME DA EMPRESA</h1>
+        </div>
         
         <input type="hidden" name="login" value="${loginAttr}">
         <input type="hidden" name="senha" value="${senhaAttr}">
         
-        <a href="/Tabacaria/RedirecionarFilial.jsp">Filiais</a>
+        <a href="${pageContext.request.contextPath}/ListarFilial">Filiais</a>
     </body>
 </html>

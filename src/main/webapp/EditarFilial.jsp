@@ -12,7 +12,7 @@
         <title>Cadastro Filial</title>
     </head>
     <body>
-        <h1 style="text-align: center;">Cadastrar Filial</h1>
+        <h1 style="text-align: center;">Alterar Filial</h1>
 
         <div style="text-align: center; color: green;">
             <h4>${mensagemSucesso}</h4>
@@ -25,7 +25,7 @@
         <form action="${pageContext.request.contextPath}/FilialController" method="post" style="border: 1px solid black; padding: 12px; float: left; position: 
               absolute; left: 50%; top: 30%; margin-right: -50%;transform: translate(-50%,-30%);" >
             
-            <input type="hidden" name="acao" value="atualizar">
+            <input type="hidden" name="acao" value="salvarAlterar">
             
             <input type="hidden" name="id" value="${idAttr}">          
             

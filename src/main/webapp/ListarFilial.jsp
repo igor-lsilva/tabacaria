@@ -16,11 +16,11 @@
         <title>Lista Filiais</title>
     </head>
     <body>
-        
-            <div class="tituloTopo">
-                <h1 style="text-align: center">NOME DA EMPRESA</h1>
-            </div>
-        
+
+        <div class="tituloTopo">
+            <h1>NOME DA EMPRESA</h1>
+        </div>
+
         <div class="subTitulo">
             <h1 style="text-align: center">Filias</h1>
         </div>
@@ -52,21 +52,33 @@
                         <td>${f.CNPJ}</td>
                         <td>${f.endereco}</td>                        
                         <td> 
-                            <form>
-                                <a href="${pageContext.request.contextPath}/EditarFilial?id=${f.id}&nomeFilial=${f.nomeFilial}&CNPJ=${f.CNPJ}&endereco=${f.endereco}">Editar</a>
+                            <form action="${pageContext.request.contextPath}/FilialController" method="post">
+                                <input type="hidden" value="alterar" name="acao">
+                                <input type="hidden" value="${f.id}" name="id">
+                                <input type="hidden" value="${f.nomeFilial}" name="nomeFilial">
+                                <input type="hidden" value="${f.CNPJ}" name="CNPJ">
+                                <input type="hidden" value="${f.endereco}" name="endereco">
+                                <button type="submit">Editar</button>
                             </form>                            
                         </td>
                         <td>
-                            <form>
-                                <a href="${pageContext.request.contextPath}/ExcluirFilial?id=${f.id}" >Excluir</a>
+                            <form action="${pageContext.request.contextPath}/FilialController" method="post">
+                                <input type="hidden" value="excluir" name="acao">
+                                <input type="hidden" value="${f.id}" name="id">
+                                <button type="submit">Excluir</button>
                             </form>
                         </td>                            
                     </tr>
                 </c:forEach> 
 
             </table>
-            <div class="campoCadastro">
-                <a href="/Tabacaria/CadastroFilial.jsp">Cadastrar</a>
+            <div>
+                <div class="campoCadastro">
+                    <a href="/Tabacaria/CadastroFilial.jsp">Cadastrar</a>
+                </div>
+                <div class="campoVoltar">
+                    <a href="/Tabacaria/PaginaInicial.jsp">Voltar</a>
+                </div>
             </div>
         </div>
 
