@@ -13,21 +13,19 @@
         <script>
 
         </script>
-            
+
     </head>
     <body>
         <h1>Cadastro de usuário</h1>
-        <form action="${pageContext.request.contextPath}/CadastroUsuario" method="post">
+        <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+            <input type="hidden" name="acao" value="salvar">
+            <label>Nome:</label><input type="text" name="nome"><br>
+            <label>CPF:</label><input type="text" name="cpf"><br>
+            <label>Cargo:</label><input type="text" name="cargo"><br>
+             <label>Código da Filial:</label><input type="text" name="codEmp"><br> 
+            <label>Contato:</label><input type="text" name="contato"><br>
             <label>Login:</label><input type="text" name="login"><br>
             <label>Senha:</label><input type="password" name="senha" id="senha"><br>
-            <label>Confirma Senha:</label><input type="password" name="conSenha" id="conSenha"><br>
-            <label>Código da Filial:</label><input type="password" name="codEmp" id="codEmp"><br>                     
-            <select>
-                <option name="Vendas">Vendas</option>
-                <option name="Vendas Gerente">Vendas Gerente</option>
-                <option name="Estoque">Estoque</option>
-                <option name="Estoque Gerente">Estoque Gerente</option>
-            </select>
             <button type="submit" name="cadastrar">Cadastrar</button>
             <button type="reset" value="Resentar"</button>
         </form>
