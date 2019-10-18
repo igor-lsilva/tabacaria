@@ -9,27 +9,47 @@ package Model;
  *
  * @author lucas.asilva89
  */
-public class Usuario {
+public abstract class Usuario extends Object {
 
     private int id;
     private String login;
     private String senha;
-    private int filial;
-    private String cargo;
+    private String nomeCompleto;
+    private String cpf;
 
-    public Usuario(int id, String login, String senha, int filial, String cargo) {
+    public Usuario() {
+    }
+
+    public Usuario(int id, String login, String senha, String nomeCompleto, String cpf) {
         this.id = id;
         this.login = login;
         this.senha = senha;
-        this.filial = filial;
-        this.cargo = cargo;
+        this.nomeCompleto = nomeCompleto;
+        this.cpf = cpf;
     }
 
-     public Usuario(String login, String senha, int filial, String cargo) {
+    public Usuario(String login, String senha, String nomeCompleto, String cpf) {
         this.login = login;
         this.senha = senha;
-        this.filial = filial;
-        this.cargo = cargo;
+        this.nomeCompleto = nomeCompleto;
+        this.cpf = cpf;
+
+    }
+
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public int getId() {
@@ -55,25 +75,5 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public int getFilial() {
-        return filial;
-    }
-
-    public void setFilial(int filial) {
-        this.filial = filial;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-    public Usuario(){
-    }
-    
-    
 
 }
