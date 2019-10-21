@@ -10,8 +10,6 @@ import Model.Filial;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,14 +28,7 @@ public class FilialController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-            ArrayList<Filial> f = FilialDAO.getFilial();
-            request.setAttribute("TodasFiliais", f);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarFilial.jsp");
-            dispatcher.forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(FilialController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        listar(request, response);
 
     }
 
@@ -188,7 +179,8 @@ public class FilialController extends HttpServlet {
 
             verifica = true;
         }
-
+        try {
+                   
         if (verifica) {
 
             request.setAttribute("mensagemFalha", "Falha ao editar!");
@@ -200,34 +192,45 @@ public class FilialController extends HttpServlet {
             dispatcher.forward(request, response);
 
         } else if (FilialDAO.atualizar(id, nomeFilial, CNPJ, endereco)) {
-
+            
             request.setAttribute("mensagemSucesso", "Atualização realizada com sucesso!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/RedirecionarFilial.jsp");
-            dispatcher.forward(request, response);
-        } else {
             request.setAttribute("idAttr", id);
             request.setAttribute("nomeFilialAttr", nomeFilial);
             request.setAttribute("CNPJAttr", CNPJ);
             request.setAttribute("enderecoAttr", endereco);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarFilial.jsp");
+            dispatcher.forward(request, response);
+        } else {
+
             request.setAttribute("mensagemFalha", "Falha ao editar!");
+            request.setAttribute("idAttr", id);
+            request.setAttribute("nomeFilialAttr", nomeFilial);
+            request.setAttribute("CNPJAttr", CNPJ);
+            request.setAttribute("enderecoAttr", endereco);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarFilial.jsp");
             dispatcher.forward(request, response);
 
+        }
+        } catch (IOException | ServletException e) {
+            
         }
     }
 
     protected void excluir(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (FilialDAO.excluir(Integer.parseInt(request.getParameter("id")))) {
+        try {
+            if (FilialDAO.excluir(Integer.parseInt(request.getParameter("id")))) {
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/RedirecionarFilial.jsp");
-            dispatcher.forward(request, response);
+                listar(request, response);
 
-        } else {
+            } else {
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Fail.jsp");
-            dispatcher.forward(request, response);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/Fail.jsp");
+                dispatcher.forward(request, response);
+            }
+        } catch (IOException | ServletException e) {
+            
         }
     }
 }

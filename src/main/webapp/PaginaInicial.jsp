@@ -13,18 +13,19 @@
         <title>..:: Tabacaria ::..</title>
     </head>
     <body>
-        <div class="tituloTopo">
-            <h1>NOME DA EMPRESA</h1>
+        <div>
+            <ul>
+                <li><a href="${pageContext.request.contextPath}/ClienteController">Cliente</a></li>
+                <li><a href="#">Produto</a></li>
+                <li><a href="${pageContext.request.contextPath}/UsuarioController">Usuario</a></li>
+                <li><a href="#">Estoque</a></li>
+                <li><a href="${pageContext.request.contextPath}/FilialController">Filial</a></li>               
+                <li><a href="#">Venda</a></li>
+                <li><a href="#">Relatório</a></li>
+                <li><a href="#">Faturamento</a></li>
+                <li><a href="#">Sair</a></li>
+            </ul>
         </div>
-        
-        <input type="hidden" name="login" value="${loginAttr}">
-        <input type="hidden" name="senha" value="${senhaAttr}">
-        
-        <a href="${pageContext.request.contextPath}/RedirecionarFilial.jsp">Filiais</a>
-        
-        <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
-            <input type="hidden" name="acao" value="listar">
-            <button type="submit"> USUARIOS </button>
-        </form>
+
     </body>
 </html>

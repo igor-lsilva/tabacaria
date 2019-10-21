@@ -82,7 +82,7 @@
 
             </table>
             <div class="campoCadastro">
-                <form action="${pageContext.request.contextPath}/UsuarioController/." method="post">
+                <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
                     <input type="hidden" value="cadastrar" name="acao">
                     <button type="submit">Cadastrar</button>
                 </form>

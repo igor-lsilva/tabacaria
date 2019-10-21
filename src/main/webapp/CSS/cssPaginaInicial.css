@@ -7,11 +7,48 @@ and open the template in the editor.
     Created on : 17/10/2019, 20:49:22
     Author     : lucas.asilva89
 */
-.tituloTopo{
+
+a{
     font-family: monospace;
-    color: black;
-    text-align: center;
-    font-size: 25px;
-    display: block;
+    color: white;
+    font-size: 20px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  margin-left: -10px;
+  margin-right: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: cornflowerblue;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  float: left;
+}
+
+li {
+    display: inline-block;
+}
+
+li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: blue;
+}
+
+.ativado{
     background-color: blue;
 }
+.posicaoSair{
+    float: right;
+}
+
