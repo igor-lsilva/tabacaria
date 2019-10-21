@@ -10,16 +10,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-                <meta http-equiv="Content-Type" content="text/html" charset=UTF-8">
-       
+        <meta http-equiv="Content-Type" content="text/html" charset=UTF-8">
+
         <title>Lista Usuario</title>
     </head>
     <body>
-        
-            <div class="tituloTopo">
-                <h1 style="text-align: center">NOME DA EMPRESA</h1>
-            </div>
-        
+
+        <div class="tituloTopo">
+            <h1 style="text-align: center">NOME DA EMPRESA</h1>
+        </div>
+
         <div class="subTitulo">
             <h1 style="text-align: center">Usuários do Sistema</h1>
         </div>
@@ -37,13 +37,14 @@
             <br>
             <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633"> 
                 <tr>
+                    <th>Id</th>
+                    <th>Nome </th>
+                    <th>CPF</th>
+                    <th>Login</th>
+                    <th>Empresa</th>
                     <th>Cargo</th>
-                    <th>Id </th>
-                    <th>Contato </th>
-                    <th>Cargo</th>
-                    <th>Id </th>
-                    <th>Contato </th>
-                    
+                    <th>Contato</th>
+
 
                 </tr>                
                 <c:forEach items="${TodosUsuarios}" var="user">
@@ -57,7 +58,7 @@
                         <td>${user.contato}</td>                        
                         <td> 
                             <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
-                                <input type="hidden" value="alterar" name="acao">
+                                <input type="hidden" value="editar" name="acao">
                                 <input type="hidden" value="${user.id}" name="id">
                                 <input type="hidden" value="${user.nomeCompleto}" name="nome">
                                 <input type="hidden" value="${user.cpf}" name="cpf">
@@ -65,7 +66,7 @@
                                 <input type="hidden" value="${user.idEmpresa}" name="filial">
                                 <input type="hidden" value="${user.cargo}" name="cargo">
                                 <input type="hidden" value="${user.contato}" name="contato">
-
+                                <input type="hidden" value="${user.senha}" name="senha">
                                 <button type="submit">Editar</button>
                             </form>                           
                         </td>
@@ -81,7 +82,10 @@
 
             </table>
             <div class="campoCadastro">
-                <a href="/Tabacaria/CadastroUsuario.jsp">Cadastrar</a>
+                <form action="${pageContext.request.contextPath}/UsuarioController/." method="post">
+                    <input type="hidden" value="cadastrar" name="acao">
+                    <button type="submit">Cadastrar</button>
+                </form>
             </div>
         </div>
 

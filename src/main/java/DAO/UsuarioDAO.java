@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Model.Filial;
 import Model.Funcionario;
 import Model.Usuario;
 import java.sql.Connection;
@@ -64,6 +65,43 @@ public class UsuarioDAO {
         return listaUsuarios;
     }
 
+    public static ArrayList<Filial> getFilial() {
+        boolean retorno = false;
+        
+        ArrayList<Filial> listaFilial = new ArrayList<>();
+        
+        try {
+
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+
+            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM filial");
+            
+            ResultSet rs = comando.executeQuery();
+            
+            while (rs.next()) {
+                
+                Filial f = new Filial(rs.getInt(1), rs.getString(2),  rs.getString(3),  rs.getString(4));
+
+                listaFilial.add(f);
+            }
+
+            int linhasAfetadas = comando.executeUpdate();
+
+        } catch (ClassNotFoundException ex) {
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                retorno = false;
+            }
+
+        }
+        return listaFilial;
+    }
 
 public static boolean salvar(Funcionario user) {
         boolean retorno = false;
@@ -81,6 +119,79 @@ public static boolean salvar(Funcionario user) {
             comando.setString(5, user.getCargo());
             comando.setInt(6, user.getIdEmpresa());
             comando.setString(7, user.getContato());
+
+            int linhasAfetadas = comando.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                retorno = false;
+            }
+
+        }
+        return retorno;
+    }
+
+    public static boolean remover(int id) {
+        boolean retorno = false;
+        try {
+
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+
+            PreparedStatement comando = conexao.prepareStatement("DELETE FROM usuario WHERE idusuario = '"+id+"'");
+
+            int linhasAfetadas = comando.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                retorno = false;
+            }
+
+        }
+        return retorno;
+    }
+    
+    public static boolean editar(Funcionario user) {
+        boolean retorno = false;
+        try {
+
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+
+            PreparedStatement comando = conexao.prepareStatement("UPDATE usuario SET nome=?, cpf=?, login=?, senha=?, idfilial=?, cargo=?, contato=? WHERE idusuario= ?");
+
+            comando.setString(1, user.getNomeCompleto());
+            comando.setString(2, user.getCpf());
+            comando.setString(3, user.getLogin());
+            comando.setString(4, user.getSenha());
+            comando.setInt(5, user.getIdEmpresa());
+            comando.setString(6, user.getCargo());
+            comando.setString(7, user.getContato());
+            comando.setInt(8, user.getId());
 
             int linhasAfetadas = comando.executeUpdate();
 
