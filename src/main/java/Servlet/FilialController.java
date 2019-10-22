@@ -179,7 +179,6 @@ public class FilialController extends HttpServlet {
 
             verifica = true;
         }
-        try {
                    
         if (verifica) {
 
@@ -211,9 +210,7 @@ public class FilialController extends HttpServlet {
             dispatcher.forward(request, response);
 
         }
-        } catch (IOException | ServletException e) {
-            
-        }
+
     }
 
     protected void excluir(HttpServletRequest request, HttpServletResponse response)

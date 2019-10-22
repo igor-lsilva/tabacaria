@@ -12,60 +12,91 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssClienteListar.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
         <title>Lista Clientes</title>
     </head>
     <body>
-        
-            <div class="tituloTopo">
-                <h1 style="text-align: center">NOME DA EMPRESA</h1>
-            </div>
-        
-        <div class="subTitulo">
-            <h1 style="text-align: center">Cliente</h1>
+        <div class="linksPosicao">
+            <ul>              
+                <li class="posicaoSair"><a class="ativado" href="#">Sair</a></li>
+            </ul>
         </div>
 
         <div class="tabelaListagem">
-            <form action="${pageContext.request.contextPath}/ListaCliente" method="post">
-                <div class="campoBuscas">
-                    <label for="txtBuscar">Nome do Cliente:</label>
-                    <div>
-                        <input type="text" name="busca" id="txtBuscar" placeholder=" Nome do Cliente">
-                        <button type="submit">Buscar</button>
-                    </div>
+            <div class="subTitulo">
+                <h2>Lista de Clientes</h2>
+            </div>               
+
+            <div style="display: inline-block;">
+                <div style="float: left; border-radius: 8px; ">
+                    <form action="${pageContext.request.contextPath}/ClienteController" method="post">
+                        <input type="hidden" value="listar" name="acao">
+                        <div>
+                            <div>
+                                <input  class="inputBusca" type="text" name="busca" id="txtBuscar" placeholder=" Nome Cliente">
+                                <button class="campoBuscas" type="submit">Buscar</button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
-            </form>
-            <br>
+                <div style="display: inline-block;">
+                    <form action="${pageContext.request.contextPath}/CadastroCliente.jsp" method="post">
+                        <button class="campoCadastro" type="submit">Cadastrar</button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="tabelaLista">
             <table>
                 <tr>
-                    <th class="camp">Cod. </th>
-                    <th class="nomeCliente">Nome do Cliente</th>
-                    <th class="CPF">CPF </th>
-                    <th class="dtNascimento">Data Nascimento</th>
+                    <th class="campoID">Cod. </th>
+                    <th class="campoNome">Nome do Cliente</th>
+                    <th class="campoCPF">CPF </th>
+                    <th class="campoDtNascimento">Data Nascimento</th>
+                    <th class="campoContato">Contato</th>
                     <th class="campoEditar">Editar</th>
-                    <th class="campExcluir">Excluir</th>
+                    <th class="campoExcluir">Excluir</th>
                 </tr>                
                 <c:forEach items="${TodosClientes}" var="c">
                     <tr>
-                        <td>${c.idCliente}</td>
-                        <td>${c.nomeCliente}</td>              
-                        <td>${c.CPF}</td>
-                        <td>${c.dtNascimento}</td>                        
-                        <td> 
-                            <form>
-                                <a href="${pageContext.request.contextPath}/EditarCliente?id=${c.idCliente}&nomeCliente${c.nomeCliente}&CPF=${c.CPF}&dtNascimento=${c.dtNascimento}">Editar</a>
+                        <td class="campoID">${c.idCliente}</td>
+                        <td class="campoNome">${c.nomeCliente}</td>              
+                        <td class="CampoCPF">${c.CPF}</td>
+                        <td class="campoDtNascimento">${c.dtNascimento}</td>
+                        <td class="campoContato">${c.contato}</td>                        
+                        <td class="campoEditar"> 
+                            <form action="${pageContext.request.contextPath}/ClienteController" method="post">
+                                    <input type="hidden" value="alterar" name="acao">                                  
+                                    <input type="hidden" value="${c.idCliente}" name="id">
+                                    <input type="hidden" value="${c.nomeCliente}" name="nomeCliente">
+                                    <input type="hidden" value="${c.CPF}" name="CPF">
+                                    <input type="hidden" value="${c.dtNascimento}" name="dtNascimento">
+                                    <input type="hidden" value="${c.contato}" name="contato">
+                                    <button class="buttonEditar" type="submit">Editar</button>
                             </form>                            
                         </td>
-                        <td>
-                            <form>
-                                <a href="${pageContext.request.contextPath}/ExcluirCliente?id=${c.idCliente}" >Excluir</a>
-                            </form>
+                        <td class="campoExcluir">
+                            <form action="${pageContext.request.contextPath}/ClienteController" method="post">
+                                    <input type="hidden" value="excluir" name="acao">
+                                    <input type="hidden" value="${c.idCliente}" name="id">
+                                    <button class="buttonExcluir" type="submit">Excluir</button>
+                                </form>
                         </td>                            
                     </tr>
                 </c:forEach> 
 
             </table>
-            <div class="campoCadastro">
-                <a href="/Tabacaria/CadastroCliente.jsp">Cadastrar</a>
+            <br>
+            </div>
+            <br><br>
+            <div class="campoVoltarPosicao">           
+                <div>
+                    <form action="${pageContext.request.contextPath}/PaginaInicial.jsp">
+                        <button class="campoVoltar" type="submit">Voltar</button>
+                    </form>
+                </div>
             </div>
         </div>
 
