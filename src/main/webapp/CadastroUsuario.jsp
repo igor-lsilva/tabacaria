@@ -17,81 +17,89 @@
 
     </head>
     <body>
-        div class="linksPosicao">
-        <ul>              
-            <li class="posicaoSair"><a class="ativado" href="#">Sair</a></li>
-        </ul>
-    </div>
-    <div class="itens">
-
-        <div class="subTitulo">
-            <h2>Cadastro de Usuário</h2>
+        <div class="linksPosicao">
+            <ul>              
+                <li class="posicaoSair"><a class="ativado" href="#">Sair</a></li>
+            </ul>
         </div>
+        <div class="itens">
 
-        <div class="msgSucesso">
-            <h4>${mensagemSucesso}</h4>
-        </div>
+            <div class="subTitulo">
+                <h2>Cadastro de Usuário</h2>
+            </div>
 
-        <div class="msgFalha">
-            <h4>${mensagemFalha}</h4>
-        </div>
-        <div class="formulario">
-            <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
-                <input type="hidden" name="acao" value="salvar">
-                <div>
-                    <label>Nome:</label>
+            <div class="msgSucesso">
+                <h4>${mensagemSucesso}</h4>
+            </div>
+
+            <div class="msgFalha">
+                <h4>${mensagemFalha}</h4>
+            </div>
+            <div class="formulario">
+                <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                    <input type="hidden" name="acao" value="salvar">
                     <div>
-                        <input type="text" name="nome">
+                        <label>Nome:</label>
+                        <div>
+                            <input type="text" name="nome">
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label>CPF:</label>
                     <div>
-                        <input type="text" name="cpf">
+                        <label>CPF:</label>
+                        <div>
+                            <input type="text" name="cpf">
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label>Cargo:</label>
                     <div>
-                        <input type="text" name="cargo">
+                        <label>Cargo:</label>
+                        <div>
+                            <input type="text" name="cargo">
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label>Codigo Empresa</label>
                     <div>
-                        <select name="codEmp">
-                            <c:forEach items="${todasFilial}" var="filial">
-                                <option value="${filial.id}">
-                                    ${filial.nomeFilial}
-                                </option>
-                            </c:forEach>
-                        </select>
+                        <label>Codigo Empresa</label>
+                        <div>
+                            <select name="codEmp">
+                                <c:forEach items="${todasFilial}" var="filial">
+                                    <option value="${filial.id}">
+                                        ${filial.nomeFilial}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label>Contato:</label>
                     <div>
-                        <input type="text" name="contato">
+                        <label>Contato:</label>
+                        <div>
+                            <input type="text" name="contato">
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label>Senha:</label>
                     <div>
-                        <input type="password" name="senha" id="senha">
+                        <label>login:</label>
+                        <div>
+                            <input type="text" name="login" id="login">
+                        </div>
                     </div>
-                </div>              
-                <button type="submit" name="cadastrar">Cadastrar</button>
-                <button type="reset">Resetar</button>
-            </form>
-            <div class="campoVoltarPosicao">
-                <div>
-                    <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
-                        <input type="hidden" value="listar" name="acao">
-                        <button class="campoVoltar" type="submit">Voltar</button>
-                    </form>
+                    <div>
+                        <label>Senha:</label>
+                        <div>
+                            <input type="password" name="senha" id="senha">
+                        </div>
+                    </div>
+                    <div class="posicaoButtons">
+                        <button type="submit" name="cadastrar" class="botaoPadrao">Cadastrar</button>
+                        <button type="reset" class="botaoPadrao">Resetar</button>
+                    </div>
+                </form>
+                <div class="campoVoltarPosicao">
+                    <div>
+                        <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                            <input type="hidden" value="listar" name="acao">
+                            <button class="campoVoltar" type="submit">Voltar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>

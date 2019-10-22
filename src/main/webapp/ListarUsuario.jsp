@@ -48,7 +48,7 @@
                 </div>
             </div>
             <br>
-            <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633" class="table"> 
+            <table class="table"> 
                 <tr>
                     <th class="campoId">Id</th>
                     <th class="campoNome">Nome </th>
@@ -94,11 +94,9 @@
                         </td>                            
                     </tr>
                 </c:forEach> 
-
             </table>
             <div class="campoVoltarPosicao">
-                <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
-                    <input type="hidden" value="cadastrar" name="acao" >
+                <form action="${pageContext.request.contextPath}/PaginaInicial.jsp" method="post">
                     <button type="submit" class="campoVoltar">Voltar</button>
                 </form>
             </div>

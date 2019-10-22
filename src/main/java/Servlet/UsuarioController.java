@@ -102,14 +102,14 @@ public class UsuarioController extends HttpServlet {
         Funcionario f = new Funcionario(id, nome, cpf, login, senha, idEmp, cargo, contato);
         if (UsuarioDAO.editar(f)) {
             request.setAttribute("f", f);
+            request.setAttribute("mensagemSucesso", "Edição realizada com sucesso");
             ArrayList<Filial> filiais = UsuarioDAO.getFilial();
             request.setAttribute("todasFilial", filiais);
-            request.setAttribute("Status", filiais);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarUsuario.jsp");
             dispatcher.forward(request, response);
         } else {
             request.setAttribute("f", f);
-            request.setAttribute("Status", "Erro ao editar");
+            request.setAttribute("mensagemFalha", "Erro ao editar");
             ArrayList<Filial> filiais = UsuarioDAO.getFilial();
             request.setAttribute("todasFilial", filiais);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarUsuario.jsp");
