@@ -39,7 +39,7 @@ public class ProdutoDAO {
 
             comando.setString(1, p.getNomeProduto());
             comando.setString(2, p.getPreco());
-            comando.setString(3, p.getPreco());
+            comando.setString(3, p.getTipo());
 
             int linhasAfetadas = comando.executeUpdate();
 
@@ -115,7 +115,7 @@ public class ProdutoDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("UPDATE tabacaria.filial SET nome=?, cnpj=?, endereco=? WHERE idfilial= ?");
+            PreparedStatement comando = conexao.prepareStatement("UPDATE tabacaria.produto SET nome=?, preco=?, tipo=? WHERE idproduto= ?");
 
             comando.setString(1, p.getNomeProduto());
             comando.setString(2, p.getPreco());
@@ -147,7 +147,7 @@ public class ProdutoDAO {
 
     }
 
-    public static ArrayList<Produto> getproduto() throws SQLException {
+    public static ArrayList<Produto> getProduto() {
         
         ArrayList<Produto> listaProdutos = new ArrayList<>();
 
@@ -156,15 +156,15 @@ public class ProdutoDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM filial limit 10");
+            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM produto limit 10");
 
             ResultSet rs = comando.executeQuery();
 
             while (rs.next()) {
                 
-                Produto c = new Produto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                Produto p = new Produto(rs.getInt(1), rs.getString(2), String.valueOf(rs.getFloat(3)), rs.getString(4));
 
-                listaProdutos.add(c);
+                listaProdutos.add(p);
             }
 
         } catch (ClassNotFoundException ex) {
@@ -181,39 +181,5 @@ public class ProdutoDAO {
 
         return listaProdutos;
     }
-    
-     public static ArrayList<Produto> get(String nome) throws SQLException {
-        
-        ArrayList<Produto> listaClientes = new ArrayList<>();
 
-        try {
-
-            Class.forName(DRIVER);
-            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
-
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM filial WHERE nome LIKE '%"+nome+"%'");
-
-            ResultSet rs = comando.executeQuery();
-
-            while (rs.next()) {
-                
-                Produto c = new Produto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
-
-                listaClientes.add(c);
-            }
-
-        } catch (ClassNotFoundException ex) {
-            listaClientes = null;
-        } catch (SQLException ex) {
-            listaClientes = null;
-        } finally {
-            try {
-                conexao.close();
-            } catch (SQLException ex) {
-                listaClientes = null;
-            }
-        }
-
-        return listaClientes;
-    }
 }

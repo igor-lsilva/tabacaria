@@ -16,7 +16,7 @@
         <div>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/ClienteController">Cliente</a></li>
-                <li><a href="#">Produto</a></li>
+                <li><a href="${pageContext.request.contextPath}/ProdutoController">Produto</a></li>
                 <li><a href="${pageContext.request.contextPath}/UsuarioController">Usuario</a></li>
                 <li><a href="#">Estoque</a></li>
                 <li><a href="${pageContext.request.contextPath}/FilialController">Filial</a></li>               
