@@ -12,35 +12,86 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <script>
-
-        </script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssEditar.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
 
     </head>
     <body>
-        <h1>Cadastro de usuário</h1>
-        <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
-            <input type="hidden" name="acao" value="salvar">
-            <label>Nome:</label><input type="text" name="nome"><br>
-            <label>CPF:</label><input type="text" name="cpf"><br>
-            <label>Cargo:</label><input type="text" name="cargo"><br>
-            <select name="codEmp">
-                <c:forEach items="${todasFilial}" var="filial">
-                    <option value="${filial.id}">
-                        ${filial.nomeFilial}
-                    </option>
-                </c:forEach>
-            </select><br>
-            <label>Contato:</label><input type="text" name="contato"><br>
-            <label>Login:</label><input type="text" name="login"><br>
-            <label>Senha:</label><input type="password" name="senha" id="senha"><br>
-            <button type="submit" name="cadastrar">Cadastrar</button>
-            <button type="reset">Resetar</button>
-        </form>
-        <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
-            <input type="hidden" name="acao" value="listar">
-            <button type="submit">Voltar</button>
-            <button>
-        </form>
-    </body>
+        div class="linksPosicao">
+        <ul>              
+            <li class="posicaoSair"><a class="ativado" href="#">Sair</a></li>
+        </ul>
+    </div>
+    <div class="itens">
+
+        <div class="subTitulo">
+            <h2>Cadastro de Usuário</h2>
+        </div>
+
+        <div class="msgSucesso">
+            <h4>${mensagemSucesso}</h4>
+        </div>
+
+        <div class="msgFalha">
+            <h4>${mensagemFalha}</h4>
+        </div>
+        <div class="formulario">
+            <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                <input type="hidden" name="acao" value="salvar">
+                <div>
+                    <label>Nome:</label>
+                    <div>
+                        <input type="text" name="nome">
+                    </div>
+                </div>
+                <div>
+                    <label>CPF:</label>
+                    <div>
+                        <input type="text" name="cpf">
+                    </div>
+                </div>
+                <div>
+                    <label>Cargo:</label>
+                    <div>
+                        <input type="text" name="cargo">
+                    </div>
+                </div>
+                <div>
+                    <label>Codigo Empresa</label>
+                    <div>
+                        <select name="codEmp">
+                            <c:forEach items="${todasFilial}" var="filial">
+                                <option value="${filial.id}">
+                                    ${filial.nomeFilial}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label>Contato:</label>
+                    <div>
+                        <input type="text" name="contato">
+                    </div>
+                </div>
+                <div>
+                    <label>Senha:</label>
+                    <div>
+                        <input type="password" name="senha" id="senha">
+                    </div>
+                </div>              
+                <button type="submit" name="cadastrar">Cadastrar</button>
+                <button type="reset">Resetar</button>
+            </form>
+            <div class="campoVoltarPosicao">
+                <div>
+                    <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                        <input type="hidden" value="listar" name="acao">
+                        <button class="campoVoltar" type="submit">Voltar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
