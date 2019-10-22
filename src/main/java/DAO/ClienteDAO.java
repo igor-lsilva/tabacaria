@@ -22,20 +22,21 @@ public class ClienteDAO {
     private static Connection conexao;
 
    
-    public static boolean salvar(String nomeCliente,String CPF, String dtNascimento) {
+    public static boolean salvar(String nomeCliente,String CPF, String dtNascimento, String contato) {
         boolean retorno = false;
-        Cliente c = new Cliente(nomeCliente, CPF, dtNascimento);
+        Cliente c = new Cliente(nomeCliente, CPF, dtNascimento, contato);
 
         try {
 
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("INSERT INTO cliente (nomeCliente,cpfCliente,dtNascimento) VALUES (?,?,?)");
+            PreparedStatement comando = conexao.prepareStatement("INSERT INTO cliente (nomeCliente,cpfCliente,dtNascimento,contato) VALUES (?,?,?,?)");
 
             comando.setString(1, c.getNomeCliente());
             comando.setString(2, c.getCPF());
             comando.setString(3, c.getDtNascimento());
+            comando.setString(4, c.getContato());
 
             int linhasAfetadas = comando.executeUpdate();
 
@@ -101,22 +102,23 @@ public class ClienteDAO {
 
     }
     
-    public static boolean atualizar(int idCliente,String nomeCliente,String CPF, String dtNascimento) {
+    public static boolean atualizar(int idCliente,String nomeCliente,String CPF, String dtNascimento, String contato) {
 
         boolean retorno = false;
-        Cliente c = new Cliente(idCliente, nomeCliente, CPF, dtNascimento);
+        Cliente c = new Cliente(idCliente, nomeCliente, CPF, dtNascimento, contato);
         
         try {
 
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("UPDATE tabacaria.cliente SET nomeCliente=?, cpfCliente=?, dtNascimento=? WHERE idCliente= ?");
+            PreparedStatement comando = conexao.prepareStatement("UPDATE tabacaria.cliente SET nomeCliente=?, cpfCliente=?, dtNascimento=?, contato=? WHERE idCliente= ?");
 
             comando.setString(1, c.getNomeCliente());
             comando.setString(2, c.getCPF());
             comando.setString(3, c.getDtNascimento());
-            comando.setInt(4, c.getIdCliente());
+            comando.setString(4, c.getContato());
+            comando.setInt(5, c.getIdCliente());
 
             int linhasAfetadas = comando.executeUpdate();
 
@@ -152,13 +154,13 @@ public class ClienteDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM cliente limit 10");
+            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM cliente");
 
             ResultSet rs = comando.executeQuery();
 
             while (rs.next()) {
                 
-                Cliente c = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                Cliente c = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 
                 listaClientes.add(c);
             }
@@ -193,7 +195,7 @@ public class ClienteDAO {
 
             while (rs.next()) {
                 
-                Cliente c = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                Cliente c = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 
                 listaClientes.add(c);
             }

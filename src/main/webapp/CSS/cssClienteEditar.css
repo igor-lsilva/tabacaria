@@ -1,0 +1,93 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21/10/2019, 21:23:07
+    Author     : lucas.asilva89
+*/
+.subTitulo{
+    font-family: monospace;
+    color: black;
+    text-align: center;
+    font-size: 25px;
+    display: block;
+}
+.campoVoltar{
+    width: 150px;
+    height: 40px;
+    background-color: cornflowerblue;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: monospace;
+    border-radius: 8px;
+}
+.campoSalvar{
+    width: 150px;
+    height: 40px;
+    background-color: cornflowerblue;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: monospace;
+    border-radius: 8px;
+}
+.campoVoltarPosicao{
+    display: inline-block; 
+    text-align: center; 
+    width: 100%;
+}
+.posicaoButtons{
+    text-align: center;
+}
+.itens{
+    padding: 12px;
+    float: left; 
+    position: absolute; 
+    left: 50%; 
+    top: 25%; 
+    margin-right: -50%;
+    transform: translate(-50%,-25%);
+}
+input{
+    width: 400px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 8px;
+    outline: 0;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+label{
+    font-family: monospace;
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+}
+form{
+    padding: 12px; 
+    text-align: left;  
+    display: inline-block;
+}
+.msgSucesso{
+    text-align: center;
+    color: green; 
+    display: block;
+}
+
+.msgFalha{
+    text-align: center;
+    color: red; 
+    display: block;
+}
+.formulario{
+    text-align: center; 
+    position: relative; 
+    width:100%;
+}

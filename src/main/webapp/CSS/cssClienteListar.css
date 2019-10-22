@@ -1,3 +1,12 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17/10/2019, 19:34:36
+    Author     : matheus.eleoterio
+*/
 @charset "utf-8";
 body {
 
@@ -16,22 +25,25 @@ body {
 .campoNome{
     width: 250px;
 }
-.campoCNPJ{
+.campoCPF{
     width: 200px;
 }
-.campoEndereco{
-    width: 260px;
+.campoDtNascimento{
+    width: 150px;
+}
+.campoContato{
+    width: 150px;
 }
 .campoEditar{
     width: 120px;
 }
-.campExcluir{
+.campoExcluir{
     width: 120px;
 }
 .tabelaListagem{
     padding: 12px;
     float: left; 
-    position: absolute; 
+    position: fixed; 
     left: 50%; 
     top: 65%; 
     margin-right: -50%;
@@ -133,5 +145,6 @@ tr:nth-child(odd){
 table{
     width: 100%
 }
+
 
 

@@ -10,18 +10,21 @@ public class Cliente {
     private String nomeCliente;
     private String CPF;
     private String dtNascimento;
+    private String contato;
 
-    public Cliente(String nomeCliente, String CPF, String dtNascimento) {
+    public Cliente(String nomeCliente, String CPF, String dtNascimento, String contato) {
         this.nomeCliente = nomeCliente;
         this.CPF = CPF;
         this.dtNascimento = dtNascimento;
+        this.contato = contato;
     }
 
-    public Cliente(int idCliente, String nomeCliente, String CPF, String dtNascimento) {
+    public Cliente(int idCliente, String nomeCliente, String CPF, String dtNascimento, String contato) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
         this.CPF = CPF;
         this.dtNascimento = dtNascimento;
+        this.contato = contato;
     }
     
     
@@ -62,4 +65,11 @@ public class Cliente {
         this.dtNascimento = dtNascimento;
     }
 
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
+    }
 }
