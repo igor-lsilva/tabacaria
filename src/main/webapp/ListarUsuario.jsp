@@ -11,39 +11,54 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html" charset=UTF-8">
-
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssUsuarioLista.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
         <title>Lista Usuario</title>
     </head>
     <body>
-
-        <div class="tituloTopo">
-            <h1 style="text-align: center">NOME DA EMPRESA</h1>
-        </div>
-
-        <div class="subTitulo">
-            <h1 style="text-align: center">Usuários do Sistema</h1>
+        <div class="linksPosicao">
+            <ul>              
+                <li class="posicaoSair"><a class="ativado" href="#">Sair</a></li>
+            </ul>
         </div>
 
         <div class="tabelaListagem">
-            <form action="${pageContext.request.contextPath}/CadastroUsuario" method="post">
-                <div class="campoBuscas">
-                    <label for="txtBuscar">Nome:</label>
-                    <div>
-                        <input type="text" name="busca" id="txtBuscar" placeholder=" Nome do Usuario">
-                        <button type="submit">Buscar</button>
-                    </div>
+            <div class="subTitulo">
+                <h2>Lista de usuários</h2>
+            </div>  
+            <div style="display: inline-block;">
+                <div style="float: left; border-radius: 8px; ">
+                    <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                        <input type="hidden" value="listar" name="acao">
+                        <div>
+                            <div>
+                                <input  class="inputBusca" type="text" name="busca" id="txtBuscar" placeholder=" Digite um usuário">
+                                <button class="campoBuscas" type="submit">Buscar</button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
-            </form>
+                <div style="display: inline-block;">
+                    <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                        <input type="hidden" value="cadastrar" name="acao">
+                        <button class="campoCadastro" type="submit">Cadastrar</button>
+                    </form>
+
+                </div>
+            </div>
             <br>
-            <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633"> 
+            <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633" class="table"> 
                 <tr>
-                    <th>Id</th>
-                    <th>Nome </th>
-                    <th>CPF</th>
-                    <th>Login</th>
-                    <th>Empresa</th>
-                    <th>Cargo</th>
-                    <th>Contato</th>
+                    <th class="campoId">Id</th>
+                    <th class="campoNome">Nome </th>
+                    <th class="campoCpf">CPF</th>
+                    <th class="campologin">Login</th>
+                    <th class="campoEmpresa">Empresa</th>
+                    <th class="campoCargo">Cargo</th>
+                    <th class="campoContato">Contato</th>
+                    <th class="campoEditar">Editar</th>
+                    <th class="campoExcluir">Excluir</th>
 
 
                 </tr>                
@@ -67,24 +82,24 @@
                                 <input type="hidden" value="${user.cargo}" name="cargo">
                                 <input type="hidden" value="${user.contato}" name="contato">
                                 <input type="hidden" value="${user.senha}" name="senha">
-                                <button type="submit">Editar</button>
+                                <button type="submit" class="buttonPadrao">Editar</button>
                             </form>                           
                         </td>
                         <td>
                             <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
                                 <input type="hidden" value="excluir" name="acao">
                                 <input type="hidden" value="${user.id}" name="id">
-                                <button type="submit">Excluir</button>
+                                <button type="submit" class="buttonPadrao">Excluir</button>
                             </form>
                         </td>                            
                     </tr>
                 </c:forEach> 
 
             </table>
-            <div class="campoCadastro">
+            <div class="campoVoltarPosicao">
                 <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
-                    <input type="hidden" value="cadastrar" name="acao">
-                    <button type="submit">Cadastrar</button>
+                    <input type="hidden" value="cadastrar" name="acao" >
+                    <button type="submit" class="campoVoltar">Voltar</button>
                 </form>
             </div>
         </div>

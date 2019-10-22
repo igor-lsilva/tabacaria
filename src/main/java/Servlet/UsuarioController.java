@@ -29,7 +29,7 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        listar(request, response);
     }
 
     @Override
@@ -107,14 +107,14 @@ public class UsuarioController extends HttpServlet {
             request.setAttribute("Status", filiais);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarUsuario.jsp");
             dispatcher.forward(request, response);
-        }else{
+        } else {
             request.setAttribute("f", f);
-            request.setAttribute("Status","Erro ao editar" );
+            request.setAttribute("Status", "Erro ao editar");
             ArrayList<Filial> filiais = UsuarioDAO.getFilial();
             request.setAttribute("todasFilial", filiais);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarUsuario.jsp");
             dispatcher.forward(request, response);
-        
+
         }
     }
 
