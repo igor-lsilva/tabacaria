@@ -1,0 +1,74 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22/10/2019, 21:21:14
+    Author     : lucas.asilva89
+*/
+
+input{
+    width: 400px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 8px;
+    outline: 0;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+label{
+    font-family: monospace;
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+}
+form{
+    padding: 12px; 
+    text-align: left;  
+    display: inline-block;
+}
+.posicaoBotao{
+    text-align: center;
+}
+.botaoPadrao{
+    width: 150px;
+    height: 40px;
+    background-color: cornflowerblue;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: monospace;
+    border-radius: 8px;
+}
+.posicao{
+    padding: 12px;
+    float: left; 
+    position: absolute; 
+    left: 50%; 
+    top: 50%; 
+    margin-right: -50%;
+    transform: translate(-50%,-50%);
+}
+.formulario{
+    text-align: center; 
+    position: relative; 
+    width:100%;
+    
+}
+.titulo{
+    text-align: center;
+    top: 20%;
+    font-family: monospace;
+    font-size: 30px;
+}
+.formularioBorda{
+    border: 1px solid black; 
+    border-radius: 8px;
+}
+.tituloFormulario{
+    text-align: center;
+    font-family: monospace;
+}
