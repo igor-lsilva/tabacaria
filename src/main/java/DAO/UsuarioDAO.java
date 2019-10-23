@@ -24,7 +24,7 @@ public class UsuarioDAO {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";    //Driver do MySQL 8.0 em diante - Se mudar o SGBD mude o Driver
     private static final String LOGIN = "root";                         //nome de um usuário do banco de dados
     private static final String SENHA = "";                             //sua senha de acesso
-    private static final String URL = "jdbc:mysql://localhost:3307/tabacaria?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC";  //URL do banco de dados
+    private static final String URL = "jdbc:mysql://localhost:3306/tabacaria?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC";  //URL do banco de dados
     private static Connection conexao;
 
     public static ArrayList<Funcionario> getUsuarios() {
@@ -215,4 +215,34 @@ public static boolean salvar(Funcionario user) {
         }
         return retorno;
     }
+    
+        public static Funcionario login(String login,String senha){
+        Funcionario f = null;
+        try {
+
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+
+            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM usuario WHERE login like'"+login+"' AND senha like '"+senha+"'");
+
+            ResultSet rs = comando.executeQuery();          
+            
+            while (rs.next()) {               
+                f = new Funcionario(rs.getInt(1), rs.getString(2),  rs.getString(3),  rs.getString(4),  rs.getString(5),  rs.getInt(6),  rs.getString(7),  rs.getString(8));
+            }
+
+        } catch (ClassNotFoundException ex) {
+            f = null;
+        } catch (SQLException ex) {
+            f = null;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                f = null;
+            }
+
+        }
+        return f;
+        }
 }

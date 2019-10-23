@@ -6,6 +6,7 @@
 package Servlet;
 
 import DAO.UsuarioDAO;
+import Model.Funcionario;
 import Model.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,12 +26,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AutenticarLogin", urlPatterns = {"/AutenticarLogin"})
 public class AutenticarLogin extends HttpServlet {
 
-
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     
+
     }
 
     @Override
@@ -38,10 +37,20 @@ public class AutenticarLogin extends HttpServlet {
             throws ServletException, IOException {
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
+        Funcionario f = UsuarioDAO.login(login, senha);
+        if (f != null) {
+            request.setAttribute("usuario", f);
+            request.setAttribute("senha", senha);
+            request.setAttribute("login", login);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/PaginaInicial.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            request.setAttribute("mensagemFalha", "Usuario ou Senha incorreta!");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.jsp");
+            dispatcher.forward(request, response);
 
-       
-            
-        
+        }
+
     }
 
 }

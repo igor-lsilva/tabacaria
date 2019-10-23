@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Login
-    Created on : 16/10/2019, 18:19:25
-    Author     : lucas.asilva89
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,17 +17,17 @@
                     <h2>Acesso ao Sistema</h2>
                 </div>
                 <div class="formulario">
-                    <form action="${pageContext.request.contextPath}/AutenticarLogin" method="post">
+                    <form action="/Tabacaria/Logar.jsp" method="post">
                         <div>
                             <label>Login: </label>
                             <div>
-                                <input type="text" name="nomeCliente" value="${nomeClienteAttr}">
+                                <input type="text" name="login">
                             </div>				
                         </div>
                         <div>
                             <label>Senha: </label>
                             <div>
-                                <input type="text" name="nomeCliente" value="${nomeClienteAttr}">
+                                <input type="password" name="senha">
                             </div>				
                         </div>
                             <br><br>

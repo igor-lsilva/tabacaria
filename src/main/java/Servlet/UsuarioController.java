@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sun.security.pkcs11.wrapper.Functions;
 
 /**
  *
@@ -142,7 +143,7 @@ public class UsuarioController extends HttpServlet {
 
         ArrayList<Funcionario> usuarios = UsuarioDAO.getUsuarios();
         request.setAttribute("TodosUsuarios", usuarios);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("ListarUsuario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Tabacaria/Usuario/ListarUsuario.jsp");
         dispatcher.forward(request, response);
 
     }
@@ -152,6 +153,7 @@ public class UsuarioController extends HttpServlet {
 
         ArrayList<Filial> filiais = UsuarioDAO.getFilial();
         request.setAttribute("todasFilial", filiais);
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroUsuario.jsp");
         dispatcher.forward(request, response);
 
