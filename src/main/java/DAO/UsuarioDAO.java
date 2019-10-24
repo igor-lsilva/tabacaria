@@ -64,6 +64,44 @@ public class UsuarioDAO {
         }
         return listaUsuarios;
     }
+    
+    public static ArrayList<Funcionario> getUsuarios(String nome) {
+        boolean retorno = false;
+        
+        ArrayList<Funcionario> listaUsuarios = new ArrayList<>();
+        
+        try {
+
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+
+            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM usuario WHERE nome LIKE '%"+nome+"%'");
+            
+            ResultSet rs = comando.executeQuery();
+            
+            while (rs.next()) {
+                
+                Funcionario c = new Funcionario(rs.getInt(1), rs.getString(2),  rs.getString(3),  rs.getString(4),  rs.getString(5),  rs.getInt(6),  rs.getInt(7),  rs.getString(8));
+
+                listaUsuarios.add(c);
+            }
+
+            int linhasAfetadas = comando.executeUpdate();
+
+        } catch (ClassNotFoundException ex) {
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                retorno = false;
+            }
+
+        }
+        return listaUsuarios;
+    }
 
     public static ArrayList<Filial> getFilial() {
         boolean retorno = false;

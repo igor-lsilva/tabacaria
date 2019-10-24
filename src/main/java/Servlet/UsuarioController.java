@@ -146,6 +146,24 @@ public class UsuarioController extends HttpServlet {
     protected void listar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String nome = request.getParameter("busca");
+
+        if ("".equals(nome) || nome == null) {
+
+            ArrayList<Funcionario> usuarios = UsuarioDAO.getUsuarios();
+            request.setAttribute("TodosUsuarios", usuarios);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
+            dispatcher.forward(request, response);
+
+        } else {
+
+            ArrayList<Funcionario> usuarios = UsuarioDAO.getUsuarios(nome);
+            request.setAttribute("TodosUsuarios", usuarios);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
+            dispatcher.forward(request, response);
+
+        }
+
         ArrayList<Funcionario> usuarios = UsuarioDAO.getUsuarios();
         request.setAttribute("TodosUsuarios", usuarios);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
@@ -159,7 +177,7 @@ public class UsuarioController extends HttpServlet {
         request.setAttribute("todasFilial", filiais);
         ArrayList<Modulo> modulo = ModuloDAO.getModulo();
         request.setAttribute("todosModulos", modulo);
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroUsuario.jsp");
         dispatcher.forward(request, response);
 
@@ -167,10 +185,13 @@ public class UsuarioController extends HttpServlet {
 
     protected void excluir(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        listar(request, response);
+
         int id = Integer.parseInt(request.getParameter("id"));
+
         if (UsuarioDAO.remover(id)) {
+
             listar(request, response);
+
         } else {
             request.setAttribute("mensagemFalha", "Falha ao excluir!");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
