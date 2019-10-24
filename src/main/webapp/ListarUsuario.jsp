@@ -52,7 +52,7 @@
                     <th class="campoCpf">CPF</th>
                     <th class="campologin">Login</th>
                     <th class="campoEmpresa">Empresa</th>
-                    <th class="campoCargo">Cargo</th>
+                    <th class="campoCargo">Modulo</th>
                     <th class="campoContato">Contato</th>
                     <th class="campoEditar">Editar</th>
                     <th class="campoExcluir">Excluir</th>
@@ -66,7 +66,7 @@
                         <td>${user.cpf}</td>               
                         <td>${user.login}</td>
                         <td>${user.idEmpresa}</td>                        
-                        <td>${user.cargo}</td>                        
+                        <td>${user.idModulo}</td>                        
                         <td>${user.contato}</td>                        
                         <td> 
                             <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
@@ -76,7 +76,7 @@
                                 <input type="hidden" value="${user.cpf}" name="cpf">
                                 <input type="hidden" value="${user.login}" name="login">
                                 <input type="hidden" value="${user.idEmpresa}" name="filial">
-                                <input type="hidden" value="${user.cargo}" name="cargo">
+                                <input type="hidden" value="${user.idModulo}" name="modulo">
                                 <input type="hidden" value="${user.contato}" name="contato">
                                 <input type="hidden" value="${user.senha}" name="senha">
                                 <button type="submit" class="buttonPadrao">Editar</button>

@@ -5,9 +5,11 @@
  */
 package Servlet;
 
+import DAO.ModuloDAO;
 import DAO.UsuarioDAO;
 import Model.Filial;
 import Model.Funcionario;
+import Model.Modulo;
 import Model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -70,10 +72,11 @@ public class UsuarioController extends HttpServlet {
         String senha = request.getParameter("senha");
         String cpf = request.getParameter("cpf");
         int idEmp = Integer.parseInt(request.getParameter("codEmp"));
+        int idModulo = Integer.parseInt(request.getParameter("modulo"));
         String contato = request.getParameter("contato");
         String cargo = request.getParameter("cargo");
 
-        Funcionario user = new Funcionario(nome, cpf, login, senha, idEmp, cargo, contato);
+        Funcionario user = new Funcionario(nome, cpf, login, senha, idEmp, idModulo, contato);
 
         if (UsuarioDAO.salvar(user)) {
 
@@ -98,9 +101,9 @@ public class UsuarioController extends HttpServlet {
         String senha = request.getParameter("senha");
         String cpf = request.getParameter("cpf");
         int idEmp = Integer.parseInt(request.getParameter("filial"));
+        int idModulo = Integer.parseInt(request.getParameter("modulo"));
         String contato = request.getParameter("contato");
-        String cargo = request.getParameter("cargo");
-        Funcionario f = new Funcionario(id, nome, cpf, login, senha, idEmp, cargo, contato);
+        Funcionario f = new Funcionario(id, nome, cpf, login, senha, idEmp, idModulo, contato);
         if (UsuarioDAO.editar(f)) {
             request.setAttribute("f", f);
             request.setAttribute("mensagemSucesso", "Edição realizada com sucesso");
@@ -127,12 +130,14 @@ public class UsuarioController extends HttpServlet {
         String senha = request.getParameter("senha");
         String cpf = request.getParameter("cpf");
         int idEmp = Integer.parseInt(request.getParameter("filial"));
+        int idModulo = Integer.parseInt(request.getParameter("modulo"));
         String contato = request.getParameter("contato");
-        String cargo = request.getParameter("cargo");
-        Funcionario f = new Funcionario(id, nome, cpf, login, senha, idEmp, cargo, contato);
+        Funcionario f = new Funcionario(id, nome, cpf, login, senha, idEmp, idModulo, contato);
         request.setAttribute("f", f);
         ArrayList<Filial> filiais = UsuarioDAO.getFilial();
         request.setAttribute("todasFilial", filiais);
+        ArrayList<Modulo> modulo = ModuloDAO.getModulo();
+        request.setAttribute("todosModulos", modulo);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarUsuario.jsp");
         dispatcher.forward(request, response);
 
@@ -150,9 +155,10 @@ public class UsuarioController extends HttpServlet {
 
     protected void retornaFilial(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         ArrayList<Filial> filiais = UsuarioDAO.getFilial();
         request.setAttribute("todasFilial", filiais);
+        ArrayList<Modulo> modulo = ModuloDAO.getModulo();
+        request.setAttribute("todosModulos", modulo);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroUsuario.jsp");
         dispatcher.forward(request, response);

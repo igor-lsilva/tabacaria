@@ -5,6 +5,7 @@
 --%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Filial"%>
+<%@page import="Model.Modulo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/ValidarUsuario.jsp" %>
@@ -54,7 +55,13 @@
                     <div>
                         <label>Cargo:</label>
                         <div>
-                            <input type="text" name="cargo">
+                            <select name="modulo">
+                                <c:forEach items="${todosModulos}" var="modulo">
+                                    <option value="${modulo.id}">
+                                        ${modulo.nomeModulo}
+                                    </option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
                     <div>

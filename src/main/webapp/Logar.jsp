@@ -1,10 +1,3 @@
-<%-- 
-    Document   : Logar
-    Created on : 23/10/2019, 11:29:28
-    Author     : igor.silva
---%>
-
-
 <%@page import="DAO.UsuarioDAO"%>
 <%@page import="Model.Funcionario"%>
 <%

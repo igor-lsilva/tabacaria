@@ -43,7 +43,7 @@ public class UsuarioDAO {
             
             while (rs.next()) {
                 
-                Funcionario c = new Funcionario(rs.getInt(1), rs.getString(2),  rs.getString(3),  rs.getString(4),  rs.getString(5),  rs.getInt(6),  rs.getString(7),  rs.getString(8));
+                Funcionario c = new Funcionario(rs.getInt(1), rs.getString(2),  rs.getString(3),  rs.getString(4),  rs.getString(5),  rs.getInt(6),  rs.getInt(7),  rs.getString(8));
 
                 listaUsuarios.add(c);
             }
@@ -110,13 +110,13 @@ public static boolean salvar(Funcionario user) {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("INSERT INTO usuario (login,senha,nome,cpf,cargo,idfilial,contato) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement comando = conexao.prepareStatement("INSERT INTO usuario (login,senha,nome,cpf,idmodulo,idfilial,contato) VALUES (?,?,?,?,?,?,?)");
 
             comando.setString(1, user.getLogin());
             comando.setString(2, user.getSenha());
             comando.setString(3, user.getNomeCompleto());
             comando.setString(4, user.getCpf());
-            comando.setString(5, user.getCargo());
+            comando.setInt(5, user.getIdModulo());
             comando.setInt(6, user.getIdEmpresa());
             comando.setString(7, user.getContato());
 
@@ -182,14 +182,14 @@ public static boolean salvar(Funcionario user) {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("UPDATE usuario SET nome=?, cpf=?, login=?, senha=?, idfilial=?, cargo=?, contato=? WHERE idusuario= ?");
+            PreparedStatement comando = conexao.prepareStatement("UPDATE usuario SET nome=?, cpf=?, login=?, senha=?, idfilial=?, idmodulo=?, contato=? WHERE idusuario= ?");
 
             comando.setString(1, user.getNomeCompleto());
             comando.setString(2, user.getCpf());
             comando.setString(3, user.getLogin());
             comando.setString(4, user.getSenha());
             comando.setInt(5, user.getIdEmpresa());
-            comando.setString(6, user.getCargo());
+            comando.setInt(6, user.getIdModulo());
             comando.setString(7, user.getContato());
             comando.setInt(8, user.getId());
 
@@ -228,7 +228,7 @@ public static boolean salvar(Funcionario user) {
             ResultSet rs = comando.executeQuery();          
             
             while (rs.next()) {               
-                f = new Funcionario(rs.getInt(1), rs.getString(2),  rs.getString(3),  rs.getString(4),  rs.getString(5),  rs.getInt(6),  rs.getString(7),  rs.getString(8));
+                f = new Funcionario(rs.getInt(1), rs.getString(2),  rs.getString(3),  rs.getString(4),  rs.getString(5),  rs.getInt(6),  rs.getInt(7),  rs.getString(8));
             }
 
         } catch (ClassNotFoundException ex) {

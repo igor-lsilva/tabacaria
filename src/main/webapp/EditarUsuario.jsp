@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Funcionario"%>
 <%@page import="Model.Filial"%>
+<%@page import="Model.Modulo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -50,9 +51,22 @@
                         </div>
                     </div>
                     <div>
-                        <label>Cargo:</label>
+                        <label>Modulo:</label>
                         <div>
-                            <input type="text" name="cargo" value="${f.cargo}">
+                            <select name="modulo">
+                                <c:forEach items="${todosModulos}" var="modulo">
+                                    <c:if test="${$modulo.id == $f.id}">
+                                        <option value="${modulo.id}" selected="selected">
+                                            ${modulo.nomeModulo}
+                                        </option>
+                                    </c:if>
+                                    <c:if test="${$filial.id != $f.id}">
+                                        <option value="${filial.id}">
+                                            ${filial.nomeFilial}
+                                        </option>
+                                    </c:if>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
                     <div>

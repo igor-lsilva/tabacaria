@@ -11,13 +11,13 @@ package Model;
  */
 public class Funcionario extends Usuario {
 
-    private String cargo;
+    private int idModulo;
     private int idEmpresa;
     private String contato;
 
-    public Funcionario(String nome, String cpf,String login, String senha, int idEmpresa, String cargo, String contato) {
+    public Funcionario(String nome, String cpf,String login, String senha, int idEmpresa, int idModulo, String contato) {
         super(login, senha, nome, cpf);
-        this.cargo = cargo;
+        this.idModulo = idModulo;
         this.idEmpresa = idEmpresa;
         this.contato = contato;
     }
@@ -26,19 +26,19 @@ public class Funcionario extends Usuario {
 
     }
 
-    public Funcionario(int id, String nome, String cpf,String login, String senha, int idEmpresa, String cargo, String contato) {
+    public Funcionario(int id, String nome, String cpf,String login, String senha, int idEmpresa, int idModulo, String contato) {
         super(id, login, senha, nome, cpf);
-        this.cargo = cargo;
+        this.idModulo = idModulo;
         this.idEmpresa = idEmpresa;
         this.contato = contato;
     }
 
-    public String getCargo() {
-        return cargo;
+    public int getIdModulo() {
+        return idModulo;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setIdModulo(int idModulo) {
+        this.idModulo = idModulo;
     }
 
     public int getIdEmpresa() {

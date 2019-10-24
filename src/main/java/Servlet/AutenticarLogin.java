@@ -38,6 +38,7 @@ public class AutenticarLogin extends HttpServlet {
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
         Funcionario f = UsuarioDAO.login(login, senha);
+        
         if (f != null) {
             request.setAttribute("usuario", f);
             request.setAttribute("senha", senha);
