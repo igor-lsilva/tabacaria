@@ -3,7 +3,7 @@
     Created on : 17/10/2019, 20:58:58
     Author     : Eduardo.mpaz
 --%>
-
+<%@include file="/ValidarUsuario.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

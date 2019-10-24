@@ -143,7 +143,7 @@ public class UsuarioController extends HttpServlet {
 
         ArrayList<Funcionario> usuarios = UsuarioDAO.getUsuarios();
         request.setAttribute("TodosUsuarios", usuarios);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Tabacaria/Usuario/ListarUsuario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
         dispatcher.forward(request, response);
 
     }

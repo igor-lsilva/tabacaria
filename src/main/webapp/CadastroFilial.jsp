@@ -1,10 +1,6 @@
-<%-- 
-    Document   : CadastroFilial
-    Created on : 14/10/2019, 02:18:33
-    Author     : Ochaus
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="/ValidarUsuario.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>

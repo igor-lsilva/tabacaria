@@ -2,15 +2,8 @@
 <%@page import="Model.Funcionario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="/ValidarUsuario.jsp" %>
 
-<%
-    Funcionario f = null;
-    if(session.getAttribute("usuario") != null){
-        f = (Funcionario)session.getAttribute("usuario");
-    }else{
-        response.sendRedirect("Login.jsp");
-    }
-%>
 <!DOCTYPE html>
 <html>
     <head>

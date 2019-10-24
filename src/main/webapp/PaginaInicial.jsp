@@ -21,7 +21,7 @@
                 <li><a href="#">Venda</a></li>
                 <li><a href="#">Relatório</a></li>
                 <li><a href="#">Faturamento</a></li>
-                <li><a href="#">Sair</a></li>
+                <li><a href="/Tabacaria/Sair.jsp">Sair</a></li>
             </ul>
         </div>
 

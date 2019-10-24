@@ -3,6 +3,7 @@
     Created on : 17/10/2019, 19:22:47
     Author     : matheus.eleoterio
 --%>
+<%@include file="/ValidarUsuario.jsp" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Cliente"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
