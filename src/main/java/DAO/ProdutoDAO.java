@@ -77,7 +77,7 @@ public class ProdutoDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("DELETE FROM produto WHERE idProduto= ?");
+            PreparedStatement comando = conexao.prepareStatement("UPDATE produto SET estatus=0 WHERE idProduto= ?");
 
             comando.setInt(1, cID);
 
@@ -158,7 +158,7 @@ public class ProdutoDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM produto");
+            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM produto WHERE estatus=1");
 
             ResultSet rs = comando.executeQuery();
 
@@ -193,7 +193,7 @@ public class ProdutoDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM produto WHERE nome LIKE '%"+nome+"%'");
+            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM produto WHERE nome LIKE '%"+nome+"%' AND estatus=1");
 
             ResultSet rs = comando.executeQuery();
 

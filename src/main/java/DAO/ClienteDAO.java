@@ -73,7 +73,7 @@ public class ClienteDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("DELETE FROM cliente WHERE idCliente= ?");
+            PreparedStatement comando = conexao.prepareStatement("UPDATE cliente SET estatus=0 WHERE idCliente= ?");
 
             comando.setInt(1, cID);
 
@@ -154,7 +154,7 @@ public class ClienteDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM cliente");
+            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM cliente WHERE estatus=1");
 
             ResultSet rs = comando.executeQuery();
 
@@ -189,7 +189,7 @@ public class ClienteDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM cliente WHERE nomeCliente LIKE '%"+nome+"%'");
+            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM cliente WHERE nomeCliente LIKE '%"+nome+"%' AND estatus=1");
 
             ResultSet rs = comando.executeQuery();
 

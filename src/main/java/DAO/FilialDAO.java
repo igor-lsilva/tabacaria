@@ -76,7 +76,7 @@ public class FilialDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("DELETE FROM filial WHERE idFilial= ?");
+            PreparedStatement comando = conexao.prepareStatement("UPDATE filial SET estatus=0 WHERE idFilial= ?");
 
             comando.setInt(1, cID);
 
@@ -156,7 +156,7 @@ public class FilialDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM filial");
+            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM filial WHERE estatus=1");
 
             ResultSet rs = comando.executeQuery();
 
@@ -191,7 +191,7 @@ public class FilialDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM filial WHERE nome LIKE '%"+nome+"%'");
+            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM filial WHERE nome LIKE '%"+nome+"%' AND estatus=1");
 
             ResultSet rs = comando.executeQuery();
 

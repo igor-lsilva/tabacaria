@@ -37,7 +37,7 @@ public class UsuarioDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM usuario");
+            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM usuario WHERE estatus=1");
             
             ResultSet rs = comando.executeQuery();
             
@@ -75,7 +75,7 @@ public class UsuarioDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM usuario WHERE nome LIKE '%"+nome+"%'");
+            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM usuario WHERE nome LIKE '%"+nome+"%' AND estatus=1");
             
             ResultSet rs = comando.executeQuery();
             
@@ -188,7 +188,7 @@ public static boolean salvar(Funcionario user) {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("DELETE FROM usuario WHERE idusuario = '"+id+"'");
+            PreparedStatement comando = conexao.prepareStatement("UPDATE usuario SET estatus=0 WHERE idusuario = '"+id+"'");
 
             int linhasAfetadas = comando.executeUpdate();
 
@@ -261,7 +261,7 @@ public static boolean salvar(Funcionario user) {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM usuario WHERE login like'"+login+"' AND senha like '"+senha+"'");
+            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM usuario WHERE login like'"+login+"' AND senha like '"+senha+"' AND estatus=1");
 
             ResultSet rs = comando.executeQuery();          
             
