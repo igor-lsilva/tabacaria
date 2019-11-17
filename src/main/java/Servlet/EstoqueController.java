@@ -87,11 +87,16 @@ public class EstoqueController extends HttpServlet {
 
         String id = request.getParameter("id");
         String nomeProduto = request.getParameter("nomeProduto");
-        int qtde = Integer.parseInt(request.getParameter("qtde"));
+        double valorCompra = Double.parseDouble(request.getParameter("valorCompra"));
+        double valorVenda = Double.parseDouble(request.getParameter("valorVenda"));       
+        //int qtde = Integer.parseInt(request.getParameter("qtde"));
 
         request.setAttribute("idAttr", id);
         request.setAttribute("nomeProdutoAttr", nomeProduto);
-        request.setAttribute("qtdeAttr", qtde);
+        request.setAttribute("valorCompraAttr", valorCompra);
+        request.setAttribute("valorVendaAttr", valorVenda);
+        //request.setAttribute("qtdeAttr", qtde);
+        
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarEstoque.jsp");
         dispatcher.forward(request, response);
@@ -103,6 +108,8 @@ public class EstoqueController extends HttpServlet {
 
         int id = Integer.parseInt(request.getParameter("id"));
         String nomeProduto = request.getParameter("nomeProduto");
+        double valorCompra = Double.parseDouble(request.getParameter("valorCompra"));
+        double valorVenda = Double.parseDouble(request.getParameter("valorVenda"));
         int qtde = Integer.parseInt(request.getParameter("qtde"));
 
         boolean verifica = false;
@@ -118,11 +125,13 @@ public class EstoqueController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarEstoque.jsp");
             dispatcher.forward(request, response);
 
-        } else if (ProdutoDAO.atualizarEstoque(id, nomeProduto, qtde)) {
+        } else if (ProdutoDAO.atualizarEstoque(id, qtde, valorCompra, valorVenda)) {
             
             request.setAttribute("mensagemSucesso", "Atualização realizada com sucesso!");
             request.setAttribute("idAttr", id);
             request.setAttribute("nomeProdutoAttr", nomeProduto);
+            request.setAttribute("valorCompraAttr", valorCompra);
+            request.setAttribute("valorVendaAttr", valorVenda);
             request.setAttribute("qtdeAttr", qtde);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarEstoque.jsp");
             dispatcher.forward(request, response);
@@ -131,6 +140,8 @@ public class EstoqueController extends HttpServlet {
             request.setAttribute("mensagemFalha", "Falha ao editar!");
             request.setAttribute("idAttr", id);
             request.setAttribute("nomeProdutoAttr", nomeProduto);
+            request.setAttribute("valorCompraAttr", valorCompra);
+            request.setAttribute("valorVendaAttr", valorVenda);
             request.setAttribute("qtdeAttr", qtde);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarEstoque.jsp");
             dispatcher.forward(request, response);

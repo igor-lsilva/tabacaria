@@ -179,21 +179,25 @@ public class ProdutoDAO {
 
     }
     
-    public static boolean atualizarEstoque(int id, String nomeProduto, int qtde) {
+    public static boolean atualizarEstoque(int id, int qtde, double valorCompra, double valorVenda) {
 
         boolean retorno = false;
-        Produto p = new Produto(id, nomeProduto, qtde);
+        java.sql.Date mysqlDate = new java.sql.Date(new java.util.Date().getTime());
+        
+        Produto p = new Produto(id, valorCompra, valorVenda, qtde, mysqlDate);
         
         try {
 
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("UPDATE tabacaria.produto, tabacaria.entrada_produto SET entrada_produto.qtde=? WHERE entrada_produto.id_produto=? AND produto.id=?");
+            PreparedStatement comando = conexao.prepareStatement("INSERT INTO entrada_produto (id_produto, qtde, valor_compra, valor_venda, data_entrada) VALUES (?, ?, ?, ?, ?)");
 
-            comando.setInt(1, p.getQtde());
-            comando.setInt(2, p.getId());
-            comando.setInt(3, p.getId());
+            comando.setInt(1, p.getId());
+            comando.setInt(2, p.getQtde());
+            comando.setDouble(3, p.getValorCompra());
+            comando.setDouble(4, p.getValorVenda());
+            comando.setDate(5, p.getDataEntrada());
 
             int linhasAfetadas = comando.executeUpdate();
 
@@ -229,13 +233,13 @@ public class ProdutoDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT produto.id, produto.nome, produto.descricao, entrada_produto.valor_compra, entrada_produto.valor_venda, estoque.qtde, entrada_produto.data_entrada FROM produto, entrada_produto, estoque WHERE produto.status =1 AND entrada_produto.id_produto = produto.id AND estoque.id_produto = produto.id");
+            PreparedStatement comando = conexao.prepareStatement("SELECT produto.id, produto.nome, produto.descricao, entrada_produto.valor_compra, entrada_produto.valor_venda, estoque.qtde FROM produto, entrada_produto, estoque WHERE produto.status =1 AND entrada_produto.id_produto = produto.id AND estoque.id_produto = produto.id GROUP BY produto.id");
 
             ResultSet rs = comando.executeQuery();
 
             while (rs.next()) {
                 
-                Produto p = new Produto(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getDate(7));
+                Produto p = new Produto(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6));
 
                 listaProdutos.add(p);
             }
@@ -264,13 +268,13 @@ public class ProdutoDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT produto.id, produto.nome, produto.descricao, entrada_produto.valor_compra, entrada_produto.valor_venda, estoque.qtde, entrada_produto.data_entrada FROM produto, entrada_produto, estoque WHERE produto.status =1 AND entrada_produto.id_produto = produto.id AND estoque.id_produto = produto.id AND produto.nome LIKE '%"+nome+"%'");
+            PreparedStatement comando = conexao.prepareStatement("SELECT produto.id, produto.nome, produto.descricao, entrada_produto.valor_compra, entrada_produto.valor_venda, estoque.qtde FROM produto, entrada_produto, estoque WHERE produto.status =1 AND entrada_produto.id_produto = produto.id AND estoque.id_produto = produto.id AND produto.nome LIKE '%"+nome+"%' GROUP BY produto.id");
 
             ResultSet rs = comando.executeQuery();
 
             while (rs.next()) {
                 
-                Produto p = new Produto(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getDate(7));
+                Produto p = new Produto(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6));
 
                 listaProdutos.add(p);
             }

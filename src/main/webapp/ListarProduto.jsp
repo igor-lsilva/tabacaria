@@ -55,7 +55,6 @@
                         <th class="campoID">Cod.</th>
                         <th class="campoNome">Nome</th>
                         <th class="campoDescricao">Descrição</th>
-                        <th class="campoEditar">Data Entrada</th>
                         <th class="campoEditar">Editar</th>
                         <th class="campExcluir">Excluir</th>
                     </tr>                
@@ -64,7 +63,6 @@
                             <td class="campoID">${p.id}</td>              
                             <td class="campoNome">${p.nome}</td>               
                             <td class="campoDescricao">${p.descricao}</td>
-                            <td class="campoPrecoCompra">${p.dataEntrada}</td>
                             <td class="campoEditar"> 
                                 <form action="${pageContext.request.contextPath}/ProdutoController" method="post">
                                     <input type="hidden" value="alterar" name="acao">

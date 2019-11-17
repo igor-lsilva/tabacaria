@@ -38,7 +38,9 @@
 
                     <input type="hidden" name="acao" value="salvarAlterar">
 
-                    <input type="hidden" name="id" value="${idAttr}">          
+                    <input type="hidden" name="id" value="${idAttr}">
+                    <input type="hidden" value="${valorCompraAttr}" name="valorCompra">
+                    <input type="hidden" value="${valorVendaAttr}" name="valorVenda">
 
                     <div>
                         <label>Nome: </label>

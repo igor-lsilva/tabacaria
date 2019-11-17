@@ -51,7 +51,7 @@
                         <th class="campoPrecoCompra">Preço de Compra</th>
                         <th class="campoPrecoVenda">Preço de Venda</th>
                         <th class="campoPrecoVenda">Quantidade</th>
-                        <th class="campoEditar">Editar</th>
+                        <th class="campoEditar">Adicionar</th>
                     </tr>                
                     <c:forEach items="${TodosProdutos}" var="p">
                         <tr>                       
@@ -68,7 +68,7 @@
                                     <input type="hidden" value="${p.valorCompra}" name="valorCompra">
                                     <input type="hidden" value="${p.valorVenda}" name="valorVenda">
                                     <input type="hidden" value="${p.qtde}" name="qtde">
-                                    <button class="buttonEditar" type="submit">Editar</button>
+                                    <button class="buttonEditar" type="submit">Adicionar</button>
                                 </form>                            
                             </td>                                                       
                         </tr>

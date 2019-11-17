@@ -36,8 +36,15 @@ public class Produto {
         this.id = id;
         this.qtde = qtde;
     }
-    
 
+    public Produto(int id, double valorCompra, double valorVenda, int qtde, Date dataEntrada) {
+        this.id = id;
+        this.valorCompra = valorCompra;
+        this.valorVenda = valorVenda;
+        this.qtde = qtde;
+        this.dataEntrada = dataEntrada;
+    }
+   
     public Produto(String nome, String descricao, double valorCompra, double valorVenda, int qtde, Date dataEntrada) {
         this.nome = nome;
         this.descricao = descricao;
