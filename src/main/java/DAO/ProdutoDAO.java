@@ -7,10 +7,12 @@ package DAO;
 
 import Model.Produto;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -26,28 +28,55 @@ public class ProdutoDAO {
     private static Connection conexao;
 
    
-    public static boolean salvar(String nomeProduto, double valorCompra, double valorVenda, String descricao) {
+    public static boolean salvar(String nomeProduto, String descricao, double valorCompra, double valorVenda) {
         boolean retorno = false;
-        Produto p = new Produto(nomeProduto, valorCompra, valorVenda, descricao);
+        java.sql.Date mysqlDate = new java.sql.Date(new java.util.Date().getTime());
+        
+        Produto p = new Produto(nomeProduto, descricao, valorCompra, valorVenda, mysqlDate);
 
         try {
 
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("INSERT INTO produto (nome,valorCompra,valorVenda,descricao) VALUES (?,?,?,?)");
+            PreparedStatement comando = conexao.prepareStatement("INSERT INTO produto (nome,descricao) VALUES (?,?)",Statement.RETURN_GENERATED_KEYS);
 
             comando.setString(1, p.getNome());
-            comando.setDouble(2, p.getValorCompra());
-            comando.setDouble(3, p.getValorVenda());
-            comando.setString(4, p.getDescricao());
+            comando.setString(2, p.getDescricao());
 
             int linhasAfetadas = comando.executeUpdate();
+            
+            ResultSet rs = comando.getGeneratedKeys();
+            int idProduto = 0;
+            
+            if (rs.next()) {
+                
+                idProduto = rs.getInt(1);
+            }
 
             if (linhasAfetadas > 0) {
-                retorno = true;
-            } else {
-                retorno = false;
+                
+                    
+                    comando = conexao.prepareStatement("INSERT INTO entrada_produto (id_produto, qtde, valor_compra, valor_venda, data_entrada) VALUES (?, ?, ?, ?, ?)");                               
+                    comando.setInt(1,idProduto);
+                    comando.setInt(2, p.getQtde());
+                    comando.setDouble(3, p.getValorCompra());
+                    comando.setDouble(4, p.getValorVenda());
+                    comando.setDate(5, p.getDataEntrada());
+                    
+                    linhasAfetadas = comando.executeUpdate();
+                         
+                  
+                    if (linhasAfetadas > 0) {
+
+                        retorno = true;
+                        
+                    } else {
+                        
+                        retorno = false;
+                    }
+                
+
             }
 
         } catch (ClassNotFoundException ex) {
@@ -77,7 +106,7 @@ public class ProdutoDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("UPDATE produto SET estatus=0 WHERE idProduto= ?");
+            PreparedStatement comando = conexao.prepareStatement("UPDATE produto SET status=0 WHERE id= ?");
 
             comando.setInt(1, cID);
 
@@ -106,23 +135,65 @@ public class ProdutoDAO {
 
     }
     
-    public static boolean atualizar(int id,String nomeProduto, double valorCompra, double valorVenda, String descricao) {
+    public static boolean atualizar(int id, String nomeProduto, String descricao, double valorCompra, double valorVenda) {
 
         boolean retorno = false;
-        Produto p = new Produto(id, nomeProduto, valorCompra, valorVenda, descricao);
+        Produto p = new Produto(id, nomeProduto, descricao, valorCompra, valorVenda);
         
         try {
 
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("UPDATE tabacaria.produto SET nome=?,valorCompra=?, valorVenda=?, descricao=? WHERE idproduto=?");
+            PreparedStatement comando = conexao.prepareStatement("UPDATE tabacaria.produto, tabacaria.entrada_produto SET nome=?, descricao=?, entrada_produto.valor_compra=?, entrada_produto.valor_venda=?  WHERE entrada_produto.id_produto=? AND produto.id=?");
 
             comando.setString(1, p.getNome());
-            comando.setDouble(2, p.getValorCompra());
-            comando.setDouble(3, p.getValorVenda());
-            comando.setString(4, p.getDescricao());
+            comando.setString(2, p.getDescricao());
+            comando.setDouble(3, p.getValorCompra());
+            comando.setDouble(4, p.getValorVenda());
             comando.setInt(5, p.getId());
+            comando.setInt(6, p.getId());
+
+            int linhasAfetadas = comando.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                retorno = false;
+            }
+
+        }
+
+        return retorno;
+
+    }
+    
+    public static boolean atualizarEstoque(int id, String nomeProduto, int qtde) {
+
+        boolean retorno = false;
+        Produto p = new Produto(id, nomeProduto, qtde);
+        
+        try {
+
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+
+            PreparedStatement comando = conexao.prepareStatement("UPDATE tabacaria.produto, tabacaria.entrada_produto SET entrada_produto.qtde=? WHERE entrada_produto.id_produto=? AND produto.id=?");
+
+            comando.setInt(1, p.getQtde());
+            comando.setInt(2, p.getId());
+            comando.setInt(3, p.getId());
 
             int linhasAfetadas = comando.executeUpdate();
 
@@ -158,13 +229,13 @@ public class ProdutoDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM produto WHERE estatus=1");
+            PreparedStatement comando = conexao.prepareStatement("SELECT produto.id, produto.nome, produto.descricao, entrada_produto.valor_compra, entrada_produto.valor_venda, estoque.qtde, entrada_produto.data_entrada FROM produto, entrada_produto, estoque WHERE produto.status =1 AND entrada_produto.id_produto = produto.id AND estoque.id_produto = produto.id");
 
             ResultSet rs = comando.executeQuery();
 
             while (rs.next()) {
                 
-                Produto p = new Produto(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4),rs.getString(5));
+                Produto p = new Produto(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getDate(7));
 
                 listaProdutos.add(p);
             }
@@ -193,13 +264,13 @@ public class ProdutoDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM produto WHERE nome LIKE '%"+nome+"%' AND estatus=1");
+            PreparedStatement comando = conexao.prepareStatement("SELECT produto.id, produto.nome, produto.descricao, entrada_produto.valor_compra, entrada_produto.valor_venda, estoque.qtde, entrada_produto.data_entrada FROM produto, entrada_produto, estoque WHERE produto.status =1 AND entrada_produto.id_produto = produto.id AND estoque.id_produto = produto.id AND produto.nome LIKE '%"+nome+"%'");
 
             ResultSet rs = comando.executeQuery();
 
             while (rs.next()) {
                 
-                Produto p = new Produto(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4),rs.getString(5));
+                Produto p = new Produto(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getDate(7));
 
                 listaProdutos.add(p);
             }

@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.sql.Date;
+
 /**
  *
  * @author Eduardo.mpaz
@@ -12,28 +14,69 @@ package Model;
 public class Produto {
     private int id; 
     private String nome;
+    private String descricao;
     private double valorCompra;
     private double valorVenda;
-    private String descricao;
+    private int qtde;
+    private Date dataEntrada;
 
     public Produto() {
         
     }
 
-    public Produto(String nome, double valorCompra, double valorVenda, String descricao) {
-        this.nome = nome;
-        this.valorCompra = valorCompra;
-        this.valorVenda = valorVenda;
-        this.descricao = descricao;
-    }
-
-    public Produto(int id, String nome, double valorCompra, double valorVenda, String descricao) {
+    public Produto(int id, String nome, String descricao, double valorCompra, double valorVenda) {
         this.id = id;
         this.nome = nome;
+        this.descricao = descricao;
         this.valorCompra = valorCompra;
         this.valorVenda = valorVenda;
-        this.descricao = descricao;
     }
+
+    public Produto(int id, String nome, int qtde) {
+        this.id = id;
+        this.qtde = qtde;
+    }
+    
+
+    public Produto(String nome, String descricao, double valorCompra, double valorVenda, int qtde, Date dataEntrada) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.valorCompra = valorCompra;
+        this.valorVenda = valorVenda;
+        this.qtde = qtde;
+        this.dataEntrada = dataEntrada;
+    }
+
+    public Produto(String nome, String descricao, double valorCompra, double valorVenda, Date dataEntrada) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.valorCompra = valorCompra;
+        this.valorVenda = valorVenda;
+        this.dataEntrada = dataEntrada;
+    }
+    
+    
+
+    public Produto(int id, String nome, String descricao, double valorCompra, double valorVenda, int qtde) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.valorCompra = valorCompra;
+        this.valorVenda = valorVenda;
+        this.qtde = qtde;
+    }
+
+    public Produto(int id, String nome, String descricao, double valorCompra, double valorVenda, int qtde, Date dataEntrada) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.valorCompra = valorCompra;
+        this.valorVenda = valorVenda;
+        this.qtde = qtde;
+        this.dataEntrada = dataEntrada;
+    }
+    
+ 
 
     public int getId() {
         return id;
@@ -49,6 +92,14 @@ public class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public double getValorCompra() {
@@ -67,14 +118,26 @@ public class Produto {
         this.valorVenda = valorVenda;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public int getQtde() {
+        return qtde;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setQtde(int qtde) {
+        this.qtde = qtde;
     }
 
+    public Date getDataEntrada() {
+        return dataEntrada;
+    }
+
+    public void setDataEntrada(Date dataEntrada) {
+        this.dataEntrada = dataEntrada;
+    }
+
+
+    
+    
+    
     
 
 }

@@ -1,8 +1,9 @@
 <%-- 
-    Document   : EditarProduto
-    Created on : 17/10/2019, 20:58:58
-    Author     : Eduardo.mpaz
+    Document   : EditarEstoque
+    Created on : 17/11/2019, 08:03:46
+    Author     : Ochaus
 --%>
+
 <%@include file="/ValidarUsuario.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,7 +34,7 @@
                 <h4>${mensagemFalha}</h4>
             </div>
             <div class="formulario">
-                <form action="${pageContext.request.contextPath}/ProdutoController" method="post">
+                <form action="${pageContext.request.contextPath}/EstoqueController" method="post">
 
                     <input type="hidden" name="acao" value="salvarAlterar">
 
@@ -42,28 +43,14 @@
                     <div>
                         <label>Nome: </label>
                         <div>
-                            <input type="text" name="nomeProduto" value="${nomeProdutoAttr}">
+                            <input type="text" name="nomeProduto" value="${nomeProdutoAttr}" >
                         </div>				
                     </div>
 
                     <div>
-                        <label>Valor de Compra: </label>
+                        <label>Quantidade: </label>
                         <div>
-                            <input type="number" name="valorCompra" value="${valorCompraAttr}">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label>Valor de Venda: </label>
-                        <div>
-                            <input type="number" name="valorVenda" value="${valorVendaAttr}">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label>Descrição: </label>
-                        <div>
-                            <input type="text" name="descricao" value="${descricaoAttr}">
+                            <input type="number" name="qtde" value="${qtdeAttr}">
                         </div>
                     </div>
                     <br>
@@ -76,7 +63,7 @@
                 <div class="campoVoltarPosicao">
                     <br><br>
                     <div>
-                        <form action="${pageContext.request.contextPath}/ProdutoController" method="post">
+                        <form action="${pageContext.request.contextPath}/EstoqueController" method="post">
                             <input type="hidden" value="listar" name="acao">
                             <button class="campoVoltar" type="submit">Voltar</button>
                         </form>

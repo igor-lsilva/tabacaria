@@ -92,19 +92,15 @@ public class ProdutoController extends HttpServlet {
         boolean verifica = false;
 
         String nomeProduto = request.getParameter("nomeProduto");
+        String descricao = request.getParameter("descricao");
         double valorCompra = Double.parseDouble(request.getParameter("valorCompra"));
         double valorVenda = Double.parseDouble(request.getParameter("valorVenda"));
-        String descricao = request.getParameter("descricao");
+        
 
         if (nomeProduto == null || nomeProduto.trim().length() < 1) {
 
             verifica = true;
 
-        }
-
-        if (descricao == null || descricao.trim().length() < 1) {
-
-            verifica = true;
         }
 
         if (verifica) {
@@ -113,7 +109,7 @@ public class ProdutoController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroProduto.jsp");
             dispatcher.forward(request, response);
 
-        } else if (ProdutoDAO.salvar(nomeProduto, valorCompra, valorVenda, descricao)) {
+        } else if (ProdutoDAO.salvar(nomeProduto, descricao, valorCompra, valorVenda)) {
 
             request.setAttribute("mensagemSucesso", "Cadastro realizado com sucesso!");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroProduto.jsp");
@@ -136,12 +132,14 @@ public class ProdutoController extends HttpServlet {
         double valorCompra = Double.parseDouble(request.getParameter("valorCompra"));
         double valorVenda = Double.parseDouble(request.getParameter("valorVenda"));
         String descricao = request.getParameter("descricao");
+        int qtde = Integer.parseInt(request.getParameter("qtde"));
 
         request.setAttribute("idAttr", id);
         request.setAttribute("nomeProdutoAttr", nomeProduto);
         request.setAttribute("valorCompraAttr", valorCompra);
         request.setAttribute("valorVendaAttr", valorVenda);
         request.setAttribute("descricaoAttr", descricao);
+        request.setAttribute("qtdeAttr", qtde);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarProduto.jsp");
         dispatcher.forward(request, response);
@@ -165,10 +163,6 @@ public class ProdutoController extends HttpServlet {
 
         }
 
-        if (descricao == null || descricao.trim().length() < 1) {
-
-            verifica = true;
-        }
         try {
                    
         if (verifica) {
@@ -182,7 +176,7 @@ public class ProdutoController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarProduto.jsp");
             dispatcher.forward(request, response);
 
-        } else if (ProdutoDAO.atualizar(id, nomeProduto, valorCompra, valorVenda, descricao)) {
+        } else if (ProdutoDAO.atualizar(id, nomeProduto, descricao, valorCompra, valorVenda)) {
             
             request.setAttribute("mensagemSucesso", "Atualização realizada com sucesso!");
             request.setAttribute("idAttr", id);

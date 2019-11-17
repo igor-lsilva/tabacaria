@@ -16,7 +16,7 @@
                 <li><a href="${pageContext.request.contextPath}/ClienteController">Cliente</a></li>
                 <li><a href="${pageContext.request.contextPath}/ProdutoController">Produto</a></li>
                 <li><a href="${pageContext.request.contextPath}/UsuarioController">Usuario</a></li>
-                <li><a href="#">Estoque</a></li>
+                <li><a href="${pageContext.request.contextPath}/EstoqueController">Estoque</a></li>
                 <li><a href="${pageContext.request.contextPath}/FilialController">Filial</a></li>               
                 <li><a href="#">Venda</a></li>
                 <li><a href="#">Relatório</a></li>

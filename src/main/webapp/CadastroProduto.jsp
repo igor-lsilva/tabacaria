@@ -60,6 +60,8 @@
                             <input type="text" name="descricao" value="${descricaoAttr}">
                         </div>
                     </div>
+                    <div>
+                    </div>    
                     <br>
                     <div class="posicaoButtons">
                         <button class="campoSalvar" type="submit">Cadastrar</button>
