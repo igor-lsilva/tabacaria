@@ -52,7 +52,6 @@
                     <th class="campoDtNascimento">Data Nascimento</th>
                     <th class="campoContato">Contato</th>
                     <th class="campoEditar">Editar</th>
-                    <th class="campoExcluir">Excluir</th>
                 </tr>                
                 <c:forEach items="${TodosClientes}" var="c">
                     <tr>
@@ -62,23 +61,12 @@
                         <td class="campoDtNascimento">${c.dtNascimento}</td>
                         <td class="campoContato">${c.contato}</td>                        
                         <td class="campoEditar"> 
-                            <form action="${pageContext.request.contextPath}/ClienteController" method="post">
-                                    <input type="hidden" value="alterar" name="acao">                                  
+                            <form action="${pageContext.request.contextPath}/VendaController" method="post">
+                                    <input type="hidden" value="adicionarCliente" name="acao">                                  
                                     <input type="hidden" value="${c.idCliente}" name="id">
-                                    <input type="hidden" value="${c.nomeCliente}" name="nomeCliente">
-                                    <input type="hidden" value="${c.CPF}" name="CPF">
-                                    <input type="hidden" value="${c.dtNascimento}" name="dtNascimento">
-                                    <input type="hidden" value="${c.contato}" name="contato">
-                                    <button class="buttonEditar" type="submit">Editar</button>
+                                    <button class="buttonEditar" type="submit">Adicionar</button>
                             </form>                            
-                        </td>
-                        <td class="campoExcluir">
-                            <form action="${pageContext.request.contextPath}/ClienteController" method="post">
-                                    <input type="hidden" value="excluir" name="acao">
-                                    <input type="hidden" value="${c.idCliente}" name="id">
-                                    <button class="buttonExcluir" type="submit">Excluir</button>
-                                </form>
-                        </td>                            
+                        </td>                           
                     </tr>
                 </c:forEach> 
 

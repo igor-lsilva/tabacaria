@@ -1,9 +1,3 @@
-<%-- 
-    Document   : EditarFilial
-    Created on : 15/10/2019, 06:41:05
-    Author     : Ochaus
---%>
-<%@include file="/ValidarUsuario.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

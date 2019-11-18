@@ -1,4 +1,3 @@
-<%@include file="/ValidarUsuario.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
