@@ -6,7 +6,10 @@
 package Servlet;
 
 import DAO.ClienteDAO;
+import DAO.ProdutoDAO;
 import Model.Cliente;
+import Model.Produto;
+import Model.Venda;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -25,6 +28,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "VendaController", urlPatterns = {"/VendaController"})
 public class VendaController extends HttpServlet {
 
+   private static Venda venda;
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,9 +50,9 @@ public class VendaController extends HttpServlet {
             case "adicionarCliente":
                 adicionarCliente(request, response);
                 break;
-//            case "atualizar":
-//                atualizar(request, response);
-//                break;
+            case "listarProduto":
+                listarProduto(request, response);
+                break;
         }
     }
 
@@ -81,6 +86,32 @@ public class VendaController extends HttpServlet {
         } catch (IOException | SQLException | ServletException e) {
 
         }
+    }
+    
+    protected void listarProduto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String nome = request.getParameter("busca");
+
+            if ("".equals(nome) || nome == null) {
+
+                ArrayList<Produto> p = ProdutoDAO.getProduto();
+                request.setAttribute("TodosProdutos", p);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/VendaProduto.jsp");
+                dispatcher.forward(request, response);
+
+            } else {
+
+                ArrayList<Produto> p = ProdutoDAO.getProduto(nome);
+                request.setAttribute("TodosProdutos", p);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/VendaProduto.jsp");
+                dispatcher.forward(request, response);
+
+            }
+
+            ArrayList<Produto> p = ProdutoDAO.getProduto();
+            request.setAttribute("TodosProdutos", p);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/VendaProduto.jsp");
+            dispatcher.forward(request, response);
     }
 
     protected void adicionarCliente(HttpServletRequest request, HttpServletResponse response)
