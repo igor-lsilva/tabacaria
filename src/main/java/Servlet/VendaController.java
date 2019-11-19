@@ -8,6 +8,7 @@ package Servlet;
 import DAO.ClienteDAO;
 import DAO.ProdutoDAO;
 import Model.Cliente;
+import Model.Item;
 import Model.Produto;
 import Model.Venda;
 import java.io.IOException;
@@ -28,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "VendaController", urlPatterns = {"/VendaController"})
 public class VendaController extends HttpServlet {
 
-   private static Venda venda;
+   private static Venda venda = new Venda();
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,6 +53,9 @@ public class VendaController extends HttpServlet {
                 break;
             case "listarProduto":
                 listarProduto(request, response);
+                break;
+            case "adicionarProduto":
+                adicionarProduto(request, response);
                 break;
         }
     }
@@ -116,6 +120,16 @@ public class VendaController extends HttpServlet {
 
     protected void adicionarCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String idCliente = request.getParameter("id");
+        request.setAttribute("idClienteAttr", idCliente);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Venda.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    protected void adicionarProduto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        //Item item = new Item(null, qtd, preco)
         String idCliente = request.getParameter("id");
         request.setAttribute("idClienteAttr", idCliente);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/Venda.jsp");

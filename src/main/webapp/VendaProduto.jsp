@@ -73,8 +73,9 @@
             <br><br>
             <div class="campoVoltarPosicao">           
                 <div>
-                    <form action="${pageContext.request.contextPath}/PaginaInicial.jsp">
-                        <button class="campoVoltar" type="submit">Voltar</button>
+                    <form action="${pageContext.request.contextPath}/VendaController">
+                        <input type="hidden" value="adicionarProduto">
+                        <button class="campoVoltar" type="submit">Adicionar</button>
                     </form>
                 </div>
             </div>
