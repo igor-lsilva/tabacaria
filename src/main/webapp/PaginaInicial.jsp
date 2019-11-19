@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Model.Funcionario"%>
 <%@page import="DAO.UsuarioDAO"%>
-<%@include file="/ValidarUsuario.jsp" %>
+
 <!DOCTYPE html>
 <html>
     <head>
