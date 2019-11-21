@@ -5,11 +5,13 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author igor.silva
  */
-public class Modulo {
+public class Modulo implements Serializable {
     
     private int id;
     private String nomeModulo;
@@ -41,7 +43,10 @@ public class Modulo {
     public void setNomeModulo(String nomeModulo) {
         this.nomeModulo = nomeModulo;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Modulo{" + "id=" + id + ", nomeModulo=" + nomeModulo + '}';
+    }   
     
 }

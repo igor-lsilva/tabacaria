@@ -4,7 +4,6 @@
     Author     : Ochaus
 --%>
 
-<%@include file="/ValidarUsuario.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,7 +33,7 @@
                 <h4>${mensagemFalha}</h4>
             </div>
             <div class="formulario">
-                <form action="${pageContext.request.contextPath}/EstoqueController" method="post">
+                <form action="${pageContext.request.contextPath}/TADS-PI3/EstoqueController" method="post">
 
                     <input type="hidden" name="acao" value="salvarAlterar">
 
@@ -65,7 +64,7 @@
                 <div class="campoVoltarPosicao">
                     <br><br>
                     <div>
-                        <form action="${pageContext.request.contextPath}/EstoqueController" method="post">
+                        <form action="${pageContext.request.contextPath}/TADS-PI3/EstoqueController" method="post">
                             <input type="hidden" value="listar" name="acao">
                             <button class="campoVoltar" type="submit">Voltar</button>
                         </form>

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ochaus
  */
-@WebServlet(name = "EstoqueController", urlPatterns = {"/EstoqueController"})
+@WebServlet(name = "EstoqueController", urlPatterns = {"/TADS-PI3/EstoqueController"})
 public class EstoqueController extends HttpServlet {
 
 

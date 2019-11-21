@@ -25,7 +25,7 @@
 
             <div style="display: inline-block;">
                 <div style="float: left; border-radius: 8px; ">
-                    <form action="${pageContext.request.contextPath}/ClienteController" method="post">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/ClienteController" method="post">
                         <input type="hidden" value="listar" name="acao">
                         <div>
                             <div>
@@ -37,7 +37,7 @@
                     </form>
                 </div>
                 <div style="display: inline-block;">
-                    <form action="${pageContext.request.contextPath}/CadastroCliente.jsp" method="post">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/CadastroCliente.jsp" method="post">
                         <button class="campoCadastro" type="submit">Cadastrar</button>
                     </form>
 
@@ -61,7 +61,7 @@
                         <td class="campoDtNascimento">${c.dtNascimento}</td>
                         <td class="campoContato">${c.contato}</td>                        
                         <td class="campoEditar"> 
-                            <form action="${pageContext.request.contextPath}/VendaController" method="post">
+                            <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
                                     <input type="hidden" value="adicionarCliente" name="acao">                                  
                                     <input type="hidden" value="${c.idCliente}" name="id">
                                     <button class="buttonEditar" type="submit">Adicionar</button>

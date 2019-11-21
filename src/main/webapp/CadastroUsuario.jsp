@@ -8,7 +8,7 @@
 <%@page import="Model.Modulo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="/ValidarUsuario.jsp" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,7 +38,7 @@
                 <h4>${mensagemFalha}</h4>
             </div>
             <div class="formulario">
-                <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
                     <input type="hidden" name="acao" value="salvar">
                     <div>
                         <label>Nome:</label>
@@ -101,7 +101,7 @@
                 </form>
                 <div class="campoVoltarPosicao">
                     <div>
-                        <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                        <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
                             <input type="hidden" value="listar" name="acao">
                             <button class="campoVoltar" type="submit">Voltar</button>
                         </form>

@@ -1,6 +1,4 @@
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="/ValidarUsuario.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,7 +29,7 @@
             </div>
             <div class="formulario">
 
-                <form action="${pageContext.request.contextPath}/FilialController" method="post">
+                <form action="${pageContext.request.contextPath}/TADS-PI3/FilialController" method="post">
 
                     <input type="hidden" name="acao" value="salvar">
 
@@ -50,7 +48,7 @@
                     </div>
 
                     <div>
-                        <label>EndereÃ§o: </label>
+                        <label>Endereço: </label>
                         <div>
                             <input type="text" name="endereco" value="${enderecoAttr}">
                         </div>
@@ -64,7 +62,7 @@
                 <div class="campoVoltarPosicao">
                     <br><br>
                     <div>
-                        <form action="${pageContext.request.contextPath}/FilialController" method="post">
+                        <form action="${pageContext.request.contextPath}/TADS-PI3/FilialController" method="post">
                             <input type="hidden" value="listar" name="acao">
                             <button class="campoVoltar" type="submit">Voltar</button>
                         </form>

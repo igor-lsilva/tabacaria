@@ -5,9 +5,13 @@
  */
 package Teste;
 
+import DAO.ModuloDAO;
 import DAO.ProdutoDAO;
+import Model.Modulo;
 import Model.Produto;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
@@ -16,7 +20,7 @@ import java.util.ArrayList;
 public class NewClass {
     public static void main(String[] args) {
         
-//        ProdutoDAO.salvar("TESTE", "", 10, 16, 30);
+        ProdutoDAO.salvar("TESTE", "", 4, 5);
         
 //        ProdutoDAO.excluir(1);
 //        
@@ -32,6 +36,23 @@ public class NewClass {
 //            System.out.println(p.get(i).getQtde());
 //            System.out.println(p.get(i).getDataEntrada());
 //            System.out.println("--------------------------------------");
+//        }
+//
+//        Map<String, String> mapPapeis;
+//        ArrayList<Modulo> modulo;
+//        mapPapeis = new LinkedHashMap<>();
+//        modulo = ModuloDAO.getModulo();
+//        
+//        for (Modulo m : modulo) {
+//            String teste = m.getNomeModulo();
+//            System.out.println(mapPapeis.put(teste, teste));
+//            System.out.println(teste);
+//        }
+//        mapPapeis = LinkedHashMap<>();
+        
+//        for (String i : mapPapeis.keySet()) {
+//            Modulo m = mapPapeis.get(i);
+//            System.out.println(m.getNomeModulo()+ new Modulo(m.getNomeModulo()));
 //        }
     }
 }

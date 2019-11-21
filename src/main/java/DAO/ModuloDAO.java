@@ -35,7 +35,7 @@ public class ModuloDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
             
-             PreparedStatement comando = conexao.prepareStatement("SELECT *FROM modulo");
+             PreparedStatement comando = conexao.prepareStatement("SELECT * FROM modulo");
             
             ResultSet rs = comando.executeQuery();
             

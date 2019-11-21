@@ -30,7 +30,7 @@
                 <h4>${mensagemFalha}</h4>
             </div>
             <div class="formulario">
-                <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
                     <input type="hidden" name="acao" value="atualizar">
                     <div>
                         <label>Codigo:</label>
@@ -113,7 +113,7 @@
                 </form>
                 <div class="campoVoltarPosicao">
                     <div>
-                        <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                        <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
                             <input type="hidden" value="listar" name="acao">
                             <button class="campoVoltar" type="submit">Voltar</button>
                         </form>

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ochaus
  */
-@WebServlet(name = "ProdutoController", urlPatterns = {"/ProdutoController"})
+@WebServlet(name = "ProdutoController", urlPatterns = {"/TADS-PI3/ProdutoController"})
 public class ProdutoController extends HttpServlet {
 
     @Override

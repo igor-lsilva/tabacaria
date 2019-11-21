@@ -29,7 +29,7 @@
             </div>
             <div class="formulario">
 
-                <form action="${pageContext.request.contextPath}/ProdutoController" method="post">
+                <form action="${pageContext.request.contextPath}/TADS-PI3/ProdutoController" method="post">
 
                     <input type="hidden" name="acao" value="salvar">
 
@@ -71,7 +71,7 @@
                 <div class="campoVoltarPosicao">
                     <br><br>
                     <div>
-                        <form action="${pageContext.request.contextPath}/ProdutoController" method="post">
+                        <form action="${pageContext.request.contextPath}/TADS-PI3/ProdutoController" method="post">
                             <input type="hidden" value="listar" name="acao">
                             <button class="campoVoltar" type="submit">Voltar</button>
                         </form>

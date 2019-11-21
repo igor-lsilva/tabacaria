@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ochaus
  */
-@WebServlet(name = "ClienteController", urlPatterns = {"/ClienteController"})
+@WebServlet(name = "ClienteController", urlPatterns = {"/TADS-PI3/ClienteController"})
 public class ClienteController extends HttpServlet {
 
     @Override

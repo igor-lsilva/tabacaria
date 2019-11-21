@@ -30,7 +30,7 @@
 
             <div style="display: inline-block;">
                 <div style="float: left; border-radius: 8px; ">
-                    <form action="${pageContext.request.contextPath}/EstoqueController" method="post">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/EstoqueController" method="post">
                         <input type="hidden" value="listar" name="acao">
                         <div>
                             <div>
@@ -60,7 +60,7 @@
                             <td class="campoPrecoVenda">${p.valorVenda}</td>
                             <td class="campoPrecoVenda">${p.qtde}</td>
                             <td class="campoEditar"> 
-                                <form action="${pageContext.request.contextPath}/EstoqueController" method="post">
+                                <form action="${pageContext.request.contextPath}/TADS-PI3/EstoqueController" method="post">
                                     <input type="hidden" value="alterar" name="acao">
                                     <input type="hidden" value="${p.id}" name="id">
                                     <input type="hidden" value="${p.nome}" name="nomeProduto">

@@ -2,7 +2,6 @@
 <%@page import="Model.Funcionario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="/ValidarUsuario.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +24,7 @@
             </div>  
             <div style="display: inline-block;">
                 <div style="float: left; border-radius: 8px; ">
-                    <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
                         <input type="hidden" value="listar" name="acao">
                         <div>
                             <div>
@@ -37,7 +36,7 @@
                     </form>
                 </div>
                 <div style="display: inline-block;">
-                    <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
                         <input type="hidden" value="cadastrar" name="acao">
                         <button class="campoCadastro" type="submit">Cadastrar</button>
                     </form>
@@ -69,7 +68,7 @@
                         <td>${user.idModulo}</td>                        
                         <td>${user.contato}</td>                        
                         <td> 
-                            <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                            <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
                                 <input type="hidden" value="editar" name="acao">
                                 <input type="hidden" value="${user.id}" name="id">
                                 <input type="hidden" value="${user.nomeCompleto}" name="nome">
@@ -83,7 +82,7 @@
                             </form>                           
                         </td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/UsuarioController" method="post">
+                            <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
                                 <input type="hidden" value="excluir" name="acao">
                                 <input type="hidden" value="${user.id}" name="id">
                                 <button type="submit" class="buttonPadrao">Excluir</button>

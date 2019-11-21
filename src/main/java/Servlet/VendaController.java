@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author igor.silva
  */
-@WebServlet(name = "VendaController", urlPatterns = {"/VendaController"})
+@WebServlet(name = "VendaController", urlPatterns = {"/TADS-PI3/VendaController"})
 public class VendaController extends HttpServlet {
 
    private static Venda venda = new Venda();

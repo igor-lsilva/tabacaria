@@ -13,6 +13,6 @@
         <title>Deu Ruim</title>
     </head>
     <body>
-        <h1 style="text-align: center; color: red;">Fail!</h1>
+        <h1 style="text-align: center; color: red;">ACESSO NÃO PERMITIDO!</h1>
     </body>
 </html>

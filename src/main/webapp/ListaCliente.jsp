@@ -26,7 +26,7 @@
 
             <div style="display: inline-block;">
                 <div style="float: left; border-radius: 8px; ">
-                    <form action="${pageContext.request.contextPath}/ClienteController" method="post">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/ClienteController" method="post">
                         <input type="hidden" value="listar" name="acao">
                         <div>
                             <div>
@@ -63,7 +63,7 @@
                         <td class="campoDtNascimento">${c.dtNascimento}</td>
                         <td class="campoContato">${c.contato}</td>                        
                         <td class="campoEditar"> 
-                            <form action="${pageContext.request.contextPath}/ClienteController" method="post">
+                            <form action="${pageContext.request.contextPath}/TADS-PI3/ClienteController" method="post">
                                     <input type="hidden" value="alterar" name="acao">                                  
                                     <input type="hidden" value="${c.idCliente}" name="id">
                                     <input type="hidden" value="${c.nomeCliente}" name="nomeCliente">
@@ -74,7 +74,7 @@
                             </form>                            
                         </td>
                         <td class="campoExcluir">
-                            <form action="${pageContext.request.contextPath}/ClienteController" method="post">
+                            <form action="${pageContext.request.contextPath}/TADS-PI3/ClienteController" method="post">
                                     <input type="hidden" value="excluir" name="acao">
                                     <input type="hidden" value="${c.idCliente}" name="id">
                                     <button class="buttonExcluir" type="submit">Excluir</button>

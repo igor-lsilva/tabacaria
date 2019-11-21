@@ -1,79 +1,67 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change th-+is template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Model;
 
+import java.util.List;
+
 /**
  *
- * @author lucas.asilva89
+ * @author igor.lsilva9
  */
-public abstract class Usuario extends Object {
+public class Usuario extends Funcionario {
 
-    private int id;
-    private String login;
-    private String senha;
-    private String nomeCompleto;
-    private String cpf;
+    private static final long serialVersionUID = 1L;
 
-    public Usuario() {
+    
+    private String username;
+    private String hashSenha;
+    private List<Modulo> modulos;
+
+    public Usuario(String username, String hashSenha, List<Modulo> modulos, int idEmpresa, String nomeCompleto, String cpf, String contato) {
+        super(idEmpresa, nomeCompleto, cpf, contato);
+        this.username = username;
+        this.hashSenha = hashSenha;
+        this.modulos = modulos;
     }
 
-    public Usuario(int id, String login, String senha, String nomeCompleto, String cpf) {
-        this.id = id;
-        this.login = login;
-        this.senha = senha;
-        this.nomeCompleto = nomeCompleto;
-        this.cpf = cpf;
+    public String getUsername() {
+        return username;
     }
 
-    public Usuario(String login, String senha, String nomeCompleto, String cpf) {
-        this.login = login;
-        this.senha = senha;
-        this.nomeCompleto = nomeCompleto;
-        this.cpf = cpf;
-
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getNomeCompleto() {
-        return nomeCompleto;
+    public String getHashSenha() {
+        return hashSenha;
     }
 
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+    public void setHashSenha(String hashSenha) {
+        this.hashSenha = hashSenha;
     }
 
-    public String getCpf() {
-        return cpf;
+    public List<Modulo> getModulos() {
+        return modulos;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setModulos(List<Modulo> modulos) {
+        this.modulos = modulos;
+    }
+    
+    public boolean verificarPapel(String nomePapel) {
+        for (Modulo m : modulos) {
+            if (m.getNomeModulo().equals(nomePapel)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public int getId() {
-        return id;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
+    
 }

@@ -1,44 +1,39 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change th-+is template file, choose Tools | Templates
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Model;
 
 /**
  *
- * @author igor.lsilva9
+ * @author lucas.asilva89
  */
-public class Funcionario extends Usuario {
+public abstract class Funcionario extends Object {
 
-    private int idModulo;
+    private int id;
     private int idEmpresa;
+    private String nomeCompleto;
+    private String cpf;
     private String contato;
 
-    public Funcionario(String nome, String cpf,String login, String senha, int idEmpresa, int idModulo, String contato) {
-        super(login, senha, nome, cpf);
-        this.idModulo = idModulo;
-        this.idEmpresa = idEmpresa;
-        this.contato = contato;
-    }
 
     public Funcionario() {
-
     }
 
-    public Funcionario(int id, String nome, String cpf,String login, String senha, int idEmpresa, int idModulo, String contato) {
-        super(id, login, senha, nome, cpf);
-        this.idModulo = idModulo;
+    public Funcionario(int idEmpresa, String nomeCompleto, String cpf, String contato) {
         this.idEmpresa = idEmpresa;
+        this.nomeCompleto = nomeCompleto;
+        this.cpf = cpf;
         this.contato = contato;
     }
 
-    public int getIdModulo() {
-        return idModulo;
-    }
-
-    public void setIdModulo(int idModulo) {
-        this.idModulo = idModulo;
+    public Funcionario(int id, int idEmpresa, String nomeCompleto, String cpf, String contato) {
+        this.id = id;
+        this.idEmpresa = idEmpresa;
+        this.nomeCompleto = nomeCompleto;
+        this.cpf = cpf;
+        this.contato = contato;
     }
 
     public int getIdEmpresa() {
@@ -49,6 +44,30 @@ public class Funcionario extends Usuario {
         this.idEmpresa = idEmpresa;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getContato() {
         return contato;
     }
@@ -57,55 +76,5 @@ public class Funcionario extends Usuario {
         this.contato = contato;
     }
 
-    @Override
-    public void setSenha(String senha) {
-        super.setSenha(senha); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getSenha() {
-        return super.getSenha(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setLogin(String login) {
-        super.setLogin(login); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getLogin() {
-        return super.getLogin(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setId(int id) {
-        super.setId(id); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getId() {
-        return super.getId(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setCpf(String cpf) {
-        super.setCpf(cpf); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getCpf() {
-        return super.getCpf(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setNomeCompleto(String nomeCompleto) {
-        super.setNomeCompleto(nomeCompleto); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getNomeCompleto() {
-        return super.getNomeCompleto(); //To change body of generated methods, choose Tools | Templates.
-    }
     
-
 }

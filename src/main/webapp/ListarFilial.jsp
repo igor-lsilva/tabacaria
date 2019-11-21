@@ -2,7 +2,6 @@
 <%@page import="Model.Filial"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="/ValidarUsuario.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +24,7 @@
 
             <div style="display: inline-block;">
                 <div style="float: left; border-radius: 8px; ">
-                    <form action="${pageContext.request.contextPath}/FilialController" method="post">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/FilialController" method="post">
                         <input type="hidden" value="listar" name="acao">
                         <div>
                             <div>
@@ -61,7 +60,7 @@
                             <td class="campoCNPJ">${f.CNPJ}</td>
                             <td class="campoEndereco">${f.endereco}</td>                        
                             <td class="campoEditar"> 
-                                <form action="${pageContext.request.contextPath}/FilialController" method="post">
+                                <form action="${pageContext.request.contextPath}/TADS-PI3/FilialController" method="post">
                                     <input type="hidden" value="alterar" name="acao">
                                     <input type="hidden" value="${f.id}" name="id">
                                     <input type="hidden" value="${f.nomeFilial}" name="nomeFilial">
@@ -71,7 +70,7 @@
                                 </form>                            
                             </td>
                             <td class="campExcluir">
-                                <form action="${pageContext.request.contextPath}/FilialController" method="post">
+                                <form action="${pageContext.request.contextPath}/TADS-PI3/FilialController" method="post">
                                     <input type="hidden" value="excluir" name="acao">
                                     <input type="hidden" value="${f.id}" name="id">
                                     <button class="buttonExcluir" type="submit">Excluir</button>

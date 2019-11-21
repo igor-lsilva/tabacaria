@@ -12,13 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="${pageContext.request.contextPath}/VendaController" method="post">
+        <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
             <h1>Cliente: </h1>
             <input type="text" name="idCliente" value="${idClienteAttr}">
             <input type="hidden" value="listar" name="acao">
             <button>Add</button>
         </form>
-        <form action="${pageContext.request.contextPath}/VendaController" method="post">
+        <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
             <h1>Cliente: </h1>
             <input type="hidden" value="listarProduto" name="acao">
             <button>Add</button>

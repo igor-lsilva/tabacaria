@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ochaus
  */
-@WebServlet(name = "FilialController", urlPatterns = {"/FilialController"})
+@WebServlet(name = "FilialController", urlPatterns = {"/TADS-PI3/FilialController"})
 public class FilialController extends HttpServlet {
 
     @Override
