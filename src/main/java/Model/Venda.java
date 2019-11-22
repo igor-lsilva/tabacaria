@@ -108,9 +108,9 @@ public class Venda {
     }
 
     public void removerItem(int id) {
-        for (Item item : itens) {
-            if(id == item.getP().getId()){
-               //itens.
+        for (int i = 0; i < itens.size(); i++) {
+            if(itens.get(i).getP().getId() == id){
+                itens.remove(i);
             }
         }
     }

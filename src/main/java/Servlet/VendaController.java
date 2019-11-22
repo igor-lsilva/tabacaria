@@ -7,6 +7,7 @@ package Servlet;
 
 import DAO.ClienteDAO;
 import DAO.ProdutoDAO;
+import DAO.VendaDAO;
 import Model.Cliente;
 import Model.Item;
 import Model.Produto;
@@ -33,13 +34,13 @@ public class VendaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession sessao = request.getSession();
 
         // Verifica se já existe atributo itensSelecionados na sessao
@@ -63,6 +64,12 @@ public class VendaController extends HttpServlet {
                 break;
             case "adicionarProduto":
                 adicionarProduto(request, response, venda);
+                break;
+            case "retirarProduto":
+                retirarProduto(request, response, venda);
+                break;
+            case "cadastrarVenda":
+                cadastrarVenda(request, response, venda);
                 break;
         }
     }
@@ -136,7 +143,7 @@ public class VendaController extends HttpServlet {
     }
 
     protected void adicionarProduto(HttpServletRequest request, HttpServletResponse response, Venda venda)
-            throws ServletException, IOException {   
+            throws ServletException, IOException {
         int idProduto = Integer.parseInt(request.getParameter("id"));
         int qtd = Integer.parseInt(request.getParameter("qtd"));
         String nomeProduto = request.getParameter("nomeProduto");
@@ -152,4 +159,27 @@ public class VendaController extends HttpServlet {
         request.setAttribute("precoFinal", venda.getPrecoFinal());
         response.sendRedirect(request.getContextPath() + "/Venda.jsp");
     }
+
+    protected void retirarProduto(HttpServletRequest request, HttpServletResponse response, Venda venda)
+            throws ServletException, IOException {
+        int idProduto = Integer.parseInt(request.getParameter("idProduto"));
+        venda.removerItem(idProduto);
+        venda.precoFinal();
+        request.setAttribute("itens", venda.getItens());
+        request.setAttribute("precoFinal", venda.getPrecoFinal());
+        response.sendRedirect(request.getContextPath() + "/Venda.jsp");
+    }
+
+    protected void cadastrarVenda(HttpServletRequest request, HttpServletResponse response, Venda venda)
+            throws ServletException, IOException {
+        venda.setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
+        venda.setIdFilial(Integer.parseInt(request.getParameter("idEmpresa")));
+        if (VendaDAO.salvar(venda)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/PaginaInicial.jsp");
+            dispatcher.forward(request, response);
+        }
+        response.sendRedirect(request.getContextPath() + "/Venda.jsp");
+
+    }
+
 }

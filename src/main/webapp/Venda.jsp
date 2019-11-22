@@ -45,6 +45,7 @@
                     <th class="campoNome">Qtd</th>
                     <th class="campoNome">Preco Uni.</th>
                     <th class="campoNome">Preco Total.</th>
+                    <th class="campoNome">Remover</th>
                 </tr>                
                 <c:forEach items="${sessionScope.itensSelecionados.itens}" var="p">
                     <tr>                       
@@ -52,16 +53,19 @@
                         <td>${p.p.nome}</td>              
                         <td>${p.qtd}</td>                                                                             
                         <td>${p.p.valorVenda}</td>                                                                             
-                        <td>${p.preco}</td> 
-                    <form action="" method="post">
-                        <td>EXCLUIR</td>   
-                    </form>
-                                                                                                  
+                        <td>${p.preco}</td>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
+                                <input type="hidden" value="retirarProduto" name="acao">
+                                <input type="hidden" value="${p.p.id}" name="idProduto">
+                                <button type="submit">Remover</button>   
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
                 <tr>
                     <td>
-                        <label>TOTAL: </label>
+                        <label>PREÇO FINAL: </label>
                     </td>
                     <td></td>
                     <td></td>
@@ -70,7 +74,11 @@
                 </tr>
             </table>
         </div>
-            <button type="submit">Cadastrar Venda</button>
+        <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
+            <input type="hidden" value="${idClienteAttr}" name="idCliente">
+            <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
+            <input type="hidden" value="cadastrarVenda" name="acao">
+            <button type="submit">Cadastrar Venda</button> 
         </form>
-    </body>
+</body>
 </html>
