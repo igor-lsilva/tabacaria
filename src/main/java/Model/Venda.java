@@ -16,11 +16,12 @@ public class Venda {
 
     private int idVenda;
     private int idCliente;
+    private int idFilial;
     private ArrayList<Item> itens;
     private float precoFinal;
     private Date dataVenda;
-    
-    public Venda(int idVenda, int idCliente, ArrayList<Item> itens, float precoFinal, Date dataVenda) {
+
+    public Venda(int idVenda, int idCliente, int idFilial, ArrayList<Item> itens, float precoFinal, Date dataVenda) {
         this.idVenda = idVenda;
         this.idCliente = idCliente;
         this.itens = itens;
@@ -29,9 +30,10 @@ public class Venda {
     }
 
     public Venda() {
+        itens = new ArrayList<>();
     }
 
-    public Venda(int idCliente, ArrayList<Item> itens, float precoFinal, Date dataVenda) {
+    public Venda(int idCliente, ArrayList<Item> itens, int Filial, float precoFinal, Date dataVenda) {
         this.idCliente = idCliente;
         this.itens = itens;
         this.precoFinal = precoFinal;
@@ -77,21 +79,40 @@ public class Venda {
     public void setDataVenda(Date dataVenda) {
         this.dataVenda = dataVenda;
     }
-    
-    public void precoFinal(){
+
+    public void adicionarItem(Item item) {
+        this.itens.add(item);
+    }
+
+    public void precoFinal() {
+        this.precoFinal = 0;
         for (Item item : itens) {
-            this.precoFinal += item.getPreco();
+            this.precoFinal = (float) (this.precoFinal + item.getPreco());
         }
     }
-    
-    public void alterarQuantidade(int idProduto, int qtd){
-        for(Item item : itens){
-            if(idProduto == item.getP().getId()){
+
+    public void alterarQuantidade(int idProduto, int qtd) {
+        for (Item item : itens) {
+            if (idProduto == item.getP().getId()) {
                 item.setQtd(qtd);
             }
         }
     }
-    
-    
-    
+
+    public int getIdFilial() {
+        return idFilial;
+    }
+
+    public void setIdFilial(int idFilial) {
+        this.idFilial = idFilial;
+    }
+
+    public void removerItem(int id) {
+        for (Item item : itens) {
+            if(id == item.getP().getId()){
+               //itens.
+            }
+        }
+    }
+
 }

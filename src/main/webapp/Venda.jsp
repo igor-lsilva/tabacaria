@@ -3,43 +3,74 @@
     Created on : 18/11/2019, 10:16:43
     Author     : igor.silva
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.Item"%>
+<%@page import="Model.Venda"%>
+<%@page import="Model.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssUsuarioLista.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
+        <title>Lista Usuario</title>
     </head>
     <body>
+
+        =======
+        <div class="linksPosicao">
+            <ul>              
+                <li class="posicaoSair"><a class="ativado" href="#">Sair</a></li>
+            </ul>
+        </div>
         <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
+
             <h1>Cliente: </h1>
             <input type="text" name="idCliente" value="${idClienteAttr}">
             <input type="hidden" value="listar" name="acao">
             <button>Add</button>
         </form>
         <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
-            <h1>Cliente: </h1>
+            <h1>Produto: </h1>
             <input type="hidden" value="listarProduto" name="acao">
             <button>Add</button>
         </form>
-
         <div class="tabelaLista">
             <table> 
                 <tr>
-                    <th class="campoID">Cod.</th>
+                    <th class="campoNome">Cod.</th>
                     <th class="campoNome">Nome</th>
-                    <th class="campoDescricao">Descrição</th>
-                    <th class="campoEditar">Editar</th>
-                    <th class="campExcluir">Excluir</th>
+                    <th class="campoNome">Qtd</th>
+                    <th class="campoNome">Preco Uni.</th>
+                    <th class="campoNome">Preco Total.</th>
                 </tr>                
-                <c:forEach items="${TodosProdutos}" var="p">
+                <c:forEach items="${sessionScope.itensSelecionados.itens}" var="p">
                     <tr>                       
-                        <td class="campoID">${p.id}</td>              
-                        <td class="campoNome">${p.nome}</td>               
-                        <td class="campoDescricao">${p.descricao}</td>                            
+                        <td>${p.p.id}</td>              
+                        <td>${p.p.nome}</td>              
+                        <td>${p.qtd}</td>                                                                             
+                        <td>${p.p.valorVenda}</td>                                                                             
+                        <td>${p.preco}</td> 
+                    <form action="" method="post">
+                        <td>EXCLUIR</td>   
+                    </form>
+                                                                                                  
                     </tr>
-                </c:forEach> 
+                </c:forEach>
+                <tr>
+                    <td>
+                        <label>TOTAL: </label>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>${sessionScope.itensSelecionados.precoFinal}</td>
+                </tr>
             </table>
+        </div>
+            <button type="submit">Cadastrar Venda</button>
+        </form>
     </body>
 </html>

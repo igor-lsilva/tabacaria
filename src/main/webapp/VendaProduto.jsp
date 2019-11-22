@@ -23,8 +23,8 @@
             </div>               
 
             <div style="display: inline-block;">
-                <div style="float: left; border-radius: 8px; ">
-                    <form action="${pageContext.request.contextPath}/TADS-PI3/ProdutoController" method="post">
+                <div style="float: left; border-radius: 8px;">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
                         <input type="hidden" value="listar" name="acao">
                         <div>
                             <div>
@@ -50,15 +50,16 @@
                             <td class="campoNome">${p.nome}</td>               
                             <td class="campoDescricao">${p.descricao}</td>
                             <td class="campoEditar"> 
-                                <form action="${pageContext.request.contextPath}/TADS-PI3/ProdutoController" method="post">
-                                    <input type="hidden" value="alterar" name="acao">
+                                <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
+                                    <input type="hidden" value="adicionarProduto" name="acao">
                                     <input type="hidden" value="${p.id}" name="id">
                                     <input type="hidden" value="${p.nome}" name="nomeProduto">
                                     <input type="hidden" value="${p.valorCompra}" name="valorCompra">
                                     <input type="hidden" value="${p.valorVenda}" name="valorVenda">
                                     <input type="hidden" value="${p.qtde}" name="qtde">
                                     <input type="hidden" value="${p.descricao}" name="descricao">
-                                    <button class="buttonEditar" type="submit">Editar</button>
+                                    <input type="number" name="qtd">
+                                    <button class="buttonEditar" type="submit">Adicionar</button>
                                 </form>                            
                             </td>                           
                         </tr>

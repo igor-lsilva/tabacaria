@@ -29,13 +29,13 @@
                             <li><a href="${pageContext.request.contextPath}/TADS-PI3/EstoqueController">ESTOQUE</a></li>
                             </c:if>
                             <c:if test="${sessionScope.usuario.verificarPapel('VENDA')}">
-                            <li><a href="${pageContext.request.contextPath}/TADS-PI3/VendaController">VENDA</a></li>
+                            <li><a href="/Tabacaria/Venda.jsp">VENDA</a></li>
                             </c:if>
                             <c:if test="${sessionScope.usuario.verificarPapel('ADMINISTRADOR')}">
                             <li><a href="${pageContext.request.contextPath}/TADS-PI3/RelatorioController">RELATÓRIO</a></li>
                             <li><a href="${pageContext.request.contextPath}/TADS-PI3/FaturamentoController">FATURAMENTO</a></li>
                             </c:if>
-                        <a href="${pageContext.request.contextPath}/TADS-PI3/LogoutController">SAIR</a>
+                            <a href="${pageContext.request.contextPath}/TADS-PI3/LogoutController">SAIR</a>
                     </ul>                                       
                 </div>
                     <div class="dadosUsuario">

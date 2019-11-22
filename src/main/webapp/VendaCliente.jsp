@@ -25,7 +25,7 @@
 
             <div style="display: inline-block;">
                 <div style="float: left; border-radius: 8px; ">
-                    <form action="${pageContext.request.contextPath}/TADS-PI3/ClienteController" method="post">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
                         <input type="hidden" value="listar" name="acao">
                         <div>
                             <div>
