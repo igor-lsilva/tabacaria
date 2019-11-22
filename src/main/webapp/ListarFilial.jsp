@@ -9,6 +9,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssFilialListar.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
         <title>Lista Filiais</title>
+        <script>
+
+        </script>
     </head>
     <body>
         <div class="linksPosicao">
@@ -28,11 +31,10 @@
                         <input type="hidden" value="listar" name="acao">
                         <div>
                             <div>
-                                <input  class="inputBusca" type="text" name="busca" id="txtBuscar" placeholder=" Buscar Filial">
+                                <input  class="inputBusca" type="text" name="busca" id="txtBuscar" placeholder="Buscar Filial">
                                 <button class="campoBuscas" type="submit">Buscar</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
                 <div style="display: inline-block;">
@@ -53,7 +55,7 @@
                         <th class="campExcluir">Excluir</th>
                     </tr>
                     <c:forEach items="${TodasFiliais}" var="f">
-                        
+
                         <tr>                       
                             <td class="campoID">${f.id}</td>              
                             <td class="campoNome">${f.nomeFilial}</td>               
@@ -77,7 +79,7 @@
                                 </form>
                             </td>                            
                         </tr>
-                        
+
                     </c:forEach>
                 </table>
                 <br>

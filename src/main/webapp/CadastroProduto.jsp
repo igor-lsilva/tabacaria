@@ -36,28 +36,28 @@
                     <div>
                         <label>Nome: </label>
                         <div>
-                            <input type="text" name="nomeProduto" value="${nomeProdutoAttr}">
+                            <input type="text" name="nomeProduto" value="${nomeProdutoAttr}" placeholder="Nome do Produto">
                         </div>				
                     </div>
 
                     <div>
                         <label>Valor de Compra: </label>
                         <div>
-                            <input type="number" name="valorCompra" value="${valorCompraAttr}">
+                            <input type="number" name="valorCompra" value="${valorCompraAttr}" placeholder="Valor de Compra do Produto">
                         </div>
                     </div>
                         
                     <div>
                         <label>Valor de Venda: </label>
                         <div>
-                            <input type="number" name="valorVenda" value="${valorVendaAttr}">
+                            <input type="number" name="valorVenda" value="${valorVendaAttr}" placeholder="Valor de Venda do Produto">
                         </div>
                     </div>
 
                     <div>
                         <label>Descrição: </label>
                         <div>
-                            <input type="text" name="descricao" value="${descricaoAttr}">
+                            <input type="text" name="descricao" value="${descricaoAttr}" placeholder="Descrição do Produto">
                         </div>
                     </div>
                     <div>
