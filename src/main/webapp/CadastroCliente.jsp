@@ -13,63 +13,69 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssClienteCadastro.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
         <title>Cadastro Cliente</title>
+        <link rel="shortcut icon" href="http://www.tabacariaroma.com.br/wp-content/uploads/2017/09/cafe.png">
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
         
         <script>
-            function validacao(){
-                var formulario = document.forms["formCadastroCliente"];
-                var nome = formulario.nomeCliente.value;
-                var cpf = formulario.CPF.value;
-                var dtNasc = formulario.dtNascimento.value;
-                var contato = formulario.contato.value;
-                var erro = false;
-                
-                if (nome.indexOf(" ") == -1 && nome.length < 1) {
-                    document.getElementById("nomeCliente").style.backgroundColor = "#ffcccc";
-                    document.getElementById("nomeCliente").placeholder = "Preencha o nome completo";
-                    document.getElementById("nomeCliente").focus();
-                    erro = true;
-                    return false;
-                } else {
-                    document.getElementById("nomeCliente").style.backgroundColor = "#ffffff";
-                    erro = false;
+
+
+                function validacao() {
+                    var formulario = document.forms["formCadastroCliente"];
+                    var nome = formulario.nomeCliente.value;
+                    var cpf = formulario.CPF.value;
+                    var dtNasc = formulario.dtNascimento.value;
+                    var contato = formulario.contato.value;
+                    var erro = false;
+
+                    if (nome.indexOf(" ") == -1 || nome.length < 3) 
+                    {
+                        document.getElementById("nomeCliente").style.backgroundColor = "#ffcccc";
+                        document.getElementById("nomeCliente").placeholder = "Preencha o nome completo";
+                        document.getElementById("nomeCliente").focus();
+                        erro = true;
+                        return false;
+                    } else {
+                        document.getElementById("nomeCliente").style.backgroundColor = "#ffffff";
+                        erro = false;
+                    }
+
+                    if (cpf.length != 11) {
+                        document.getElementById("cpfCliente").style.backgroundColor = "#ffcccc";
+                        document.getElementById("cpfCliente").placeholder = "O CPF deve conter 11 digitos e não pode ser vazio";
+                        document.getElementById("cpfCliente").focus();
+                        erro = true;
+                        return false;
+                    }
+
+                    if (dtNasc.length < 1) {
+                        document.getElementById("dtNascCliente").style.backgroundColor = "#ffcccc";
+                        document.getElementById("dtNascCliente").placeholder = "Preencha a data de nascimento do Cliente";
+                        document.getElementById("dtNascCliente").focus();
+                        erro = true;
+                        return false;
+                    }
+
+                    if (contato.length < 1) {
+                        document.getElementById("contatoCliente").style.backgroundColor = "#ffcccc";
+                        document.getElementById("contatoCliente").placeholder = "Preencha um contato do Cliente";
+                        document.getElementById("contatoCliente").focus();
+                        erro = true;
+                        return false;
+                    }
+
+                    if (erro) {
+                        alert("Cadastro não realizado.");
+                        return false;
+                    } else {
+                        alert("Cadastro realizado com sucesso!");
+                        return true;
+                    }
+
                 }
-                
-                if (cpf.length != 11) {
-                    document.getElementById("cpfCliente").style.backgroundColor = "#ffcccc";
-                    document.getElementById("cpfCliente").placeholder = "O CPF deve conter 11 digitos e não pode ser vazio";
-                    document.getElementById("cpfCliente").focus();
-                    erro = true;
-                    return false;
-                }
-                
-                if (dtNasc.length < 1) {
-                    document.getElementById("dtNascCliente").style.backgroundColor = "#ffcccc";
-                    document.getElementById("dtNascCliente").placeholder = "Preencha a data de nascimento do Cliente";
-                    document.getElementById("dtNascCliente").focus();   
-                    erro = true;
-                    return false;
-                }
-                
-                if (contato.length < 1) {
-                    document.getElementById("contatoCliente").style.backgroundColor = "#ffcccc";
-                    document.getElementById("contatoCliente").placeholder = "Preencha um contato do Cliente";
-                    document.getElementById("contatoCliente").focus();
-                    erro = true;
-                    return false;
-                }
-                
-                if (erro) {
-                    alert("Cadastro não realizado.");
-                    return false;
-                } else {
-                    alert("Cadastro realizado com sucesso!");
-                    return true;
-                }
-                
-            }
         </script>    
-        
-        
+
+
     </head>
     <body>
 
@@ -87,13 +93,13 @@
             <div class="msgSucesso">
                 <h4>${mensagemSucesso}</h4>
             </div>
-            
+
             <div class="msgFalha">
                 <h4>${mensagemFalha}</h4>
             </div>
             <div class="formulario">
 
-                <form name="formCadastroCliente" action="${pageContext.request.contextPath}/ClienteController" method="post" onsubmit="return validacao()">
+                <form name="formCadastroCliente" action="${pageContext.request.contextPath}/TADS-PI3/ClienteController" method="post" onsubmit="return validacao()">
                     <input type="hidden" name="acao" value="salvar">
                     <div>
                         <label>Nome Cliente: </label>
@@ -130,7 +136,7 @@
                 <div class="campoVoltarPosicao">
                     <br><br>
                     <div>
-                        <form action="${pageContext.request.contextPath}/ClienteController" method="post">
+                        <form action="${pageContext.request.contextPath}/TADS-PI3/ClienteController" method="post">
                             <input type="hidden" value="listar" name="acao">
                             <button class="campoVoltar" type="submit">Voltar</button>
                         </form>

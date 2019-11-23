@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssFilialEditar.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
         <title>Editar Filial</title>
+        <link rel="shortcut icon" href="http://www.tabacariaroma.com.br/wp-content/uploads/2017/09/cafe.png">
+        
     </head>
     <body>
         <div class="linksPosicao">

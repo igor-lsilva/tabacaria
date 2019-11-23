@@ -4,7 +4,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssLogin.css" />
-        <title>JSP Page</title>
+        <title>LOGIN - Sistema de Tabacaria</title>
+        <link rel="shortcut icon" href="http://www.tabacariaroma.com.br/wp-content/uploads/2017/09/cafe.png">
     </head>
     <body>
         <div class="titulo">
