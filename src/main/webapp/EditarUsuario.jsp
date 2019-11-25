@@ -54,7 +54,7 @@
                     <div>
                         <label>Modulo:</label>
                         <div>
-                            <select name="modulo">
+                            <select name="modulo" multiple>
                                 <c:forEach items="${todosModulos}" var="modulo">
                                     <c:if test="${$modulo.id == $f.id}">
                                         <option value="${modulo.id}" selected="selected">

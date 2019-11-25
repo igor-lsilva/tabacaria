@@ -6,6 +6,7 @@
 package DAO;
 
 import Model.Filial;
+import Model.Modulo;
 import Model.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -27,43 +29,43 @@ public class UsuarioDAO {
     private static final String URL = "jdbc:mysql://localhost:3306/tabacaria?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC";  //URL do banco de dados
     private static Connection conexao;
 
-//    public static ArrayList<Funcionario> getUsuarios() {
-//        boolean retorno = false;
-//        
-//        ArrayList<Funcionario> listaUsuarios = new ArrayList<>();
-//        
-//        try {
-//
-//            Class.forName(DRIVER);
-//            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
-//
-//            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM usuario WHERE estatus=1");
-//            
-//            ResultSet rs = comando.executeQuery();
-//            
-//            while (rs.next()) {
-//                
-//                Funcionario c = new Funcionario(rs.getInt(1), rs.getString(2),  rs.getString(3),  rs.getString(4),  rs.getString(5),  rs.getInt(6),  rs.getInt(7),  rs.getString(8));
-//
-//                listaUsuarios.add(c);
-//            }
-//
-//            int linhasAfetadas = comando.executeUpdate();
-//
-//        } catch (ClassNotFoundException ex) {
-//            retorno = false;
-//        } catch (SQLException ex) {
-//            retorno = false;
-//        } finally {
-//            try {
-//                conexao.close();
-//            } catch (SQLException ex) {
-//                retorno = false;
-//            }
-//
-//        }
-//        return listaUsuarios;
-//    }
+    public static ArrayList<Usuario> getUsuarios() {
+        boolean retorno = false;
+
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+
+        try {
+
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+
+            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM usuario, usuario_modulo where usuario.idusuario = usuario_modulo.idusuario and estatus = 1;");
+
+            ResultSet rs = comando.executeQuery();
+
+            while (rs.next()) {
+                
+                //id,login,senha, lista, idempresa,nome,cpf,contato
+
+                Usuario u = new Usuario(rs.getInt("idusuario"), rs.getString("login"), rs.getString("senha"), (List<Modulo>) rs.getArray("idmodulo"), rs.getInt("idfilial"), rs.getString("nome"), rs.getString("cpf"), rs.getString("contato"));
+
+                listaUsuarios.add(u);
+            }
+
+        } catch (ClassNotFoundException ex) {
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                retorno = false;
+            }
+
+        }
+        return listaUsuarios;
+    }
 //    public static ArrayList<Funcionario> getUsuarios(String nome) {
 //        boolean retorno = false;
 //        
@@ -101,6 +103,7 @@ public class UsuarioDAO {
 //        }
 //        return listaUsuarios;
 //    }
+
     public static ArrayList<Filial> getFilial() {
         boolean retorno = false;
 
@@ -146,7 +149,7 @@ public class UsuarioDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("insert into usuario (nome,cpf,login,senha,idfilial,contato) values(?, ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement comando = conexao.prepareStatement("insert into usuario (nome,cpf,login,senha,idfilial,contato) values(?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
             comando.setString(1, user.getNomeCompleto());
             comando.setString(2, user.getCpf());
@@ -167,15 +170,17 @@ public class UsuarioDAO {
 
             if (linhasAfetadas > 0) {
 
+                int linhasAfetadas2 = 0;
+
                 for (int i = 0; i < user.getModulos().size(); i++) {
 
                     comando = conexao.prepareStatement("insert into usuario_modulo(idusuario,idmodulo) values(?, ?)");
                     comando.setInt(1, idUsuario);
                     comando.setInt(2, Integer.parseInt(user.getModulos().get(i).getNomeModulo()));
-                    linhasAfetadas = comando.executeUpdate();
+                    linhasAfetadas2 = comando.executeUpdate();
                 }
 
-                if (linhasAfetadas > 0) {
+                if (linhasAfetadas2 > 0) {
 
                     retorno = true;
 

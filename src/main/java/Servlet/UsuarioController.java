@@ -8,24 +8,17 @@ package Servlet;
 import DAO.ModuloDAO;
 import DAO.UsuarioDAO;
 import Model.Filial;
-import Model.Funcionario;
 import Model.Modulo;
 import Model.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import static javafx.scene.input.KeyCode.T;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sun.security.pkcs11.wrapper.Functions;
 
 /**
  *
@@ -84,7 +77,7 @@ public class UsuarioController extends HttpServlet {
         
         for (int i = 0; i < idModulo.length; i++) {           
         
-            Modulo m = new Modulo(idModulo[i]);
+            Modulo m = new Modulo(i,idModulo[i]);
             modulos.add(m);
         }
         
@@ -162,22 +155,22 @@ public class UsuarioController extends HttpServlet {
 
         if ("".equals(nome) || nome == null) {
 
-//            ArrayList<Funcionario> usuarios = UsuarioDAO.getUsuarios();
-//            request.setAttribute("TodosUsuarios", usuarios);
+            ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+            request.setAttribute("TodosUsuarios", usuarios);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
             dispatcher.forward(request, response);
 
         } else {
 
-//            ArrayList<Funcionario> usuarios = UsuarioDAO.getUsuarios(nome);
-//            request.setAttribute("TodosUsuarios", usuarios);
+            ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+            request.setAttribute("TodosUsuarios", usuarios);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
             dispatcher.forward(request, response);
 
         }
 
-//        ArrayList<Funcionario> usuarios = UsuarioDAO.getUsuarios();
-//        request.setAttribute("TodosUsuarios", usuarios);
+        ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+        request.setAttribute("TodosUsuarios", usuarios);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
         dispatcher.forward(request, response);
 

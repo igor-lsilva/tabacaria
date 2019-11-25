@@ -15,7 +15,6 @@ public class Usuario extends Funcionario {
 
     private static final long serialVersionUID = 1L;
 
-    
     private String username;
     private String hashSenha;
     private List<Modulo> modulos;
@@ -27,6 +26,13 @@ public class Usuario extends Funcionario {
         this.modulos = modulos;
     }
 
+    public Usuario(int id,String username, String hashSenha, List<Modulo> modulos, int idEmpresa, String nomeCompleto, String cpf, String contato) {
+        super(id, idEmpresa, nomeCompleto, cpf, contato);
+        this.username = username;
+        this.hashSenha = hashSenha;
+        this.modulos = modulos;
+    }
+      
     public String getUsername() {
         return username;
     }
