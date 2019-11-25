@@ -12,6 +12,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssClienteCadastro.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/cssB/bootstrap.min.js" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/cssB/bootstrap-theme.min.js" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/cssB/jquery-3.4.1.min.js" />
+        <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.min.js" type="text/javascript"</script>
+        <script src="${pageContext.request.contextPath}/js/jquery.mask.min.js" type="text/javascript"</script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"</script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap-notify.min.js" type="text/javascript"</script>
+        
+        
         <title>Cadastro Cliente</title>
         <link rel="shortcut icon" href="http://www.tabacariaroma.com.br/wp-content/uploads/2017/09/cafe.png">
         <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -97,35 +106,27 @@
             <div class="msgFalha">
                 <h4>${mensagemFalha}</h4>
             </div>
-            <div class="formulario">
+            <div class="form-group">
 
                 <form name="formCadastroCliente" action="${pageContext.request.contextPath}/TADS-PI3/ClienteController" method="post" onsubmit="return validacao()">
                     <input type="hidden" name="acao" value="salvar">
-                    <div>
+                    <div class="form-group">
                         <label>Nome Cliente: </label>
-                        <div>
-                            <input type="text" name="nomeCliente" value="${nomeClienteAttr}" placeholder="Nome do Cliente" id="nomeCliente">
-                        </div>				
+                            <input type="text" name="nomeCliente" value="${nomeClienteAttr}" placeholder="Nome do Cliente" id="nomeCliente">			
                     </div>
-
-                    <div>
+                    
+                    <div class="form-group">
                         <label>CPF: </label>
-                        <div>
                             <input type="number" name="CPF" value="${CPFAttr}" placeholder="CPF do Cliente" id="cpfCliente">
-                        </div>
                     </div>
 
-                    <div>
+                    <div class="form-group">
                         <label>Data de Nascimento: </label>
-                        <div>
                             <input type="text" name="dtNascimento" value="${dtNascimentoAttr}" placeholder="Data de Nascimento" id="dtNascCliente">
-                        </div>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label>Contato: </label>
-                        <div>
                             <input type="text" name="contato" value="${contatoAttr}" placeholder="Contato do Cliente" id="contatoCliente">
-                        </div>
                     </div>
                     <br>
                     <div class="posicaoButtons">
