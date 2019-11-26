@@ -39,15 +39,25 @@ public class UsuarioDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM usuario, usuario_modulo where usuario.idusuario = usuario_modulo.idusuario and estatus = 1;");
+            PreparedStatement comando = conexao.prepareStatement("SELECT usuario.idusuario, usuario.nome, usuario.cpf, usuario.login, usuario.senha, usuario.idfilial, usuario.contato, usuario_modulo.idmodulo FROM usuario, usuario_modulo where usuario.idusuario = usuario_modulo.idusuario and estatus = 1 group by usuario.idusuario;");
 
             ResultSet rs = comando.executeQuery();
 
             while (rs.next()) {
-                
-                //id,login,senha, lista, idempresa,nome,cpf,contato
 
-                Usuario u = new Usuario(rs.getInt("idusuario"), rs.getString("login"), rs.getString("senha"), (List<Modulo>) rs.getArray("idmodulo"), rs.getInt("idfilial"), rs.getString("nome"), rs.getString("cpf"), rs.getString("contato"));
+                int id = rs.getInt(1);
+                ArrayList<Modulo> modulos = new ArrayList<>();
+                
+                PreparedStatement comando1 = conexao.prepareStatement("SELECT modulo.nome FROM modulo, usuario_modulo, usuario  where usuario.idusuario = usuario_modulo.idusuario and usuario.idusuario = "+id+" group by modulo.nome;");
+                ResultSet rs1 = comando1.executeQuery();
+
+                while (rs1.next()) {
+                    Modulo m = new Modulo(id, rs1.getString(1));
+                    modulos.add(m);
+                }
+
+                //id,login,senha, lista, idempresa,nome,cpf,contato                                        
+                Usuario u = new Usuario(id, rs.getString("usuario.login"), rs.getString("usuario.senha"), modulos, rs.getInt("usuario.idfilial"), rs.getString("usuario.nome"), rs.getString("usuario.cpf"), rs.getString("usuario.contato"));
 
                 listaUsuarios.add(u);
             }

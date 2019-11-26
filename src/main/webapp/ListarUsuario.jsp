@@ -64,21 +64,26 @@
                         <td>${user.id}</td>
                         <td>${user.nomeCompleto}</td> 
                         <td>${user.cpf}</td>               
-                        <td>${user.login}</td>
-                        <td>${user.idEmpresa}</td>                        
-                        <td>${user.idModulo}</td>                        
+                        <td>${user.username}</td>
+                        <td>${user.idEmpresa}</td>                       
+                        <td>
+                            <c:forEach items="${user.modulos}" var="modulo" > 
+                                <c:out value="${modulo.nomeModulo}"></c:out>
+                            </c:forEach></td>                        
                         <td>${user.contato}</td>                        
                         <td> 
                             <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
+                                <c:forEach items="${user.modulos}" var="modulo" > 
+                                    <input type="hidden" value="${modulo.nomeModulo}">
+                                </c:forEach>
                                 <input type="hidden" value="editar" name="acao">
                                 <input type="hidden" value="${user.id}" name="id">
                                 <input type="hidden" value="${user.nomeCompleto}" name="nome">
                                 <input type="hidden" value="${user.cpf}" name="cpf">
-                                <input type="hidden" value="${user.login}" name="login">
+                                <input type="hidden" value="${user.username}" name="login">
                                 <input type="hidden" value="${user.idEmpresa}" name="filial">
-                                <input type="hidden" value="${user.idModulo}" name="modulo">
                                 <input type="hidden" value="${user.contato}" name="contato">
-                                <input type="hidden" value="${user.senha}" name="senha">
+                                <input type="hidden" value="${user.hashSenha}" name="senha">
                                 <button type="submit" class="buttonPadrao">Editar</button>
                             </form>                           
                         </td>
