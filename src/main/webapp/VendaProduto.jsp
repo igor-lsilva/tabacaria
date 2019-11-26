@@ -42,14 +42,16 @@
                     <tr>
                         <th class="campoID">Cod.</th>
                         <th class="campoNome">Nome</th>
-                        <th class="campoDescricao">Descrição</th>
+                        <th class="campoPrecoVenda">Preço</th>
+                        <th class="campoID">Qtd.</th>
                         <th class="campoEditar">Adicionar</th>
                     </tr>                
                     <c:forEach items="${TodosProdutos}" var="p">
                         <tr>                       
                             <td class="campoID">${p.id}</td>              
                             <td class="campoNome">${p.nome}</td>               
-                            <td class="campoDescricao">${p.descricao}</td>
+                            <td class="campoPrecoVenda">${p.valorVenda}</td>
+                            <td class="campoID">${p.qtde}</td>
                             <td class="campoEditar"> 
                                 <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
                                     <input type="hidden" value="adicionarProduto" name="acao">

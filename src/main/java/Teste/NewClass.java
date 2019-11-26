@@ -20,7 +20,7 @@ import java.util.Map;
 public class NewClass {
     public static void main(String[] args) {
         
-        ProdutoDAO.salvar("TESTE", "", 4, 5);
+//        ProdutoDAO.salvar("TESTE", "", 4, 5);
         
 //        ProdutoDAO.excluir(1);
 //        

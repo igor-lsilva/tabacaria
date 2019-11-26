@@ -26,7 +26,6 @@ public class ProdutoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         listar(request, response);
 
     }
@@ -61,22 +60,33 @@ public class ProdutoController extends HttpServlet {
             throws ServletException, IOException {
 
             String nome = request.getParameter("busca");
-
+            int idEmp = Integer.parseInt(request.getParameter("idEmpresa"));
             if ("".equals(nome) || nome == null) {
 
-                ArrayList<Produto> p = ProdutoDAO.getProduto();
+                ArrayList<Produto> p = ProdutoDAO.getProduto(idEmp);
                 request.setAttribute("TodosProdutos", p);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarProduto.jsp");
                 dispatcher.forward(request, response);
 
             } else {
 
-                ArrayList<Produto> p = ProdutoDAO.getProduto(nome);
+                ArrayList<Produto> p = ProdutoDAO.getProduto(nome, idEmp);
                 request.setAttribute("TodosProdutos", p);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarProduto.jsp");
                 dispatcher.forward(request, response);
 
             }
+
+            ArrayList<Produto> p = ProdutoDAO.getProduto(idEmp);
+            request.setAttribute("TodosProdutos", p);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarProduto.jsp");
+            dispatcher.forward(request, response);
+
+       
+    }
+    protected void listar1(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
 
             ArrayList<Produto> p = ProdutoDAO.getProduto();
             request.setAttribute("TodosProdutos", p);
@@ -95,6 +105,7 @@ public class ProdutoController extends HttpServlet {
         String descricao = request.getParameter("descricao");
         double valorCompra = Double.parseDouble(request.getParameter("valorCompra"));
         double valorVenda = Double.parseDouble(request.getParameter("valorVenda"));
+        int idEmp = Integer.parseInt(request.getParameter("idEmpresa"));
         
 
         if (nomeProduto == null || nomeProduto.trim().length() < 1) {
@@ -109,7 +120,7 @@ public class ProdutoController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroProduto.jsp");
             dispatcher.forward(request, response);
 
-        } else if (ProdutoDAO.salvar(nomeProduto, descricao, valorCompra, valorVenda)) {
+        } else if (ProdutoDAO.salvar(nomeProduto, descricao, valorCompra, valorVenda, idEmp)) {
 
             request.setAttribute("mensagemSucesso", "Cadastro realizado com sucesso!");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/CadastroProduto.jsp");

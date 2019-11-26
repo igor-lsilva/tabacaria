@@ -35,6 +35,7 @@
                         <input type="hidden" value="listar" name="acao">
                         <div>
                             <div>
+                                <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
                                 <input  class="inputBusca" type="text" name="busca" id="txtBuscar" placeholder=" Nome Produto">
                                 <button class="campoBuscas" type="submit">Buscar</button>
                             </div>

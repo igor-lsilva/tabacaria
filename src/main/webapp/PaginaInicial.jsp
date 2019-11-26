@@ -24,10 +24,10 @@
                             <li><a href="${pageContext.request.contextPath}/TADS-PI3/FilialController">FILIAL</a></li>
                             </c:if>
                             <c:if test="${sessionScope.usuario.verificarPapel('PRODUTO')}">
-                            <li><a href="${pageContext.request.contextPath}/TADS-PI3/ProdutoController">PRODUTO</a></li>
+                            <li><a href="${pageContext.request.contextPath}/TADS-PI3/ProdutoController?idEmpresa=${sessionScope.usuario.idEmpresa}">PRODUTO</a></li>
                             </c:if>
                             <c:if test="${sessionScope.usuario.verificarPapel('ESTOQUE')}">
-                            <li><a href="${pageContext.request.contextPath}/TADS-PI3/EstoqueController">ESTOQUE</a></li>
+                            <li><a href="${pageContext.request.contextPath}/TADS-PI3/EstoqueController?idEmpresa=${sessionScope.usuario.idEmpresa}">ESTOQUE</a></li>
                             </c:if>
                             <c:if test="${sessionScope.usuario.verificarPapel('VENDA')}">
                             <li><a href="/Tabacaria/Venda.jsp">VENDA</a></li>
@@ -36,10 +36,10 @@
                             <li><a href="${pageContext.request.contextPath}/TADS-PI3/RelatorioController">RELATÓRIO</a></li>
                             <li><a href="${pageContext.request.contextPath}/TADS-PI3/FaturamentoController">FATURAMENTO</a></li>
                             </c:if>
-                            <a href="${pageContext.request.contextPath}/TADS-PI3/LogoutController">SAIR</a>
+                        <a href="${pageContext.request.contextPath}/TADS-PI3/LogoutController">SAIR</a>
                     </ul>                                       
                 </div>
-                    <div class="dadosUsuario">
+                <div class="dadosUsuario">
                     <div style="text-align: center;">
                         <h1>Seja bem vindo!</h1>
                         <h2>Nome: <c:out value="${sessionScope.usuario.nomeCompleto}" /></h2>
