@@ -16,6 +16,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
         <title>Lista produtos</title>
         <link rel="shortcut icon" href="http://www.tabacariaroma.com.br/wp-content/uploads/2017/09/cafe.png">
+        <script>
+            
+        </script>
     </head>
     <body>
         <div class="linksPosicao">
@@ -35,6 +38,7 @@
                         <input type="hidden" value="listar" name="acao">
                         <div>
                             <div>
+                                <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
                                 <input  class="inputBusca" type="text" name="busca" id="txtBuscar" placeholder=" Nome Produto">
                                 <button class="campoBuscas" type="submit">Buscar</button>
                             </div>

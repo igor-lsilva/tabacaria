@@ -109,24 +109,25 @@ public class VendaController extends HttpServlet {
     protected void listarProduto(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nome = request.getParameter("busca");
+        int idEmp = Integer.parseInt(request.getParameter("idEmpresa"));
 
         if ("".equals(nome) || nome == null) {
 
-            ArrayList<Produto> p = ProdutoDAO.getProduto();
+            ArrayList<Produto> p = ProdutoDAO.getProduto(idEmp);
             request.setAttribute("TodosProdutos", p);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/VendaProduto.jsp");
             dispatcher.forward(request, response);
 
         } else {
 
-            ArrayList<Produto> p = ProdutoDAO.getProduto(nome);
+            ArrayList<Produto> p = ProdutoDAO.getProduto(nome, idEmp);
             request.setAttribute("TodosProdutos", p);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/VendaProduto.jsp");
             dispatcher.forward(request, response);
 
         }
 
-        ArrayList<Produto> p = ProdutoDAO.getProduto();
+        ArrayList<Produto> p = ProdutoDAO.getProduto(idEmp);
         request.setAttribute("TodosProdutos", p);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/VendaProduto.jsp");
         dispatcher.forward(request, response);
@@ -172,7 +173,8 @@ public class VendaController extends HttpServlet {
 
     protected void cadastrarVenda(HttpServletRequest request, HttpServletResponse response, Venda venda)
             throws ServletException, IOException {
-        venda.setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
+        int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+        venda.setIdCliente(idCliente);
         venda.setIdFilial(Integer.parseInt(request.getParameter("idEmpresa")));
         if (VendaDAO.salvar(venda)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/PaginaInicial.jsp");

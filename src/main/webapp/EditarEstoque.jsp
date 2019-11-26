@@ -7,12 +7,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssProdutoEditar.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
         <title>Editar Estoque</title>
         <link rel="shortcut icon" href="http://www.tabacariaroma.com.br/wp-content/uploads/2017/09/cafe.png">
+        <script>
+             function validacao() {
+                    var formulario = document.forms["formEditarEstoque"];
+                    var nome = formulario.nomeCliente.value;
+                    var cpf = formulario.CPF.value;
+                    var dtNasc = formulario.dtNascimento.value;
+                    var contato = formulario.contato.value;
+                    var erro = false;
+        </script>
+        
     </head>
     <body>
         <div class="linksPosicao">

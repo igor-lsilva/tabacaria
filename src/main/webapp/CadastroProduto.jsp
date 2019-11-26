@@ -8,7 +8,7 @@
         <title>Cadastrar Produto</title>
         <link rel="shortcut icon" href="http://www.tabacariaroma.com.br/wp-content/uploads/2017/09/cafe.png">
         <script>
-            function validacao() {
+            function validacao()     {
                 var formulario = document.forms["formCadastroProduto"];
                 var nomeP = formulario.nomeProduto.value;
                 var valorCompraP = formulario.valorCompra.value;
@@ -94,7 +94,7 @@
             <div class="formulario">
 
                 <form action="${pageContext.request.contextPath}/TADS-PI3/ProdutoController" method="post" name="formCadastroProduto" onsubmit="return validacao()" >
-
+                    <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
                     <input type="hidden" name="acao" value="salvar">
 
                     <div>
@@ -137,6 +137,7 @@
                     <div>
                         <form action="${pageContext.request.contextPath}/TADS-PI3/ProdutoController" method="post">
                             <input type="hidden" value="listar" name="acao">
+                            <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
                             <button class="campoVoltar" type="submit">Voltar</button>
                         </form>
                     </div>
