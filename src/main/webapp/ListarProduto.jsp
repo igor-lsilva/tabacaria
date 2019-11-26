@@ -16,6 +16,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
         <title>Lista produtos</title>
         <link rel="shortcut icon" href="http://www.tabacariaroma.com.br/wp-content/uploads/2017/09/cafe.png">
+        <script>
+            
+        </script>
     </head>
     <body>
         <div class="linksPosicao">

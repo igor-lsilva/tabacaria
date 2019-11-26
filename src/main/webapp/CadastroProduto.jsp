@@ -8,7 +8,7 @@
         <title>Cadastrar Produto</title>
         <link rel="shortcut icon" href="http://www.tabacariaroma.com.br/wp-content/uploads/2017/09/cafe.png">
         <script>
-            function validacao() {
+            function validacao()     {
                 var formulario = document.forms["formCadastroProduto"];
                 var nomeP = formulario.nomeProduto.value;
                 var valorCompraP = formulario.valorCompra.value;
