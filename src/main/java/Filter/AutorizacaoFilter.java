@@ -54,7 +54,9 @@ public class AutorizacaoFilter implements Filter {
         String urlAcessada = httpRequest.getRequestURI();
         if (urlAcessada.endsWith("/PaginaInicial.jsp")) {
             return true;
-        } else if (urlAcessada.endsWith("/TADS-PI3/EstoqueController") 
+        }else if (urlAcessada.endsWith("/TADS-PI3/LogoutController")) {
+            return true;
+        }else if (urlAcessada.endsWith("/TADS-PI3/EstoqueController") 
                 && usuario.verificarPapel("ESTOQUE")) {
             return true;
         } else if (urlAcessada.endsWith("/TADS-PI3/ProdutoController") 

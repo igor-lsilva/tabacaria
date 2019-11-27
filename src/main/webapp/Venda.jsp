@@ -43,9 +43,10 @@
                 </div>
                 <div style="display: inline-block;">
                     <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">                       
-                        <input type="hidden" value="listar" name="acao">                       
-                        <input type="text" name="idCliente" value="${idClienteAttr}" readonly="true">
+                        <input type="hidden" value="listar" name="acao">                                               
                         <button class="campoBuscas" type="submit">Adicionar Cliente</button>
+                        <label>Cod. Cliente</label>
+                        <input type="text" name="idCliente" value="${idClienteAttr}" readonly="true">
                     </form>
                 </div>
             </div>

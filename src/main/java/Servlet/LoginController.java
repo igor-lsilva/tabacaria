@@ -5,8 +5,8 @@
  */
 package Servlet;
 
+import DAO.UsuarioDAO;
 import Model.Usuario;
-import Model.UsuarioServiceMockImpl;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import Model.UsuarioService;
 
 /**
  *
@@ -23,7 +22,7 @@ import Model.UsuarioService;
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
 
-    private UsuarioService service = new UsuarioServiceMockImpl();
+//    private UsuarioService service = new UsuarioServiceMockImpl();
 
     @Override
     protected void doGet(HttpServletRequest request,
@@ -47,7 +46,7 @@ public class LoginController extends HttpServlet {
         String username = request.getParameter("login");
         String senha = request.getParameter("senha");
 
-        Usuario usuario = service.findByUsername(username);
+        Usuario usuario = UsuarioDAO.login(username, senha);
         
         if (usuario != null && usuario.getHashSenha().equals(senha)) {
             // Usuario válido - adiciona na sessão

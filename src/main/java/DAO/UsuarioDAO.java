@@ -47,8 +47,8 @@ public class UsuarioDAO {
 
                 int id = rs.getInt(1);
                 ArrayList<Modulo> modulos = new ArrayList<>();
-                
-                PreparedStatement comando1 = conexao.prepareStatement("SELECT modulo.idmodulo, modulo.nome FROM modulo, usuario_modulo where modulo.idmodulo = usuario_modulo.idmodulo and usuario_modulo.idusuario = "+id+";");
+
+                PreparedStatement comando1 = conexao.prepareStatement("SELECT modulo.idmodulo, modulo.nome FROM modulo, usuario_modulo where modulo.idmodulo = usuario_modulo.idmodulo and usuario_modulo.idusuario = " + id + ";");
                 ResultSet rs1 = comando1.executeQuery();
 
                 while (rs1.next()) {
@@ -76,6 +76,7 @@ public class UsuarioDAO {
         }
         return listaUsuarios;
     }
+
     public static ArrayList<Usuario> getUsuarios(String nome) {
         boolean retorno = false;
 
@@ -86,7 +87,7 @@ public class UsuarioDAO {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            PreparedStatement comando = conexao.prepareStatement("SELECT usuario.idusuario, usuario.nome, usuario.cpf, usuario.login, usuario.senha, usuario.idfilial, usuario.contato, usuario_modulo.idmodulo FROM usuario, usuario_modulo where usuario.nome like '%"+nome+"%' and usuario.idusuario = usuario_modulo.idusuario and estatus = 1 group by usuario.idusuario;");
+            PreparedStatement comando = conexao.prepareStatement("SELECT usuario.idusuario, usuario.nome, usuario.cpf, usuario.login, usuario.senha, usuario.idfilial, usuario.contato, usuario_modulo.idmodulo FROM usuario, usuario_modulo where estatus = 1 and usuario.nome like '%" + nome + "%' group by usuario.idusuario;");
 
             ResultSet rs = comando.executeQuery();
 
@@ -94,8 +95,8 @@ public class UsuarioDAO {
 
                 int id = rs.getInt(1);
                 ArrayList<Modulo> modulos = new ArrayList<>();
-                
-                PreparedStatement comando1 = conexao.prepareStatement("SELECT modulo.nome FROM modulo, usuario_modulo, usuario  where usuario.idusuario = usuario_modulo.idusuario and usuario.idusuario = "+id+" group by modulo.nome;");
+
+                PreparedStatement comando1 = conexao.prepareStatement("SELECT modulo.nome FROM modulo, usuario_modulo, usuario  where usuario.idusuario = usuario_modulo.idusuario and usuario.idusuario = " + id + " group by modulo.nome;");
                 ResultSet rs1 = comando1.executeQuery();
 
                 while (rs1.next()) {
@@ -263,48 +264,45 @@ public class UsuarioDAO {
     public static boolean editar(Usuario user) {
         boolean retorno = false;
         try {
-            
-            if(removerModulos(user.getId())){
-                    
-            Class.forName(DRIVER);
-            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            
-                
-            PreparedStatement comando = conexao.prepareStatement("update usuario set nome=?, cpf=?, login=?, senha=?,idfilial=?, contato=? where idusuario= ?");
+            if (removerModulos(user.getId())) {
 
-            comando.setString(1, user.getNomeCompleto());
-            comando.setString(2, user.getCpf());
-            comando.setString(3, user.getUsername());
-            comando.setString(4, user.getHashSenha());
-            comando.setInt(5, user.getIdEmpresa());
-            comando.setString(6, user.getContato());
-            comando.setInt(7, user.getId());
+                Class.forName(DRIVER);
+                conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
-            int linhasAfetadas = comando.executeUpdate();
+                PreparedStatement comando = conexao.prepareStatement("update usuario set nome=?, cpf=?, login=?, senha=?,idfilial=?, contato=? where idusuario= ?");
 
-            int idUsuario = user.getId();
+                comando.setString(1, user.getNomeCompleto());
+                comando.setString(2, user.getCpf());
+                comando.setString(3, user.getUsername());
+                comando.setString(4, user.getHashSenha());
+                comando.setInt(5, user.getIdEmpresa());
+                comando.setString(6, user.getContato());
+                comando.setInt(7, user.getId());
 
-            if (linhasAfetadas > 0) {
+                int linhasAfetadas = comando.executeUpdate();
 
-                
-                int linhasAfetadas2 = 0;
+                int idUsuario = user.getId();
 
-                for (int i = 0; i < user.getModulos().size(); i++) {
+                if (linhasAfetadas > 0) {
 
-                    comando = conexao.prepareStatement("insert into usuario_modulo(idusuario,idmodulo) values(?, ?)");
-                    comando.setInt(1, idUsuario);
-                    comando.setInt(2, Integer.parseInt(user.getModulos().get(i).getNomeModulo()));
-                    linhasAfetadas2 = comando.executeUpdate();
-                }
+                    int linhasAfetadas2 = 0;
 
-                if (linhasAfetadas2 > 0) {
+                    for (int i = 0; i < user.getModulos().size(); i++) {
 
-                    retorno = true;
+                        comando = conexao.prepareStatement("insert into usuario_modulo(idusuario,idmodulo) values(?, ?)");
+                        comando.setInt(1, idUsuario);
+                        comando.setInt(2, Integer.parseInt(user.getModulos().get(i).getNomeModulo()));
+                        linhasAfetadas2 = comando.executeUpdate();
+                    }
 
+                    if (linhasAfetadas2 > 0) {
+
+                        retorno = true;
+
+                    }
                 }
             }
-        }
 
         } catch (ClassNotFoundException ex) {
             retorno = false;
@@ -322,7 +320,7 @@ public class UsuarioDAO {
         return retorno;
 
     }
-    
+
     public static boolean removerModulos(int id) {
         boolean retorno = false;
         try {
@@ -355,33 +353,49 @@ public class UsuarioDAO {
         }
         return retorno;
     }
-//        public static Funcionario login(String login,String senha){
-//        Funcionario f = null;
-//        try {
-//
-//            Class.forName(DRIVER);
-//            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
-//
-//            PreparedStatement comando = conexao.prepareStatement("SELECT *FROM usuario WHERE login like'"+login+"' AND senha like '"+senha+"' AND estatus=1");
-//
-//            ResultSet rs = comando.executeQuery();          
-//            
-//            while (rs.next()) {               
-//                f = new Funcionario(rs.getInt(1), rs.getString(2),  rs.getString(3),  rs.getString(4),  rs.getString(5),  rs.getInt(6),  rs.getInt(7),  rs.getString(8));
-//            }
-//
-//        } catch (ClassNotFoundException ex) {
-//            f = null;
-//        } catch (SQLException ex) {
-//            f = null;
-//        } finally {
-//            try {
-//                conexao.close();
-//            } catch (SQLException ex) {
-//                f = null;
-//            }
-//
-//        }
-//        return f;
-//        }
+
+    public static Usuario login(String login, String senha) {
+        Usuario u = null;
+
+        try {
+
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+
+            PreparedStatement comando = conexao.prepareStatement("SELECT usuario.idusuario, usuario.nome, usuario.cpf, usuario.login, usuario.senha, usuario.idfilial, usuario.contato, usuario_modulo.idmodulo FROM usuario, usuario_modulo where estatus = 1 and usuario.login = '"+login+"' and usuario.senha = '"+senha+"' group by usuario.idusuario;");
+
+            ResultSet rs = comando.executeQuery();
+
+            while (rs.next()) {
+
+                int id = rs.getInt(1);
+                ArrayList<Modulo> modulos = new ArrayList<>();
+
+                PreparedStatement comando1 = conexao.prepareStatement("SELECT modulo.idmodulo, modulo.nome FROM modulo, usuario_modulo where modulo.idmodulo = usuario_modulo.idmodulo and usuario_modulo.idusuario = " + id + ";");
+                ResultSet rs1 = comando1.executeQuery();
+
+                while (rs1.next()) {
+                    Modulo m = new Modulo(rs1.getInt(1), rs1.getString(2));
+                    modulos.add(m);
+                }
+
+                //id,login,senha, lista, idempresa,nome,cpf,contato
+                u = new Usuario(id, rs.getString("usuario.login"), rs.getString("usuario.senha"), modulos, rs.getInt("usuario.idfilial"), rs.getString("usuario.nome"), rs.getString("usuario.cpf"), rs.getString("usuario.contato"));
+
+            }
+
+        } catch (ClassNotFoundException ex) {
+            u = null;
+        } catch (SQLException ex) {
+            u = null;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                u = null;
+            }
+
+        }
+        return u;
+    }
 }
