@@ -46,7 +46,7 @@
                         <input type="hidden" value="listar" name="acao">                                               
                         <button class="campoBuscas" type="submit">Adicionar Cliente</button>
                         <label>Cod. Cliente</label>
-                        <input type="text" name="idCliente" value="${idClienteAttr}" readonly="true">
+                        <input type="text" name="idCliente" value="${idClienteAttr}" >
                     </form>
                 </div>
             </div>

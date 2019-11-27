@@ -22,9 +22,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ochaus
  */
-@WebFilter(filterName = "AutorizacaoFilter", 
-        servletNames = { "HomeServlet" },
-        urlPatterns = { "/TADS-PI3/*" })
+@WebFilter(filterName = "AutorizacaoFilter",
+        servletNames = {"HomeServlet"},
+        urlPatterns = {"/TADS-PI3/*"})
 public class AutorizacaoFilter implements Filter {
 
     @Override
@@ -33,7 +33,7 @@ public class AutorizacaoFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        
+
         // Verificar se usuario esta na sessao
         HttpSession sessao = httpRequest.getSession();
         if (sessao.getAttribute("usuario") == null) {
@@ -48,48 +48,54 @@ public class AutorizacaoFilter implements Filter {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/Fail.jsp");
         }
     }
-    
+
     private boolean verificarPermissaoAcesso(
             HttpServletRequest httpRequest, Usuario usuario) {
         String urlAcessada = httpRequest.getRequestURI();
         if (urlAcessada.endsWith("/PaginaInicial.jsp")) {
             return true;
-        }else if (urlAcessada.endsWith("/TADS-PI3/LogoutController")) {
+        } else if (urlAcessada.endsWith("/TADS-PI3/LogoutController")) {
             return true;
-        }else if (urlAcessada.endsWith("/TADS-PI3/EstoqueController") 
+        } else if (urlAcessada.endsWith("/TADS-PI3/EstoqueController")
                 && usuario.verificarPapel("ESTOQUE")) {
             return true;
-        } else if (urlAcessada.endsWith("/TADS-PI3/ProdutoController") 
+        } else if (urlAcessada.endsWith("/TADS-PI3/ProdutoController")
                 && usuario.verificarPapel("PRODUTO")) {
             return true;
-        } else if (urlAcessada.endsWith("/TADS-PI3/FilialController") 
+        } else if (urlAcessada.endsWith("/TADS-PI3/FilialController")
                 && usuario.verificarPapel("FILIAL")) {
             return true;
-        }else if (urlAcessada.endsWith("/TADS-PI3/UsuarioController") 
+        } else if (urlAcessada.endsWith("/TADS-PI3/UsuarioController")
                 && usuario.verificarPapel("USUARIO")) {
             return true;
-        }else if (urlAcessada.endsWith("/TADS-PI3/ClienteController") 
+        } else if (urlAcessada.endsWith("/TADS-PI3/ClienteController")
                 && usuario.verificarPapel("CLIENTE")) {
             return true;
-        }else if (urlAcessada.endsWith("/TADS-PI3/VendaController") 
+        } else if (urlAcessada.endsWith("/TADS-PI3/VendaController")
                 && usuario.verificarPapel("VENDA")) {
             return true;
-        }else if (urlAcessada.endsWith("/TADS-PI3/RelatorioController") 
-                && usuario.verificarPapel("ADMINISTRADOR")) {
+        } else if (urlAcessada.endsWith("/TADS-PI3/RelatorioController")
+                && usuario.verificarPapel("DIRETORIA")) {
             return true;
-        }else if (urlAcessada.endsWith("/TADS-PI3/FaturamentoController") 
-                && usuario.verificarPapel("ADMINISTRADOR")) {
+        } else if (urlAcessada.endsWith("/TADS-PI3/RelatorioController")
+                && usuario.verificarPapel("GERENCIA")) {
+            return true;
+        } else if (urlAcessada.endsWith("/TADS-PI3/FaturamentoController")
+                && usuario.verificarPapel("DIRETORIA")) {
+            return true;
+        } else if (urlAcessada.endsWith("/TADS-PI3/FaturamentoController")
+                && usuario.verificarPapel("GERENCIA")) {
             return true;
         }
         return false;
     }
 
     @Override
-    public void destroy() {        
+    public void destroy() {
     }
 
     @Override
-    public void init(FilterConfig filterConfig) {        
+    public void init(FilterConfig filterConfig) {
 
     }
 }
