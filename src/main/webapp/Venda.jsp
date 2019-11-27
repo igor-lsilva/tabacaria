@@ -24,20 +24,12 @@
                 <li class="posicaoSair"><a class="ativado" href="#">Sair</a></li>
             </ul>
         </div>
-        <div>
-            <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
-                <input type="text" name="idCliente" value="${idClienteAttr}">
-                <input type="hidden" value="listar" name="acao">
-                <button class="campoBuscas">Adicionar Cliente</button>
-            </form>
+        <div>            
         </div>
         <div class="tabelaListagem">
             <div class="subTitulo">
                 <h2>Tabela de Itens:</h2>
-            </div>
-            <div class="subTitulo">
-                <h2>Tabela de Itens:</h2>
-            </div>               
+            </div>                       
 
             <div style="display: inline-block;">
                 <div style="float: left; border-radius: 8px;">
@@ -46,7 +38,14 @@
                         <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
                         <div>
                             <button class="campoBuscas" type="submit">Adicionar Item</button>
-                        </div>
+                        </div>                        
+                    </form>
+                </div>
+                <div style="display: inline-block;">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">                       
+                        <input type="hidden" value="listar" name="acao">                       
+                        <input type="text" name="idCliente" value="${idClienteAttr}">
+                        <button class="campoBuscas" type="submit">Adicionar Cliente</button>
                     </form>
                 </div>
             </div>
@@ -80,13 +79,7 @@
                 <br>
             </div>
             <div class="subTitulo1">
-                <h1>Preço Final:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    ${sessionScope.itensSelecionados.precoFinal}</h1>             
+                <h1>Preço Final: ${sessionScope.itensSelecionados.precoFinal}</h1>             
                 <br>
             </div>
             <div class="campoVoltarPosicao">           

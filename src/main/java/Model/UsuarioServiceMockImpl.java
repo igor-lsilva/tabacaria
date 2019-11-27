@@ -31,6 +31,12 @@ public class UsuarioServiceMockImpl implements UsuarioService {
                 initialized = true;
             }
         }
+        
+//        Usuario usuario = UsuarioDAO.obterUsuarioLogado(username);
+//        
+//        if (usuario != null){
+//            Session =
+//        }
     }
 
     private void init() {

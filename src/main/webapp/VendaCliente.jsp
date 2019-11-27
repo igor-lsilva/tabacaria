@@ -52,7 +52,7 @@
                     <th class="campoCPF">CPF </th>
                     <th class="campoDtNascimento">Data Nascimento</th>
                     <th class="campoContato">Contato</th>
-                    <th class="campoEditar">Editar</th>
+                    <th class="campoEditar">Adicionar</th>
                 </tr>                
                 <c:forEach items="${TodosClientes}" var="c">
                     <tr>
@@ -63,9 +63,9 @@
                         <td class="campoContato">${c.contato}</td>                        
                         <td class="campoEditar"> 
                             <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
-                                    <input type="hidden" value="adicionarCliente" name="acao">                                  
-                                    <input type="hidden" value="${c.idCliente}" name="id">
+                                    <input type="hidden" value="adicionarCliente" name="acao">                                                                      
                                     <button class="buttonEditar" type="submit">Adicionar</button>
+                                    <input type="hidden" value="${c.idCliente}" name="id">
                             </form>                            
                         </td>                           
                     </tr>
