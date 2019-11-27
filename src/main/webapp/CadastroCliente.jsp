@@ -12,11 +12,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title> Cadastro Cliente </title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
+
         <script> src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js";</script>
-        <script> src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js";</script>
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+        <script> src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js";</script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>        
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-notify.min.js"></script>
+
         <link rel="shortcut icon" href="http://www.tabacariaroma.com.br/wp-content/uploads/2017/09/cafe.png"/>
         <script>
             function validacao() {
@@ -29,7 +32,13 @@
                 if (nome.indexOf(" ") == -1 || nome.length < 3)
                 {
                     document.getElementById("nomeCliente").style.backgroundColor = "#ffcccc";
-                    document.getElementById("nomeCliente").placeholder = "Preencha o nome completo";
+                    $.notify({
+                        // options
+                        message: 'Preencha o nome completo do cliente'
+                    }, {
+                        // settings
+                        type: 'danger'
+                    });
                     document.getElementById("nomeCliente").focus();
                     erro = true;
                     return false;
@@ -40,7 +49,13 @@
 
                 if (cpf.length != 14) {
                     document.getElementById("cpfCliente").style.backgroundColor = "#ffcccc";
-                    document.getElementById("cpfCliente").placeholder = "O CPF deve conter 11 digitos e não pode ser vazio";
+                    $.notify({
+                        // options
+                        message: 'O CPF deve conter conter 11 digitos'
+                    }, {
+                        // settings
+                        type: 'danger'
+                    });
                     document.getElementById("cpfCliente").focus();
                     erro = true;
                     return false;
@@ -48,7 +63,13 @@
 
                 if (dtNasc.length < 1) {
                     document.getElementById("dtNascCliente").style.backgroundColor = "#ffcccc";
-                    document.getElementById("dtNascCliente").placeholder = "Preencha a data de nascimento do Cliente";
+                    $.notify({
+                        // options
+                        message: 'Preencha a data de nascimento do cliente'
+                    }, {
+                        // settings
+                        type: 'danger'
+                    });
                     document.getElementById("dtNascCliente").focus();
                     erro = true;
                     return false;
@@ -56,7 +77,13 @@
 
                 if (contato.length < 1) {
                     document.getElementById("contatoCliente").style.backgroundColor = "#ffcccc";
-                    document.getElementById("contatoCliente").placeholder = "Preencha um contato do Cliente";
+                    $.notify({
+                        // options
+                        message: 'Preencha o contato do cliente'
+                    }, {
+                        // settings
+                        type: 'danger'
+                    });
                     document.getElementById("contatoCliente").focus();
                     erro = true;
                     return false;
@@ -66,10 +93,9 @@
                     alert("Cadastro não realizado.");
                     return false;
                 } else {
-                    alert("Cadastro realizado com sucesso!");
+                    alert("Cadastro realizado.");
                     return true;
                 }
-
             }
         </script> 
     </head>
@@ -88,7 +114,6 @@
             <div class="msgSucesso">
                 <h4>${mensagemSucesso}</h4>
             </div>
-
             <div class="msgFalha">
                 <h4>${mensagemFalha}</h4>
             </div>
