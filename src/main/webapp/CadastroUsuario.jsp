@@ -56,7 +56,7 @@
                     <div>
                         <label>Cargo:</label>
                         <div>
-                            <select name="modulo" multiple>
+                            <select name="modulo" multiple style="height: 100px;">
                                 <c:forEach items="${todosModulos}" var="modulo">
                                     <option value="${modulo.id}">
                                         ${modulo.nomeModulo}

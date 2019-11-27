@@ -33,12 +33,8 @@
             <div class="formulario">
                 <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
                     <input type="hidden" name="acao" value="atualizar">
-                    <div>
-                        <label>Codigo:</label>
-                        <div>
-                            <input type="text" name="id" value="${f.id}" readonly="true">
-                        </div>
-                    </div>
+                    <input type="hidden" name="id" value="${f.id}">
+
                     <div>
                         <label>Nome:</label>
                         <div>
@@ -54,37 +50,32 @@
                     <div>
                         <label>Modulo:</label>
                         <div>
-                            <select name="modulo" multiple>
+                            <select name="modulo" multiple style="height: 100px;">
+
                                 <c:forEach items="${todosModulos}" var="modulo">
-                                    <c:if test="${$modulo.id == $f.id}">
-                                        <option value="${modulo.id}" selected="selected">
-                                            ${modulo.nomeModulo}
-                                        </option>
-                                    </c:if>
-                                    <c:if test="${$filial.id != $f.id}">
-                                        <option value="${filial.id}">
-                                            ${filial.nomeFilial}
-                                        </option>
-                                    </c:if>
+
+                                    <option value="${modulo.id}">${modulo.nomeModulo}</option>
+
                                 </c:forEach>
+
                             </select>
                         </div>
                     </div>
                     <div>
                         <label>Código da Filial:</label>
                         <div>
-                            <select name="filial">
-                                <c:forEach items="${todasFilial}" var="filial">
-                                    <c:if test="${$filial.id == $f.id}">
+                            <select name="codEmp">
+                                <c:forEach items="${todasFilial}" var="filial">                                    
+                                    <c:if test="${filial.id == f.idEmpresa}">
                                         <option value="${filial.id}" selected="selected">
                                             ${filial.nomeFilial}
                                         </option>
                                     </c:if>
-                                    <c:if test="${$filial.id != $f.id}">
+                                    <c:if test="${filial.id != f.idEmpresa}">
                                         <option value="${filial.id}">
                                             ${filial.nomeFilial}
                                         </option>
-                                    </c:if>
+                                    </c:if>    
                                 </c:forEach>
                             </select>
                         </div>
@@ -98,17 +89,17 @@
                     <div>
                         <label>Login:</label>
                         <div>
-                            <input type="text" name="login" value="${f.login}">
+                            <input type="text" name="login" value="${f.username}">
                         </div>
                     </div>
                     <div>
                         <label>Senha:</label>
                         <div>
-                            </label><input type="password" name="senha" value="${f.senha}" id="senha">
+                            </label><input type="password" name="senha" value="${f.hashSenha}" id="senha">
                         </div>
                     </div>
                     <div class="posicaoButtons">
-                        <button type="submit" name="atualizar" class="botaoPadrao">Editar</button>
+                        <button type="submit" name="atualizar" class="botaoPadrao">Salvar</button>
                         <button type="reset" class="botaoPadrao">Resetar</button>
                     </div>
                 </form>

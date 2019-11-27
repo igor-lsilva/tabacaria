@@ -44,59 +44,55 @@
 
                 </div>
             </div>
-            <br>
-            <table class="table"> 
-                <tr>
-                    <th class="campoId">Id</th>
-                    <th class="campoNome">Nome </th>
-                    <th class="campoCpf">CPF</th>
-                    <th class="campologin">Login</th>
-                    <th class="campoEmpresa">Empresa</th>
-                    <th class="campoCargo">Modulo</th>
-                    <th class="campoContato">Contato</th>
-                    <th class="campoEditar">Editar</th>
-                    <th class="campoExcluir">Excluir</th>
-
-
-                </tr>                
-                <c:forEach items="${TodosUsuarios}" var="user">
-                    <tr>                       
-                        <td>${user.id}</td>
-                        <td>${user.nomeCompleto}</td> 
-                        <td>${user.cpf}</td>               
-                        <td>${user.username}</td>
-                        <td>${user.idEmpresa}</td>                       
-                        <td>
-                            <c:forEach items="${user.modulos}" var="modulo" > 
-                                <c:out value="${modulo.nomeModulo}"></c:out>
-                            </c:forEach></td>                        
-                        <td>${user.contato}</td>                        
-                        <td> 
-                            <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
+            <div class="tabelaLista">
+                <table> 
+                    <tr>
+                        <th class="campoId">Id</th>
+                        <th class="campoNome">Nome </th>
+                        <th class="campoLogin">Login</th>
+                        <th class="campoEmpresa">Empresa</th>
+                        <th class="campoCargo">Modulo</th>
+                        <th class="campoEditar">Editar</th>
+                        <th class="campoExcluir">Excluir</th>
+                    </tr>                
+                    <c:forEach items="${TodosUsuarios}" var="user">
+                        <tr>                       
+                            <td>${user.id}</td>
+                            <td>${user.nomeCompleto}</td>              
+                            <td>${user.username}</td>
+                            <td>${user.idEmpresa}</td>                       
+                            <td>
                                 <c:forEach items="${user.modulos}" var="modulo" > 
-                                    <input type="hidden" value="${modulo.nomeModulo}">
-                                </c:forEach>
-                                <input type="hidden" value="editar" name="acao">
-                                <input type="hidden" value="${user.id}" name="id">
-                                <input type="hidden" value="${user.nomeCompleto}" name="nome">
-                                <input type="hidden" value="${user.cpf}" name="cpf">
-                                <input type="hidden" value="${user.username}" name="login">
-                                <input type="hidden" value="${user.idEmpresa}" name="filial">
-                                <input type="hidden" value="${user.contato}" name="contato">
-                                <input type="hidden" value="${user.hashSenha}" name="senha">
-                                <button type="submit" class="buttonPadrao">Editar</button>
-                            </form>                           
-                        </td>
-                        <td>
-                            <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
-                                <input type="hidden" value="excluir" name="acao">
-                                <input type="hidden" value="${user.id}" name="id">
-                                <button type="submit" class="buttonPadrao">Excluir</button>
-                            </form>
-                        </td>                            
-                    </tr>
-                </c:forEach> 
-            </table>
+                                    <c:out value="${modulo.nomeModulo}"></c:out>
+                                </c:forEach></td>                                              
+                            <td> 
+                                <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
+                                    <c:forEach items="${user.modulos}" var="modulo" > 
+                                        <input type="hidden" value="${modulo.id}" name="modulo">
+                                    </c:forEach>
+                                    <input type="hidden" value="editar" name="acao">
+                                    <input type="hidden" value="${user.id}" name="id">
+                                    <input type="hidden" value="${user.nomeCompleto}" name="nome">
+                                    <input type="hidden" value="${user.cpf}" name="cpf">
+                                    <input type="hidden" value="${user.username}" name="login">
+                                    <input type="hidden" value="${user.idEmpresa}" name="codEmp">
+                                    <input type="hidden" value="${user.contato}" name="contato">
+                                    <input type="hidden" value="${user.hashSenha}" name="senha">
+                                    <button type="submit" class="buttonPadrao">Editar</button>
+                                </form>                           
+                            </td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
+                                    <input type="hidden" value="excluir" name="acao">
+                                    <input type="hidden" value="${user.id}" name="id">
+                                    <button type="submit" class="buttonPadrao">Excluir</button>
+                                </form>
+                            </td>                            
+                        </tr>
+                    </c:forEach> 
+                </table>
+            </div>
+            <br><br>
             <div class="campoVoltarPosicao">
                 <form action="${pageContext.request.contextPath}/PaginaInicial.jsp" method="post">
                     <button type="submit" class="campoVoltar">Voltar</button>

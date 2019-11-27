@@ -14,13 +14,13 @@ body {
     width: 80px;
 }
 .campoNome{
-    width: 250px;
+    width: 200px;
 }
 .campoCpf{
-    width: 150px;
+    width: 120px;
 }
 .campoLogin{
-    width: 250px;
+    width: 150px;
 }
 .campoEmpresa{
     width: 80px;
@@ -42,7 +42,7 @@ body {
     float: left; 
     position: absolute; 
     left: 50%; 
-    top: 40%; 
+    top: 65%; 
     margin-right: -50%;
     transform: translate(-50%,-65%);
 }

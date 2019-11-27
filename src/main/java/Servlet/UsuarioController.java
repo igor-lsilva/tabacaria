@@ -43,21 +43,21 @@ public class UsuarioController extends HttpServlet {
             case "salvar":
                 salvar(request, response);
                 break;
-//            case "editar":
-//                editar(request, response);
-//                break;
-//            case "excluir":
-//                excluir(request, response);
-//                break;
+            case "editar":
+                editar(request, response);
+                break;
+            case "excluir":
+                excluir(request, response);
+                break;
             case "listar":
                 listar(request, response);
                 break;
             case "cadastrar":
                 retornaFilial(request, response);
                 break;
-//            case "atualizar":
-//                atualizar(request, response);
-//                break;
+            case "atualizar":
+                atualizar(request, response);
+                break;
         }
 
     }
@@ -70,17 +70,18 @@ public class UsuarioController extends HttpServlet {
         String senha = request.getParameter("senha");
         String cpf = request.getParameter("cpf");
         int idEmp = Integer.parseInt(request.getParameter("codEmp"));
-        String idModulo [] = request.getParameterValues("modulo");
+        String idModulo[] = request.getParameterValues("modulo");
         String contato = request.getParameter("contato");
 
         List<Modulo> modulos = new ArrayList<>();
-        
-        for (int i = 0; i < idModulo.length; i++) {           
-        
-            Modulo m = new Modulo(i,idModulo[i]);
-            modulos.add(m);
+
+        if (idModulo != null) {
+            for (int i = 0; i < idModulo.length; i++) {
+
+                Modulo m = new Modulo(i, idModulo[i]);
+                modulos.add(m);
+            }
         }
-        
         Usuario user = new Usuario(login, senha, modulos, idEmp, nome, cpf, contato);
 
         if (UsuarioDAO.salvar(user)) {
@@ -98,55 +99,86 @@ public class UsuarioController extends HttpServlet {
         }
     }
 
-//    protected void atualizar(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        String nome = request.getParameter("nome");
-//        String login = request.getParameter("login");
-//        String senha = request.getParameter("senha");
-//        String cpf = request.getParameter("cpf");
-//        int idEmp = Integer.parseInt(request.getParameter("filial"));
-//        int idModulo = Integer.parseInt(request.getParameter("modulo"));
-//        String contato = request.getParameter("contato");
-//        Funcionario f = new Funcionario(id, nome, cpf, login, senha, idEmp, idModulo, contato);
-//        if (UsuarioDAO.editar(f)) {
-//            request.setAttribute("f", f);
-//            request.setAttribute("mensagemSucesso", "Edição realizada com sucesso");
-//            ArrayList<Filial> filiais = UsuarioDAO.getFilial();
-//            request.setAttribute("todasFilial", filiais);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarUsuario.jsp");
-//            dispatcher.forward(request, response);
-//        } else {
-//            request.setAttribute("f", f);
-//            request.setAttribute("mensagemFalha", "Erro ao editar");
-//            ArrayList<Filial> filiais = UsuarioDAO.getFilial();
-//            request.setAttribute("todasFilial", filiais);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarUsuario.jsp");
-//            dispatcher.forward(request, response);
-//
-//        }
-//    }
+    protected void atualizar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String nome = request.getParameter("nome");
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
+        String cpf = request.getParameter("cpf");
+        int idEmp = Integer.parseInt(request.getParameter("codEmp"));
+        String idModulo[] = request.getParameterValues("modulo");
+        String contato = request.getParameter("contato");
 
-//    protected void editar(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        String nome = request.getParameter("nome");
-//        String login = request.getParameter("login");
-//        String senha = request.getParameter("senha");
-//        String cpf = request.getParameter("cpf");
-//        int idEmp = Integer.parseInt(request.getParameter("filial"));
-//        int idModulo = Integer.parseInt(request.getParameter("modulo"));
-//        String contato = request.getParameter("contato");
-//        Funcionario f = new Funcionario(id, nome, cpf, login, senha, idEmp, idModulo, contato);
-//        request.setAttribute("f", f);
-//        ArrayList<Filial> filiais = UsuarioDAO.getFilial();
-//        request.setAttribute("todasFilial", filiais);
-//        ArrayList<Modulo> modulo = ModuloDAO.getModulo();
-//        request.setAttribute("todosModulos", modulo);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarUsuario.jsp");
-//        dispatcher.forward(request, response);
-//
-//    }
+        List<Modulo> modulos = new ArrayList<>();
+
+        if (idModulo != null) {
+            for (int i = 0; i < idModulo.length; i++) {
+
+                Modulo m = new Modulo(i, idModulo[i]);
+                modulos.add(m);
+            }
+        }
+        Usuario user = new Usuario(id, login, senha, modulos, idEmp, nome, cpf, contato);
+
+        if (UsuarioDAO.editar(user)) {
+            request.setAttribute("f", user);
+            request.setAttribute("mensagemSucesso", "Edição realizada com sucesso");
+            ArrayList<Filial> filiais = UsuarioDAO.getFilial();
+            request.setAttribute("todasFilial", filiais);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarUsuario.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            request.setAttribute("f", user);
+            request.setAttribute("mensagemFalha", "Erro ao editar");
+            ArrayList<Filial> filiais = UsuarioDAO.getFilial();
+            request.setAttribute("todasFilial", filiais);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarUsuario.jsp");
+            dispatcher.forward(request, response);
+
+        }
+    }
+
+    protected void editar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        String nome = request.getParameter("nome");
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
+        String cpf = request.getParameter("cpf");
+        int idEmp = Integer.parseInt(request.getParameter("codEmp"));
+        String idModulo[] = request.getParameterValues("modulo");
+        String contato = request.getParameter("contato");
+
+//        request.setAttribute("idAttr", id);
+//        request.setAttribute("nomeAttr", nome);
+//        request.setAttribute("loginAttr", login);
+//        request.setAttribute("senhaAttr", senha);
+//        request.setAttribute("cpfAttr", cpf);
+//        request.setAttribute("codEmpAttr", idEmp);
+//        request.setAttribute("contatoAttr", contato);
+        List<Modulo> modulos = new ArrayList<>();
+
+        if (idModulo != null) {
+            for (int i = 0; i < idModulo.length; i++) {
+
+                Modulo mo = new Modulo(i, idModulo[i]);
+                modulos.add(mo);
+            }
+        }
+        Usuario f = new Usuario(id, login, senha, modulos, idEmp, nome, cpf, contato);
+
+        request.setAttribute("f", f);
+
+        ArrayList<Filial> filiais = UsuarioDAO.getFilial();
+        request.setAttribute("todasFilial", filiais);
+        ArrayList<Modulo> modulo = ModuloDAO.getModulo();
+        request.setAttribute("todosModulos", modulo);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/EditarUsuario.jsp");
+        dispatcher.forward(request, response);
+
+    }
 
     protected void listar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -162,7 +194,7 @@ public class UsuarioController extends HttpServlet {
 
         } else {
 
-            ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+            ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios(nome);
             request.setAttribute("TodosUsuarios", usuarios);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
             dispatcher.forward(request, response);
@@ -188,20 +220,20 @@ public class UsuarioController extends HttpServlet {
 
     }
 
-//    protected void excluir(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//
-//        int id = Integer.parseInt(request.getParameter("id"));
-//
-//        if (UsuarioDAO.remover(id)) {
-//
-//            listar(request, response);
-//
-//        } else {
-//            request.setAttribute("mensagemFalha", "Falha ao excluir!");
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
-//            dispatcher.forward(request, response);
-//
-//        }
-//    }
+    protected void excluir(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        if (UsuarioDAO.remover(id)) {
+
+            listar(request, response);
+
+        } else {
+            request.setAttribute("mensagemFalha", "Falha ao excluir!");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarUsuario.jsp");
+            dispatcher.forward(request, response);
+
+        }
+    }
 }
