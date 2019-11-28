@@ -79,6 +79,7 @@
                     <div>
                         <form action="${pageContext.request.contextPath}/TADS-PI3/ProdutoController" method="post">
                             <input type="hidden" value="listar" name="acao">
+                            <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
                             <button class="campoVoltar" type="submit">Voltar</button>
                         </form>
                     </div>
