@@ -24,6 +24,10 @@ public class Item {
     public Item() {
     }
 
+    public Item(Produto p) {
+        this.p = p;
+    }
+
     public Produto getP() {
         return p;
     }

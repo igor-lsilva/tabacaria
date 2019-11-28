@@ -28,6 +28,13 @@ public class Venda {
         this.precoFinal = precoFinal;
         this.dataVenda = dataVenda;
     }
+    
+    public Venda(int idVenda, int idCliente, int idFilial, float precoFinal, Date dataVenda) {
+        this.idVenda = idVenda;
+        this.idCliente = idCliente;
+        this.precoFinal = precoFinal;
+        this.dataVenda = dataVenda;
+    }
 
     public Venda() {
         itens = new ArrayList<>();

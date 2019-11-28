@@ -98,6 +98,41 @@ public class VendaDAO {
 
     }
 
-    
+    public static ArrayList<Venda> getVenda(int id, java.sql.Date datainicio, java.sql.Date datafim) {
+        boolean retorno = false;
+
+        ArrayList<Venda> listaVendas = new ArrayList<>();
+
+        try {
+
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+
+            PreparedStatement comando = conexao.prepareStatement("SELECT * FROM tabacaria.venda where idfilial = "+id+" AND datavenda BETWEEN '"+datainicio+"' and '"+datafim+"';");
+
+            ResultSet rs = comando.executeQuery();
+
+            while (rs.next()) {
+              
+               
+                Venda v = new Venda(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getFloat(4), rs.getDate(5));
+
+                listaVendas.add(v);
+            }
+
+        } catch (ClassNotFoundException ex) {
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                retorno = false;
+            }
+
+        }
+        return listaVendas;
+    }
     
 }

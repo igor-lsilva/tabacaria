@@ -70,12 +70,11 @@
                             </div>
                             <div style="float: left; font-family: monospace; ">
                                 <label> Data Inicial</label>
-                                <input type="number" name="dataInicio" pattern="yyyy/MM/dd" style="border-radius: 8px; height: 40px; width: 150px;">
+                                <input type="date" name="dataInicio" min="00/00/0000" max="31/12/9999" required style="border-radius: 8px; height: 40px; width: 150px;">
                             </div>
                             <div style="float: left; font-family: monospace;">
                                 <label> Data Final</label>
-                                <input type="number" name="dataFim"  style="border-radius: 8px; height: 40px; width: 150px;">
-                                <input type="text" name="teste" value="${testeAttr}">
+                                <input type="date" name="dataFim" min="00/00/0000" max="31/12/9999" required style="border-radius: 8px; height: 40px; width: 150px;">
                             </div>
                             <div style="float: left;">
                                 <button class="campoBuscas" type="submit">Buscar</button>

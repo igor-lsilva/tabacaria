@@ -86,7 +86,7 @@
             <div class="campoVoltarPosicao">           
                 <div>
                     <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
-                        <input type="hidden" name="idCliente">
+                        <input type="hidden" name="idCliente" value="${idClienteAttr}">
                         <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
                         <input type="hidden" value="cadastrarVenda" name="acao">
                         <button class="campoBuscas" type="submit">Cadastrar Venda</button> 
