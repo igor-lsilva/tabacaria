@@ -177,6 +177,7 @@ public class VendaController extends HttpServlet {
         venda.setIdCliente(idCliente);
         venda.setIdFilial(Integer.parseInt(request.getParameter("idEmpresa")));
         if (VendaDAO.salvar(venda)) {
+            venda.vendarealizada();
             RequestDispatcher dispatcher = request.getRequestDispatcher("/VendaSucesso.jsp");
             dispatcher.forward(request, response);
         }

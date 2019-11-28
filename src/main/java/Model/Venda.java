@@ -121,5 +121,12 @@ public class Venda {
             }
         }
     }
+    
+    public void vendarealizada(){
+        this.itens = new ArrayList<>();
+        this.idCliente = 0;
+        this.idFilial = 0;
+        this.precoFinal = 0;
+    }
 
 }
