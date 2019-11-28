@@ -28,7 +28,7 @@ public class RelatorioController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {     
+            throws ServletException, IOException {
         listarFiliais(request, response);
     }
 
@@ -47,7 +47,7 @@ public class RelatorioController extends HttpServlet {
                 }
                 break;
             }
-            
+
         }
     }
 
@@ -57,6 +57,7 @@ public class RelatorioController extends HttpServlet {
         int idfilial = Integer.parseInt(request.getParameter("codEmp"));
         java.sql.Date datainicio = java.sql.Date.valueOf(request.getParameter("dataInicio"));
         java.sql.Date datafim = java.sql.Date.valueOf(request.getParameter("dataFim"));
+        float soma = 0;
 //        if ("".equals(nome) || nome == null) {
 //
 //            ArrayList<Filial> filiais = UsuarioDAO.getFilial();
@@ -65,22 +66,27 @@ public class RelatorioController extends HttpServlet {
 //            dispatcher.forward(request, response);
 //
 //        } else {                             
-            ArrayList<Venda> vendas = VendaDAO.getVenda(idfilial,datainicio,datafim);
-            request.setAttribute("TodasVendas", vendas);
-            ArrayList<Filial> filiais = UsuarioDAO.getFilial();
-            request.setAttribute("todasFilial", filiais);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Relatorio.jsp");
-            dispatcher.forward(request, response);
+        ArrayList<Venda> vendas = VendaDAO.getVenda(idfilial, datainicio, datafim);
+        for (Venda venda : vendas) {
+            
+            soma = soma + venda.getPrecoFinal();
+        }
+        request.setAttribute("TodasVendas", vendas);
+        ArrayList<Filial> filiais = UsuarioDAO.getFilial();
+        request.setAttribute("todasFilial", filiais);
+        request.setAttribute("precoTotal", soma);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Relatorio.jsp");
+        dispatcher.forward(request, response);
 //        }
     }
 
     protected void listarFiliais(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-            ArrayList<Filial> filiais = UsuarioDAO.getFilial();
-            request.setAttribute("todasFilial", filiais);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Relatorio.jsp");
-            dispatcher.forward(request, response);
+
+        ArrayList<Filial> filiais = UsuarioDAO.getFilial();
+        request.setAttribute("todasFilial", filiais);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Relatorio.jsp");
+        dispatcher.forward(request, response);
     }
 
 }

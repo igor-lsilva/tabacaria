@@ -105,7 +105,11 @@
                         </table>
                         <br>
                     </div>
-                    <br><br>
+                    <div class="subTitulo">
+                        <h2>Total: ${precoTotal}</h2>             
+                        <br>
+                    </div>
+
                     <div class="campoVoltarPosicao">           
                         <div>
                             <form action="${pageContext.request.contextPath}/PaginaInicial.jsp">
