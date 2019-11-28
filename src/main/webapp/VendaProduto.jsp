@@ -26,14 +26,14 @@
             <div style="display: inline-block;">
                 <div style="float: left; border-radius: 8px;">
                     <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
-                        <input type="hidden" value="listar" name="acao">
+                        <input type="hidden" value="listarProduto" name="acao">
                         <div>
                             <div>
+                                <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
                                 <input  class="inputBusca" type="text" name="busca" id="txtBuscar" placeholder=" Nome Produto">
                                 <button class="campoBuscas" type="submit">Buscar</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -69,17 +69,12 @@
                     </c:forEach> 
                 </table>
                 <br>
-            </div>
-            <div>
-                <label>Quantidade:</label>
-                <input type="number" name="qtd">
-            </div>
+            </div>            
             <br><br>
             <div class="campoVoltarPosicao">           
                 <div>
-                    <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController">
-                        <input type="hidden" value="adicionarProduto">
-                        <button class="campoVoltar" type="submit">Adicionar</button>
+                    <form action="${pageContext.request.contextPath}/Venda.jsp">
+                        <button class="campoVoltar" type="submit">Voltar</button>
                     </form>
                 </div>
             </div>

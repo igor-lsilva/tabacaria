@@ -38,7 +38,7 @@
                     </form>
                 </div>
                 <div style="display: inline-block;">
-                    <form action="${pageContext.request.contextPath}/TADS-PI3/CadastroCliente.jsp" method="post">
+                    <form action="${pageContext.request.contextPath}/CadastroCliente.jsp">
                         <button class="campoCadastro" type="submit">Cadastrar</button>
                     </form>
 
@@ -77,7 +77,7 @@
             <br><br>
             <div class="campoVoltarPosicao">           
                 <div>
-                    <form action="${pageContext.request.contextPath}/PaginaInicial.jsp">
+                    <form action="${pageContext.request.contextPath}/Venda.jsp">
                         <button class="campoVoltar" type="submit">Voltar</button>
                     </form>
                 </div>

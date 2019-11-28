@@ -34,19 +34,20 @@
             <div style="display: inline-block;">
                 <div style="float: left; border-radius: 8px;">
                     <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
-                        <input type="hidden" value="listarProduto" name="acao">
-                        <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
-                        <div>
-                            <button class="campoBuscas" type="submit">Adicionar Item</button>
-                        </div>                        
+
+                        <input type="hidden" value="listar" name="acao">                                               
+                        <input class="inputBusca" type="text" name="idCliente" value="${idClienteAttr}" readonly="true" placeholder="Código Cliente">
+                        <button class="campoBuscas" type="submit">Adicionar Cliente</button>
+
                     </form>
                 </div>
-                <div style="display: inline-block;">
-                    <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">                       
-                        <input type="hidden" value="listar" name="acao">                                               
-                        <button class="campoBuscas" type="submit">Adicionar Cliente</button>
-                        <label>Cod. Cliente</label>
-                        <input type="text" name="idCliente" value="${idClienteAttr}" >
+                <div style="float: left; border-radius: 8px;">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
+
+                        <input type="hidden" value="listarProduto" name="acao">
+                        <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">                       
+                        <button class="campoBuscas" type="submit">Adicionar Item</button>  
+
                     </form>
                 </div>
             </div>
@@ -71,7 +72,7 @@
                                 <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
                                     <input type="hidden" value="retirarProduto" name="acao">
                                     <input type="hidden" name="idProduto">
-                                    <button class="campoEditar"type="submit">Remover</button>   
+                                    <button class="buttonEditar"type="submit">Remover</button>   
                                 </form>
                             </td>                          
                         </tr>
@@ -83,14 +84,21 @@
                 <h1>Preço Final: ${sessionScope.itensSelecionados.precoFinal}</h1>             
                 <br>
             </div>
-            <div class="campoVoltarPosicao">           
-                <div>
-                    <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
-                        <input type="hidden" name="idCliente" value="${idClienteAttr}">
-                        <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
-                        <input type="hidden" value="cadastrarVenda" name="acao">
-                        <button class="campoBuscas" type="submit">Cadastrar Venda</button> 
-                    </form>
+            <div class="campoVoltarPosicao"> 
+                <div style="display: inline-block;">
+                    <div style="float: left;">
+                        <form action="${pageContext.request.contextPath}/TADS-PI3/VendaController" method="post">
+                            <input type="hidden" name="idCliente" value="${idClienteAttr}">
+                            <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
+                            <input type="hidden" value="cadastrarVenda" name="acao">
+                            <button class="campoBuscas" type="submit">Cadastrar Venda</button> 
+                        </form>
+                    </div>
+                    <div style="float: left;">
+                        <form action="${pageContext.request.contextPath}/PaginaInicial.jsp">
+                            <button class="campoBuscas" type="submit">Voltar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

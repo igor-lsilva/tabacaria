@@ -50,7 +50,14 @@
             </c:when>
             <c:otherwise>
                 <div>
-                    <p>Usuário não fez login</p>
+                    <h1 style="text-align: center; color: red;">Sessão Encerrada!</h1>
+                    <div class="campoVoltarPosicao">           
+                        <div>
+                            <form action="${pageContext.request.contextPath}/Login.jsp">
+                                <button class="campoVoltar" type="submit">Login</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </c:otherwise>
         </c:choose>
