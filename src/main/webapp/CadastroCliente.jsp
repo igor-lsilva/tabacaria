@@ -12,7 +12,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title> Cadastro Cliente </title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cssPaginaInicial.css" />
-
         <script> src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js";</script>
         <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
@@ -70,6 +69,14 @@
                         // settings
                         type: 'danger'
                     });
+                    $.notify({
+                        // options
+                        icon: 'glyphicon glyphicon-hand-right',
+                        message: 'O Cliente deve ter mais de 18 anos.'
+                    }, {
+                        // settings
+                        type: 'danger'
+                    });
                     document.getElementById("dtNascCliente").focus();
                     erro = true;
                     return false;
@@ -93,7 +100,7 @@
                     alert("Cadastro não realizado.");
                     return false;
                 } else {
-                    alert("Cadastro realizado.");
+                    alert("Cadastro realizado com sucesso!");
                     return true;
                 }
             }
@@ -106,18 +113,14 @@
             </ul>
         </div>
         <div class="itens">
-
             <div class="text-center">
-
             </div>
-
             <div class="msgSucesso">
                 <h4>${mensagemSucesso}</h4>
             </div>
             <div class="msgFalha">
                 <h4>${mensagemFalha}</h4>
             </div>
-
             <div class="form-group">
                 <div class="container">
                     <div class = "h2">
@@ -157,7 +160,7 @@
                         <div>
                             <form action="${pageContext.request.contextPath}/TADS-PI3/ClienteController" method="post">
                                 <input type="hidden" value="listar" name="acao">
-                                <button class="campoVoltar" type="submit" class="btn btn-primary">Voltar
+                                <button class="btn btn-primary" type="submit" class="btn btn-primary">Voltar
                                     <span class = "glyphicon glyphicon-arrow-left"></span>
                                 </button>    
                             </form>
@@ -165,7 +168,6 @@
                     </div>
                 </div> 
             </div> 
-
         </div>
     </body>
 </html>

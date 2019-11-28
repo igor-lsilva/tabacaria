@@ -48,10 +48,10 @@
             <div class="tabelaLista">
                 <table>
                     <tr>
-                        <th class="campoID">Cod. </th>
-                        <th class="campoNome">Nome </th>
-                        <th class="campoCNPJ">CNPJ </th>
-                        <th class="campoEndereco">Endereço </th>
+                        <th class="campoID">Cod.</th>
+                        <th class="campoNome">Nome</th>
+                        <th class="campoCNPJ">CNPJ</th>
+                        <th class="campoEndereco">Estado</th>
                         <th class="campoEditar">Editar</th>
                         <th class="campExcluir">Excluir</th>
                     </tr>
