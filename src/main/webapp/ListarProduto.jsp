@@ -81,6 +81,7 @@
                             </td>
                             <td class="campExcluir">
                                 <form action="${pageContext.request.contextPath}/TADS-PI3/ProdutoController" method="post">
+                                    <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
                                     <input type="hidden" value="excluir" name="acao">
                                     <input type="hidden" value="${p.id}" name="id">
                                     <button class="buttonExcluir" type="submit">Excluir</button>
