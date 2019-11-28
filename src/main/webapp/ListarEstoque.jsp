@@ -33,6 +33,7 @@
                 <div style="float: left; border-radius: 8px; ">
                     <form action="${pageContext.request.contextPath}/TADS-PI3/EstoqueController" method="post">
                         <input type="hidden" value="listar" name="acao">
+                        <input type="hidden" value="${sessionScope.usuario.idEmpresa}" name="idEmpresa">
                         <div>
                             <div>
                                 <input  class="inputBusca" type="text" name="busca" id="txtBuscar" placeholder=" Nome Produto">
