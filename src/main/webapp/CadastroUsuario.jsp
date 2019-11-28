@@ -69,14 +69,14 @@
                 <div class="container">
                     <div class = "h2">
                         <br>
-                        <h2>Cadastro de Cliente</h2>
+                        <h2>Cadastro de Usuário</h2>
                     </div>
                 <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
                     <input type="hidden" name="acao" value="salvar">
                     <div class="form-group">
                         <label>Nome do Usuário:</label>
                         <div>
-                            <input type="text" name="nomeUsuario" placeholder="Nome do Usuário" id="nomeUsuario" class="form-control">
+                            <input type="text" name="nome" placeholder="Nome do Usuário" id="nomeUsuario" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
