@@ -56,6 +56,7 @@ public class EstoqueController extends HttpServlet {
 
         String nome = request.getParameter("busca");
         int idEmp = Integer.parseInt(request.getParameter("idEmpresa"));
+        
         if ("".equals(nome) || nome == null) {
 
             ArrayList<Produto> p = ProdutoDAO.getProduto(idEmp);
