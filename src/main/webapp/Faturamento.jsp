@@ -23,7 +23,7 @@
 
         <div class="tabelaListagem">
             <div class="subTitulo">
-                <h2>Relatório de Venda</h2>
+                <h2>Lista dos 10 Produtos mais Vendidos</h2>
             </div>               
 
             <div style="display: inline-block;">
