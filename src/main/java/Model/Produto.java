@@ -34,9 +34,10 @@ public class Produto {
 
     public Produto(int id, String nome, int qtde) {
         this.id = id;
+        this.nome = nome;
         this.qtde = qtde;
     }
-
+   
     public Produto(int id, double valorCompra, double valorVenda, int qtde, Date dataEntrada) {
         this.id = id;
         this.valorCompra = valorCompra;

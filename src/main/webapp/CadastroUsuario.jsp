@@ -22,8 +22,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>        
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-notify.min.js"></script>
         <link rel="shortcut icon" href="http://www.tabacariaroma.com.br/wp-content/uploads/2017/09/cafe.png">
-        
-                <script>
+
+        <script>
             function validacao() {
                 var formulario = document.forms["formCadastroCliente"];
                 var nome = formulario.nomeCliente.value;
@@ -33,7 +33,7 @@
                 var erro = false;
                 if (nome.indexOf(" ") == -1 || nome.length < 3)
                 {
-                    document.getElementById("nomeCliente").style.backgroundColor = "#ffcccc";
+                    document.getElementById("nomeUsuario").style.backgroundColor = "#ffcccc";
                     $.notify({
                         // options
                         message: 'Preencha o nome completo do cliente'
@@ -41,15 +41,24 @@
                         // settings
                         type: 'danger'
                     });
-                    document.getElementById("nomeCliente").focus();
+                    document.getElementById("nomeUsuario").focus();
                     erro = true;
                     return false;
                 } else {
-                    document.getElementById("nomeCliente").style.backgroundColor = "#ffffff";
+                    document.getElementById("nomeUsuario").style.backgroundColor = "#ffffff";
                     erro = false;
                 }
+                if (erro) {
+                    alert("Cadastro não realizado.");
+                    return false;
+                } else {
+                    alert("Cadastro realizado com sucesso!");
+                    return true;
+                }
+            }
+
         </script> 
-        
+
     </head>
     <body>
         <div class="linksPosicao">
@@ -71,62 +80,62 @@
                         <br>
                         <h2>Cadastro de Usuário</h2>
                     </div>
-                <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
-                    <input type="hidden" name="acao" value="salvar">
-                    <div class="form-group">
-                        <label>Nome do Usuário:</label>
-                        <div>
-                            <input type="text" name="nome" placeholder="Nome do Usuário" id="nomeUsuario" class="form-control">
+                    <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
+                        <input type="hidden" name="acao" value="salvar">
+                        <div class="form-group">
+                            <label>Nome do Usuário:</label>
+                            <div>
+                                <input type="text" name="nome" placeholder="Nome do Usuário" id="nomeUsuario" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>CPF do Usuário:</label>
-                        <div>
-                            <input type="text" name="cpf" placeholder="CPF do Usuário" id="cpfUsuario" class="form-control"  maxlength="14" onkeypress= "$(this).mask('000.000.000-00')">
+                        <div class="form-group">
+                            <label>CPF do Usuário:</label>
+                            <div>
+                                <input type="text" name="cpf" placeholder="CPF do Usuário" id="cpfUsuario" class="form-control"  maxlength="14" onkeypress= "$(this).mask('000.000.000-00')">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Cargo:</label>
-                        <div>
-                            <select name="modulo" multiple style="height: 100px;">
-                                <c:forEach items="${todosModulos}" var="modulo">
-                                    <option value="${modulo.id}">
-                                        ${modulo.nomeModulo}
-                                    </option>
-                                </c:forEach>
-                            </select>
+                        <div class="form-group">
+                            <label>Cargo:</label>
+                            <div>
+                                <select name="modulo" multiple style="height: 100px;">
+                                    <c:forEach items="${todosModulos}" var="modulo">
+                                        <option value="${modulo.id}">
+                                            ${modulo.nomeModulo}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Codigo Empresa</label>
-                        <div>
-                            <select name="codEmp">
-                                <c:forEach items="${todasFilial}" var="filial">
-                                    <option value="${filial.id}">
-                                        ${filial.nomeFilial}
-                                    </option>
-                                </c:forEach>
-                            </select>
+                        <div class="form-group">
+                            <label>Codigo Empresa</label>
+                            <div>
+                                <select name="codEmp">
+                                    <c:forEach items="${todasFilial}" var="filial">
+                                        <option value="${filial.id}">
+                                            ${filial.nomeFilial}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Contato:</label>
-                        <div>
-                            <input type="text" name="contato" class="form-control">
+                        <div class="form-group">
+                            <label>Contato:</label>
+                            <div>
+                                <input type="text" name="contato" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>login:</label>
-                        <div>
-                            <input type="text" name="login" id="login" class="form-control">
+                        <div class="form-group">
+                            <label>login:</label>
+                            <div>
+                                <input type="text" name="login" id="login" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Senha:</label>
-                        <div>
-                            <input type="password" name="senha" id="senha" class="form-control">
+                        <div class="form-group">
+                            <label>Senha:</label>
+                            <div>
+                                <input type="password" name="senha" id="senha" class="form-control">
+                            </div>
                         </div>
-                    </div>
                         <div class="posicaoButtons">
                             <button class="btn btn-primary" type="submit">Cadastrar
                                 <span class = "glyphicon glyphicon-send"></span>
@@ -135,21 +144,21 @@
                                 <span class = "glyphicon glyphicon-refresh"></span>
                             </button>   
                         </div>
-                    <br>
-                    <br>
-                </form>
-                <div class="campoVoltarPosicao">
-                    <div>
-                        <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
-                            <input type="hidden" value="listar" name="acao">
+                        <br>
+                        <br>
+                    </form>
+                    <div class="campoVoltarPosicao">
+                        <div>
+                            <form action="${pageContext.request.contextPath}/TADS-PI3/UsuarioController" method="post">
+                                <input type="hidden" value="listar" name="acao">
                                 <button class="btn btn-primary" type="submit" class="btn btn-primary">Voltar
                                     <span class = "glyphicon glyphicon-arrow-left"></span>
                                 </button>    
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </body>
 </html>

@@ -135,7 +135,7 @@
                         </div>
                         <div class="form-group">
                             <label>CPF: </label>
-                            <input type="text" name="CPF" value="${CPFAttr}" placeholder="CPF do Cliente" id="cpfCliente" class="form-control" maxlength="14" onkeypress= "$(this).mask('000.000.000-00')" >
+                            <input type="text" name="CPF" value="${CPFAttr}" placeholder="CPF do Cliente (Apenas maiores de 18 anos)" id="cpfCliente" class="form-control" maxlength="14" onkeypress= "$(this).mask('000.000.000-00')" >
                         </div>
                         <div class="form-group">
                             <label>Data de Nascimento: </label>

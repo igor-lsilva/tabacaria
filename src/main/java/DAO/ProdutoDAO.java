@@ -360,4 +360,40 @@ public class ProdutoDAO {
         return listaProdutos;
     }
 
+        public static ArrayList<Produto> getProduto(int id, java.sql.Date datainicio, java.sql.Date datafim) {
+        boolean retorno = false;
+
+        ArrayList<Produto> listaProdutos = new ArrayList<>();
+
+        try {
+
+            Class.forName(DRIVER);
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+
+            PreparedStatement comando = conexao.prepareStatement("select produto.id, produto.nome, sum(qtde) from produto, saida_produto where produto.id = saida_produto.id_produto and produto.id_filial = "+id+" and saida_produto.data_saida between '"+datainicio+"' and '"+datafim+"' group by produto.id order by saida_produto.qtde desc limit 10;");
+
+            ResultSet rs = comando.executeQuery();
+
+            while (rs.next()) {
+              
+               
+                Produto p = new Produto(rs.getInt(1), rs.getString(2), rs.getInt(3));
+
+                listaProdutos.add(p);
+            }
+
+        } catch (ClassNotFoundException ex) {
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                retorno = false;
+            }
+
+        }
+        return listaProdutos;
+    }
 }

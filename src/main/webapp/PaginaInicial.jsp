@@ -30,7 +30,7 @@
                             <li><a href="${pageContext.request.contextPath}/TADS-PI3/EstoqueController?idEmpresa=${sessionScope.usuario.idEmpresa}">ESTOQUE</a></li>
                             </c:if>
                             <c:if test="${sessionScope.usuario.verificarPapel('VENDA')}">
-                            <li><a href="/Tabacaria/Venda.jsp">VENDA</a></li>
+                            <li><a href="${pageContext.request.contextPath}/Venda.jsp">VENDA</a></li>
                             </c:if>
                             <c:if test="${sessionScope.usuario.verificarPapel('DIRETORIA') || sessionScope.usuario.verificarPapel('GERENCIA')}">
                             <li><a href="${pageContext.request.contextPath}/TADS-PI3/RelatorioController">RELATÓRIO</a></li>
